@@ -22,13 +22,6 @@ body{
 	width: 100%;
 }
 
-.pagination li{
-	font-size: 20px;
-	margin: 2px 5px;
-	color: #858585;
-	cursor: pointer;
-}
-
 .slider li img{
 	width: 100%;
 }
@@ -50,14 +43,20 @@ body{
 }
 
 .pagination{
-	
-	top: 10%;
-	width: 30%;
-
-	align: center;
+	position: absolute;
+	top: 100%;
+	width: 20%;
 	display: flex;
 	justify-content: center;
 	color: #000;
+	right: 40%;
+}
+
+.pagination li{
+	font-size: 20px;
+	margin: 2px 5px;
+	color: #858585;
+	cursor: pointer;
 }
 
 .left,.right{
