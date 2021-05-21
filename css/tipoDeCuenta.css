@@ -1,0 +1,73 @@
+section.tipoDeCuenta{
+  border: solid white 10px;
+  background-color: #007580;
+  border-radius: 40px;
+
+  height: 60vh;
+  width: 50%;
+  max-width: 1500px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  
+
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+section.tipoDeCuenta div a{
+	color: red;
+}
+
+section.tipoDeCuenta div a button{
+	width: 100%;
+	background-color: #9ddfd3;
+	border: 0;
+	cursor: pointer;
+	border-radius: 50px;
+}
+
+section.tipoDeCuenta div a button:hover{
+	background-color: #536162;
+	color: #dbf6e9;
+}
+
+section.tipoDeCuenta div a button h1{
+	padding: 20px 10px;
+}
+
+section.tipoDeCuenta div a button img{
+	margin-top: 30px;
+	height: 30vh;
+	width: 200px;
+}
+
+section.tipoDeCuenta div a button h2{
+	padding: 30px 10px;
+}
+
+section.tipoDeCuenta div.sesionComprador{
+	color: white;
+	width: 30%;
+	/*border: solid blue 5px;*/
+}
+
+section.tipoDeCuenta img.logoIniciarSesion{
+	width: 30%;
+	height: 25vh;
+	/*border: solid blue 5px;*/
+	margin-top: 15vh;
+}
+
+section.tipoDeCuenta div.sesionVendedor{
+	color: red;
+	width: 30%;
+	/*border: solid yellow 5px;*/
+}
+
+
+footer{
+	margin-top: 0px;
+}
+

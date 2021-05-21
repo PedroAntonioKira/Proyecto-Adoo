@@ -1,0 +1,102 @@
+section.mensajeVendedor{
+  border: solid #536162 10px;
+  background-color: #007580;
+  border-radius: 40px;
+  height: 60vh;
+
+  width: 80%;
+  margin: auto;
+  max-width: 1500px;
+
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  padding: 10px 20px;
+
+
+  display: flex;
+}
+
+
+section.mensajeVendedor div h1{
+	text-align: center;
+	/*border: solid 2px #fff;*/
+}
+
+section.mensajeVendedor div h2{
+	text-align: center;
+	/*border: solid 2px #fff;*/
+}
+
+section.mensajeVendedor div h3{
+	text-align: center;
+	/*border: solid 2px #fff;*/
+}
+
+section.mensajeVendedor .ladoIzquierdo{
+	width: 100%;
+	padding: 5px 16px 5px 10px; /*arriba  derecho  abajo  izquierdo*/
+	/*border: red solid 1px;*/
+}
+
+section.mensajeVendedor .ladoIzquierdo .contenedorTextArea {
+	width: 100%;
+	height: 90%;
+}
+
+
+section.mensajeVendedor .ladoIzquierdo .contenedorTextArea .textArea{
+	width: 100%;
+	height: 70%;
+	margin-top: 25px;
+	resize: none;
+	font-size: 18px;
+	padding: 10px;
+}
+
+
+section.mensajeVendedor .ladoIzquierdo .contenedorTextArea .contenedorBotonesTextArea {
+	display: flex;
+	justify-content: space-between;
+	background-color: #dbf6e9;
+	height: 10%;
+}
+
+
+section.mensajeVendedor .ladoIzquierdo .contenedorTextArea .contenedorBotonesTextArea button {
+	padding: 5px;
+	margin-top: 5px;
+	height: 30px;
+	background-color: #000;
+	color: #fff;
+}
+
+
+section.mensajeVendedor .ladoIzquierdo .textArea::placeholder{
+	text-align: center;
+	color: #007580;
+	font-weight: bold;
+	font-size: 18px;
+	padding-top: 30px;
+	width: 80%;
+}
+
+section.mensajeVendedor .ladoDerecho{
+	width: 50%;
+	padding: 5px 10px 5px 16px; /*arriba  derecho  abajo  izquierdo*/
+	/*border: red solid 1px;*/
+}
+
+section.mensajeVendedor .ladoDerecho .descripcionProvedorMensaje{
+	background-color: #9ddfd3;
+	margin-top: 20px;
+	height: 90%;
+	border: solid 5px #1a1a1a;
+	border-radius: 40px;
+	padding: 10px;
+}
+
+footer{
+	margin-top: 0px;
+}
+
