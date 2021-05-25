@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pagar Total</title>
+	<title>pagina Principal ADOO</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
 	<!--Estilos del menu superior-->
 	<link rel="stylesheet" href="../css/menuPrincipal01.css">
@@ -15,7 +14,10 @@
 
 	<script src="../js/jquery-3.6.0.js"></script>
 	<script src="../js/main.js"></script>
-	<script src="../js/habilitarPagarTotal.js"></script>
+
+	<!--Estilos del slider-->
+	<link rel="stylesheet" type="text/css" href="../css/tipoDeCuenta.css">
+
 
 </head>
 <body>
@@ -67,7 +69,7 @@
 
 									<div class="banner-categoria">
 										<a href="#">
-											<img src="img/computadora-banner01.jpeg">
+											<img src="../img/computadora-banner01.jpeg">
 										</a>
 									</div>
 
@@ -238,13 +240,13 @@
 
 					<div class="opciones_menu contenedor02 ">
 						<ul>
-							<li> <a href="../index.html"> <i class="fas fa-house-user"></i> Inicio  </a> </li>
+							<li> <a href="#"> <i class="fas fa-house-user"></i> Inicio  </a> </li>
 
 							<li> <a href="#"> <i class="fas fa-star-of-david"></i> Conocenos </a> </li>
 
 							<li> <a href="#" class="boton_categorias" id="boton_categorias"> Categorias <i class="fas fa-caret-down"></i> </a> </li>
 
-							<li> <a href="../html/tipoDeCuenta.html"> <i class="fas fa-male"></i> Mi Cuenta </a> </li>
+							<li> <a href="#"> <i class="fas fa-male"></i> Mi Cuenta </a> </li>
 
 							<li> <a href="#"> <i class="fas fa-restroom"></i> Contacto </a> </li>
 
@@ -254,6 +256,7 @@
 					</div>
 
 					<div class="botones_menu contenedor02">
+						
 						<button id="btn_menu_barras" class="btn_menu_barras">
 							<i class="fas fa-bars"></i> 
 						</button>
@@ -273,22 +276,24 @@
 	</header>
 
 	<main class="contenedor">
+		
 
-        
-			<div style="float:center; text-align: center"; class="form-register">
-	            <form action="" class="formulario">
-	            	<h4>Compra exitosa</h4>
-		            <div class="">
-			            
-		  			</div>
-	  				
-		            <a class="controls" href="../index.html" style="color: #fff; text-decoration:none; padding: 5px 100px 5px 100px; color:#000:hover;">Regresar a inicio</a>
-	        	</form>
-	        </div>
-        
+		<section class="tipoDeCuenta" id="tipoDeCuenta">
+			
+			
+				<div class="sesionComprador">
+					<img src="../img/ceg-compraexitosa.png" width="890" height="350">
+					<br><br>
+					<a class="controls" href="../index.html" style="color: #fff; text-decoration:none; padding: 5px 100px 5px 100px;">Inicio</a>
+				</div>
+			
+		</section>
+
 
 	</main>
+
 	<footer>
+
 		<h3> <a href="#">Av. Luis Enrique Erro S/N, Unidad Profesional Adolfo López Mateos, Zacatenco, Delegación Gustavo A. Madero, C.P. 07738, Ciudad de México </a> </h3>
 
 		<h4> <a href="#"> Terminos y Condiciones </a> <a href="#"> Aviso de Privacidad </a> </h4>
@@ -296,7 +301,11 @@
 		<h5> @	Derechos reservados 2021.</h5>
 		
 	</footer>
+
+	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
 	
 </body>
 
 </html>
+      
