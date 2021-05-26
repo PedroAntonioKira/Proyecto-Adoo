@@ -1,3 +1,9 @@
+/* PONIENDO NAV CON LETRAS BLANCAS */
+.navbar-light, .navbar-brand, a.nav-link{
+    color: azure !important;
+}
+/* navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll */
+
 .details-product{
     margin-top: 20px;
 }
@@ -24,4 +30,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+
+/* PARA TEMA OSCURO */
+.list-group-item{
+    background: transparent !important;
+    color: azure !important;
+}
+
+h1,h2,h3,h4,h5,h6, p{
+    color: azure;
+}
+
+a.nav-link.disabled{
+    color: tomato !important;
 }
