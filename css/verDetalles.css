@@ -1,0 +1,27 @@
+.details-product{
+    margin-top: 20px;
+}
+
+.qualification-vendor{
+    color: rgb(212, 175, 55) !important;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.user-img-comment{
+    font-size: 30pt;
+}
+
+.buttons-container .btn{
+    font-size: 15pt;
+    margin: 10px 15px;
+}
+.container-right{
+    /* background: tomato; */
+    margin-top: 70px;
+}
+.center-all{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
