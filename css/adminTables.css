@@ -1,7 +1,5 @@
-h5.modal-title{
-    color: #212529 !important;
-}
 
+/* TOAST */
 .toast-header{
     background: #212529;
     color: azure;
@@ -12,3 +10,12 @@ h5.modal-title{
     color: azure;
 }
 
+/* MODAL */
+.modal-content{
+    background: #212529;
+    color: azure;
+}
+h5.modal-title{
+    /* color: #212529 !important; */
+    color: azure !important;
+}
