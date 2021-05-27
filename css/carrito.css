@@ -1,0 +1,63 @@
+section.contenedorCarrito{
+  border: solid white 10px;
+  background-color: #007580;
+  border-radius: 40px;
+
+  height: 60vh;
+  width: 50%;
+  max-width: 1500px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+
+  padding: 10px 20px;
+}
+
+section.contenedorCarrito div {
+  width: 100%;
+}
+
+section.contenedorCarrito div h1 {
+  text-align: center;
+  width: 95%;
+  margin: auto;
+  background-color: 
+  border: solid red 5px;
+  color: #9ddfd3;
+}
+
+
+section.contenedorCarrito div.contenedorProducto{
+  text-align: center;
+  background-color: #fff;
+  height: 70%;
+  border-radius: 10px;
+}
+
+section.contenedorCarrito div.contenedorProducto p{
+  margin-top: 2vh;
+  background-color: red;
+}
+
+section.contenedorCarrito div.contenedorBotones{
+  display: flex;
+  justify-content: space-around;
+}
+
+section.contenedorCarrito div.contenedorBotones button{
+  margin-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #9ddfd3;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+
+section.contenedorCarrito div.contenedorBotones button:hover{
+  background-color: #536162;
+  color: white;
+}
