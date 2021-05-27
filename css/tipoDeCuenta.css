@@ -65,6 +65,33 @@ section.tipoDeCuenta div.sesionVendedor{
 	/*border: solid yellow 5px;*/
 }
 
+section.tipoDeCuenta div.compraexitosa{
+	color: red;
+	width: 30%;
+	/*border: solid yellow 5px;*/
+}
+
+section.tipoDeCuenta div.compraexitosa img{
+	width: auto;
+  height: 50%;
+}
+@supports(object-fit: cover){
+    section.tipoDeCuenta div.compraexitosa img{
+      height: 85%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
+
+section.tipoDeCuenta div.compraexitosa .controls{
+	position:relative;
+	left: 100%;
+	color: #fff; 
+	text-decoration:none; 
+	padding: 5px 100px 5px 100px; 
+	
+}
+
 
 footer{
 	margin-top: 0px;
