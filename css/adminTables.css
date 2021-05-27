@@ -1,0 +1,14 @@
+h5.modal-title{
+    color: #212529 !important;
+}
+
+.toast-header{
+    background: #212529;
+    color: azure;
+    border-bottom: solid 1px azure;
+}
+.toast-body{
+    background: #212529;
+    color: azure;
+}
+
