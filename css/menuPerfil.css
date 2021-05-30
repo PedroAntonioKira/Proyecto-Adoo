@@ -1,0 +1,201 @@
+:root{
+	--width:300px;
+	--padding:10px;
+	--bgcolor:rgb(24,24,24);
+	--hovercolor:rgb(0,117,128);
+	--width-collapsed: 50px;
+}
+
+body{
+	background-color: #536162;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size:18px ;
+	padding: 0;
+	margin: 0;
+	margin-left: var(--width--collapsed);
+}
+
+.body-expanded{
+	margin-left: var(--width);
+}
+
+#main-container{
+	position: fixed;
+	top: 80;
+	left: calc(var(--width) + 10px);
+	color: white;
+}
+
+#menuPerfil{
+	background-color: var(--bgcolor);
+	color: black;
+	position: fixed;
+	height: 78%;
+	left: 0;
+	top: 60;
+}
+
+#menuPerfil a{
+	color: white;
+	text-decoration: none;
+}
+
+#menuPerfil #header{
+	box-sizing: border-box;
+	border-bottom: solid 1px var(--hovercolor);
+}
+
+#menuPerfil #header #title{
+	color: white;
+	box-sizing: border-box;
+	overflow: hidden;
+	text-align: center;
+}
+
+#menuPerfil #header #menu-btn,#menuPerfil #header #title{
+	vertical-align: middle;
+	display: inline-block;
+}
+
+#menuPerfil #header #menu-btn{
+	display: pointer;
+	padding: 10px;
+	width: var(--width-collapsed);
+	box-sizing: border-box;
+}
+
+#menuPerfil #header #menu-btn:hover{
+	background-color: var(--hovercolor);
+}
+
+#menuPerfil #header #menu-btn .btn-hamburger{
+	background-color: #fff;
+	width: 100%;
+	height: 2px;
+	margin: 5px 0;
+}
+
+/*
+		Perfil
+*/
+
+#menuPerfil #profile{
+	border-bottom: solid 1px var(--hovercolor);
+	padding: var(--padding) 0;
+	text-align: center;
+}
+
+#menuPerfil #profile #photo{
+	box-sizing: border-box;
+	padding: var(--padding);
+	margin: 0 auto;
+}
+
+#menuPerfil #profile #photo img{
+	border-radius: 50%;
+	width: 60%;
+}
+
+#menuPerfil #profile #photo,#menuPerfil #profile #name{
+	font-size: 22px;
+	padding: var(--padding) 0;
+	overflow: hidden;
+	color: white;
+}
+
+/* 
+	ITEM
+*/
+#menuPerfil #menu-items{
+	overflow: hidden;
+}
+
+#menuPerfil #menu-items .item{
+	width: var(--width);
+	
+}
+
+#menuPerfil #menu-items .item .icon{
+	display: inline-block;
+}
+
+#menuPerfil #menu-items .item .icon,
+#menuPerfil #menu-items .item .title{
+	font-size: 14px;
+	vertical-align: middle;
+	overflow: hidden;
+	display: inline-block;
+}
+
+#menuPerfil #menu-items .item a{
+	display: block;
+}
+
+#menuPerfil #menu-items .item a:hover{
+	background-color: var(--hovercolor);
+}
+
+#menuPerfil #menu-items .item .icon{
+	box-sizing: border-box;
+	padding: 0 0 0 15px;
+	width: var(--width-collapsed);
+}
+
+#menuPerfil #menu-items .item .icon i{
+	width: 100%;
+}
+
+#menuPerfil #menu-items .item .title{
+	padding: 15px 15px 15px 15px;
+}
+
+#menuPerfil #menu-items .item.separador{
+	height: 1px;
+	border-bottom: solid 1px var(--hovercolor);
+	
+}
+
+.menu-expanded{
+	width: var(--width);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.menu-expanded #header #title{
+	display: inline-block;
+	width: calc(100% - 50px);
+	margin-right: -5px;
+	padding: var(--padding);
+}
+
+.menu-expanded #header #title span{
+	width: calc(var(--width) - var(--width-collapsed) -5px);
+	overflow: hidden;
+	
+}
+
+.menu-expanded #profile #photo{
+	width: 200px;
+}
+
+.menu-expanded #profile #name{
+	width: 100%;
+}
+
+.menu-collapsed{
+	width: var(--width-collapsed);
+}
+
+.menu-collapsed #header #title{
+	width: 0;
+	height: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.menu-collapsed #profile #name{
+	display: none;
+}
+
+.menu-collapsed .item{
+	width: 100px;
+}

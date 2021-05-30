@@ -1,31 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <title>Inicio de sesion</title>
-    <meta charset="utf-8">
+	<title>Perfil comprador</title>
+	<meta charset="utf-8">
 
+	<!--Estilos del menu superior-->
+	<link rel="stylesheet" href="../css/menuPrincipal01.css">
+	<link rel="stylesheet" href="../css/Cuerpo01.css">
 
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="../css/productos.css">
-    <script src="../js/productos.js"></script>
-    <script src="../js/scriptp.js"></script>
+	<!--Estilos del slider-->
+	<link rel="stylesheet" href="../css/all.min.css">
+	<link rel="stylesheet" href="../css/recompra.css">
+	<link rel="stylesheet" href="../css/menuPerfil.css">
 
-    <!--Estilos del menu superior-->
-    <link rel="stylesheet" href="../css/menuPrincipal01.css">
-    <link rel="stylesheet" href="../css/Cuerpo01.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <!--Estilos del slider-->
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/estilos.css">
-
-    <script src="../js/jquery-3.6.0.js"></script>
-    <script src="../js/main.js"></script>
+	<script src="../js/jquery-3.6.0.js"></script>
+	<script src="../js/main.js"></script>
 
 </head>
 <body>
 
-   	<header>
+    <header>
 
 		<div class="centrar_menu">
 				
@@ -72,7 +66,7 @@
 
 									<div class="banner-categoria">
 										<a href="#">
-											<img src="../img/computadora-banner01.jpeg">
+											<img src="img/computadora-banner01.jpeg">
 										</a>
 									</div>
 
@@ -276,29 +270,137 @@
 
 	</header>
 
-<body>
+	<main class="contenedor">
+	<div id="prin">
+		<div id="menuPerfil" class="menu-expanded">
+			<div id="header">
+				<div id="menu-btn">
+					<div class="btn-hamburger"></div>
+					<div class="btn-hamburger"></div>
+					<div class="btn-hamburger"></div>
+				</div>
+				<div id="title">
+					<span>Perfil Comprador</span>
+				</div>
+			</div>	
 
-    <main>
-        <div class="container">
-  <div class="info">
-    <h1 style="color:white;">
-      Inicio de sesion <br>
-      Comprador
-    </h1>
-  </div>
-</div>
-<div class="form">
-  <div class="thumbnail">
-    <img src="../img/logo.png" />
-  </div>
-  <form class="login-form">
-    <input ,="" placeholder="username" type="text" />
-    <input ,="" placeholder="password" type="password" />
-	  
-<button><a href="perfilComprador.html">login</a></button></form>
-    <br>
-    <p>¿No tienes cuenta aun? <a href="crearCuentaComprador.html"> <br>Crea Una Cuenta ahora</a></p>
-    </main>
+			<div id="profile">
+				<div id="photo">
+					<img src="../img/usuario.png">
+				</div>
+
+				<div id="name">
+					<span>Adrian Castañeda</span>
+				</div>
+			</div>
+
+
+			<div id="menu-items">
+				<div class="item">
+					<a href="#">
+						<div class="icon"><i class="fas fa-list-ul"></i></div>
+						<div class="title"><span>Compras</span></div>
+					</a>
+				</div>
+
+				<div class="item separador">
+					
+				</div>	
+
+				<div class="item">
+					<a href="#">
+						<div class="icon"><i class="fas fa-comments"></i> </div>
+						<div class="title"><span>Conversaciones</span></div>
+					</a>
+				</div>
+
+				<div class="item separador">
+					
+				</div>	
+
+				<div class="item">
+					<a href="#">
+						<div class="icon"><i class="fas fa-question"></i> </div>
+						<div class="title"><span>Preguntas a productos</span></div>
+					</a>
+				</div>
+
+				<div class="item separador">
+					
+				</div>	
+
+				<div class="item">
+					<a href="#">
+						<div class="icon"><i class="fa fa-gear"></i> </div>
+						<div class="title"><span>Configurar Perfil</span></div>
+					</a>
+				</div>
+
+				<div class="item separador">
+					
+				</div>	
+
+				<div class="item">
+					<a href="#">
+						<div class="icon"><i class="fa fa-location-arrow"></i> </div>
+						<div class="title"><span>Direcciones</span></div>
+					</a>
+				</div>
+
+				<div class="item separador">
+					
+				</div>	
+
+				<div class="item">
+					<a href="#">
+						<div class="icon"><i class="fa fa-star"></i> </div>
+						<div class="title"><span>Puntuacion como comprador</span></div>
+					</a>
+				</div>
+
+				<div class="item separador">
+					
+				</div>	
+
+				<div class="item">
+					<a href="#">
+						<div class="icon"><i class="fa fa-power-off"></i> </div>
+						<div class="title"><span>cerrar sesion</span></div>
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="main-container">
+			Realiza Tu primer compra
+		</div>
+	
+		<script>
+			const btn=document.querySelector('#menu-btn');
+			const menu=document.querySelector('#menuPerfil');
+			btn.addEventListener('click', e =>{
+				menu.classList.toggle("menu-expanded");
+				menu.classList.toggle("menu-collapsed");
+
+				document,querySelector('body').classList.toggle('body-expanded');
+			});
+		</script>
+	</div>
+	</main>
+
+	<footer>
+		<h3> <a href="#">Av. Luis Enrique Erro S/N, Unidad Profesional Adolfo López Mateos, Zacatenco, Delegación Gustavo A. Madero, C.P. 07738, Ciudad de México </a> </h3>
+
+		<h4> <a href="#"> Terminos y Condiciones </a> <a href="#"> Aviso de Privacidad </a> </h4>
+
+		<h5> @	Derechos reservados 2021.</h5>
+
+	</footer>
+
+	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/menuPrincipal01.js"></script>
 
 </body>
+
 </html>
