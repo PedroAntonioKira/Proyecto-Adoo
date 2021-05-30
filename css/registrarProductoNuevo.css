@@ -1,0 +1,16 @@
+body{
+    background: transparent !important;
+}
+
+body .container{
+    margin-top: 20px;
+    min-height: 50vh;
+}
+
+.form-check-input:checked {
+    background: #007580;
+    border-color:#007580;
+}
+.collapse{
+    margin: 20px auto;
+}
