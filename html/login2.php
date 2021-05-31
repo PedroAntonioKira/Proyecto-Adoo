@@ -30,7 +30,7 @@
           $_SESSION['actividad']=$obtenido['actividad'];
           $_SESSION['privilegio']=$obtenido['privilegio'];
 
-          
+          header('location: ../index.php');
 
         }else{
           $message = "<p style='color:#FF0000'>Tu estatus es inactivo<p/>";

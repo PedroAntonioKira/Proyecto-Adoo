@@ -14,6 +14,7 @@
             <li> <a href="conversaciones.html">  Conversaciones </a> </li>
             <li> <a href="historialCompras.html">  Compras </a> </li>
             <li> <a href="search.html"> Buscador <i class="fas fa-search-dollar"></i> </a> </li>
+            <li> <a href="./assets/connections/terminar.php"> Cerrar Sesión<i class="fas fa-male"></i> </a> </li>
           </ul>
         </div>
 
