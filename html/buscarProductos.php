@@ -225,19 +225,20 @@
   </div>
 
   <script type="text/javascript">
-    function redirecVer(number){
-      window.window.location.href='verDetalles.html?'+number;
+    function redirecVer(id){
+      window.window.location.href='verDetalles.php?id_producto='+id;
     };
   </script>
 
   <script type="text/javascript">
     function redireCar(number){
-      window.window.location.href='carrito.html?'+number;
+
+      window.window.location.href='carrito.php?id_producto='+number;
     };
   </script>
 
   <script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/menuPrincipal01.js"></script>
+  <script type="text/javascript" src="../js/menuPrincipal01.js"></script>
 </body>
 
 </html>
