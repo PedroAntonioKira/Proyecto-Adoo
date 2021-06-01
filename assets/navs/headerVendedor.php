@@ -11,7 +11,7 @@
         <div class="opciones_menu contenedor02 ">
           <ul>
             <li> <a href="index.php"> <i class="fas fa-house-user"></i> Inicio  </a> </li>
-            <li> <a href="html/registrarProducto.html">  Registrar Producto </a> </li>
+            <li> <a href="html/registrarProductoNuevo.php">  Publicar Producto </a> </li>
             <li> <a href="html/conversaciones.html">  Conversaciones </a> </li>
             <li> <a href="html/historialVentas.html">  Ventas </a> </li>
             <li> <a href="./assets/connections/terminar.php"> Cerrar Sesión<i class="fas fa-male"></i> </a> </li>
