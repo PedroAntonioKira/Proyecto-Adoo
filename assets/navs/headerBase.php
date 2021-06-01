@@ -224,7 +224,7 @@
 
           <li> <a href="html/carrito.html"> <i class="fas fa-shopping-cart"></i>Carrito </a> </li>
 
-          <li> <a href="html/search.html"> Buscador <i class="fas fa-search-dollar"></i> </a> </li>
+          <li> <a href="html/search.php"> Buscador <i class="fas fa-search-dollar"></i> </a> </li>
         </ul>
 
       </div>

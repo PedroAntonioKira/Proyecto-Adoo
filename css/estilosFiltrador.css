@@ -100,17 +100,7 @@ body{
 		text-decoration: none;
 }
 
-.product-item a{
-	display: block;
-	width: 50%;
-	height: 100%;
-	padding: 8px 0;
-	background: #536162;
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
-	float: left;
-}
+
 
 .product-item .botones{
 	width: 40%
