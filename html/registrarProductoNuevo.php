@@ -297,7 +297,7 @@
             </div>        
 
             <!-- = = = = = = FORMULARIO 1: DISPOSITIVOS = = = = = = clase visible = 'collapse show' -->
-            <div class="collapse show" id="collapseExample1">
+            <div class="collapse" id="collapseExample1">
                 <h4>Rellena los datos del producto que vendes.</h4>
                 <form class="container" method="POST">
                     <div class="row">
