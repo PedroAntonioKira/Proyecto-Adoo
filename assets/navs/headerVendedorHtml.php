@@ -10,7 +10,7 @@
       <nav class="menu_Navegacion" id="menu_Navegacion">
         <div class="opciones_menu contenedor02 ">
           <ul>
-            <li> <a href="../index.html"> <i class="fas fa-house-user"></i> Inicio  </a> </li>
+            <li> <a href="../index.php"> <i class="fas fa-house-user"></i> Inicio  </a> </li>
             <li> <a href="./registrarProductoNuevo.php">  Registrar Producto </a> </li>
             <li> <a href="conversaciones.html">  Conversaciones </a> </li>
             <li> <a href="historialVentas.html">  Ventas </a> </li>
