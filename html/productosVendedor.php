@@ -1,3 +1,15 @@
+<?php
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+	// else
+    // {
+    //     session_destroy();
+    //     session_start(); 
+    // }
+?>	
+
 <!DOCTYPE html>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
 <html>
@@ -287,15 +299,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Rechazar Producto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ¿Desea rechazar la publicación del producto "Producto 01" con id "1"?
+                ¿Desea eliminar el producto "Nombre Producto" con id "ID Producto"?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" id="liveToastBtn" onclick="mostrarToast()" data-bs-dismiss="modal">Rechazar</button>
+                <button type="button" class="btn btn-danger" id="liveToastBtn" onclick="mostrarToast()" data-bs-dismiss="modal">Eliminar</button>
             </div>
             </div>
         </div>
@@ -311,7 +323,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick="cerrarToast()"></button>
             </div>
             <div class="toast-body">
-            Se ejecuto el rechazo del producto correctamente.
+            Se elimino el producto correctamente.
             </div>
         </div>
     </div>
@@ -326,96 +338,57 @@
                       <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Vendedor</th>
+                        <th scope="col">Stock</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Producto 01</td>
-                        <td>Excepteur ea nostrud</td>
-                        <td>Por revisar</td>
-                        <td>
-                            <a href="verDetalles.html" class="btn btn-primary" title="Ver Detalles del Producto"><i class="bi bi-eye"></i></a>
-                            <button type="button" class="btn btn-success" title="Aprobar Producto" id="liveToastBtnAprobar" onclick="mostrarToast()"><i class="bi bi-check-lg"></i></button>
+						<?php
+						// session_start();
+						require '../assets/connections/database.php';
+						$id_vendedor = $_SESSION['id_vendedor'];
+						$sentencia = "SELECT cptos.id, pto.nombre, pto.stock, pto.estado FROM catalogodeproductos cptos, producto pto 
+						WHERE cptos.producto_id = pto.id AND vendedor_id = '$id_vendedor'";	
+						$ejecutar = $con->query($sentencia);
+						// $ejecutar = $con->query($sentencia);
+						// $_SESSION['id_vendedor']
+
+						while ($datos = $ejecutar->fetch_assoc()) {
+							$id = $datos['id'];
+							$nombre = $datos['nombre'];
+							$stock = $datos['stock'];
+							$estado = $datos['estado'];			
+				
+							echo "<tr>";
+							echo "<th scope='row'>$id</th>";
+							echo "<td>$nombre</th>";
+							echo "<td>$stock</th>";
+							echo "<td>$estado</th>";
+							echo "<td>
+								<a href='verDetalles.php?id=$id' class='btn btn-primary' title='Vista previa del Producto'><i class='bi bi-eye'></i></a>
+								<a href='editarProducto.html?id=$id' type='button' class='btn btn-warning' title='Editar Producto' id='liveToastBtnAprobar'><i class='bi bi-pencil-fill'></i></a>
+								<button type='button' class='btn btn-danger' title='Eliminar Producto' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                                	<i class='bi bi-trash'></i>
+                            	</button> </td>";
+							echo "</tr>";							
+					
+						  }						
+						?>	
+                      <!-- <tr> -->
+                        <!-- <th scope="row">1</th> -->
+                        <!-- <td>Producto 01</td> -->
+                        <!-- <td>Excepteur ea nostrud</td> -->
+                        <!-- <td>Por revisar</td> -->
+                        <!-- <td> -->
+                            <!-- <a href="verDetalles.html" class="btn btn-primary" title="Ver Detalles del Producto"><i class="bi bi-eye"></i></a> -->
+                            <!-- <button type="button" class="btn btn-success" title="Aprobar Producto" id="liveToastBtnAprobar" onclick="mostrarToast()"><i class="bi bi-check-lg"></i></button> -->
                             <!-- Button remove - modal -->
-                            <button type="button" class="btn btn-danger" title="Rechazar Producto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <!-- <button type="button" class="btn btn-danger" title="Rechazar Producto" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Producto 02</td>
-                        <td>Excepteur ea nostrud</td>
-                        <td>Por revisar</td>
-                        <td>
-                            <a href="verDetalles.html" class="btn btn-primary" title="Ver Detalles del Producto"><i class="bi bi-eye"></i></a>
-                            <button type="button" class="btn btn-success" title="Aprobar Producto" id="liveToastBtnAprobar" onclick="mostrarToast()"><i class="bi bi-check-lg"></i></button>
-                            <!-- Button remove - modal -->
-                            <button type="button" class="btn btn-danger" title="Rechazar Producto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                      </tr>      
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Producto 03</td>
-                        <td>Excepteur ea nostrud</td>
-                        <td>Por revisar</td>
-                        <td>
-                            <a href="verDetalles.html" class="btn btn-primary" title="Ver Detalles del Producto"><i class="bi bi-eye"></i></a>
-                            <button type="button" class="btn btn-success" title="Aprobar Producto" id="liveToastBtnAprobar" onclick="mostrarToast()"><i class="bi bi-check-lg"></i></button>
-                            <!-- Button remove - modal -->
-                            <button type="button" class="btn btn-danger" title="Rechazar Producto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                      </tr>   
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>Producto 04</td>
-                        <td>Excepteur ea nostrud</td>
-                        <td>Por revisar</td>
-                        <td>
-                            <a href="verDetalles.html" class="btn btn-primary" title="Ver Detalles del Producto"><i class="bi bi-eye"></i></a>
-                            <button type="button" class="btn btn-success" title="Aprobar Producto" id="liveToastBtnAprobar" onclick="mostrarToast()"><i class="bi bi-check-lg"></i></button>
-                            <!-- Button remove - modal -->
-                            <button type="button" class="btn btn-danger" title="Rechazar Producto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                      </tr>                                                                                              
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>Producto 05</td>
-                        <td>Excepteur ea nostrud</td>
-                        <td>Por revisar</td>
-                        <td>
-                            <a href="verDetalles.html" class="btn btn-primary" title="Ver Detalles del Producto"><i class="bi bi-eye"></i></a>
-                            <button type="button" class="btn btn-success" title="Aprobar Producto" id="liveToastBtnAprobar" onclick="mostrarToast()"><i class="bi bi-check-lg"></i></button>
-                            <!-- Button remove - modal -->
-                            <button type="button" class="btn btn-danger" title="Rechazar Producto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                      </tr>   
-                      <tr>
-                        <th scope="row">6</th>
-                        <td>Producto 06</td>
-                        <td>Excepteur ea nostrud</td>
-                        <td>Por revisar</td>
-                        <td>
-                            <a href="verDetalles.html" class="btn btn-primary" title="Ver Detalles del Producto"><i class="bi bi-eye"></i></a>
-                            <button type="button" class="btn btn-success" title="Aprobar Producto" id="liveToastBtnAprobar" onclick="mostrarToast()"><i class="bi bi-check-lg"></i></button>
-                            <!-- Button remove - modal -->
-                            <button type="button" class="btn btn-danger" title="Rechazar Producto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                      </tr>                                       
+                            </button> -->
+                        <!-- </td> -->
+                      <!-- </tr>                                       -->
 
                     </tbody>
                 </table>

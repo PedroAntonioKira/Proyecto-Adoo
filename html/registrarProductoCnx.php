@@ -60,14 +60,15 @@
             ?><h3>Error al publicar el producto </h3><?php  
         }
         $producto_id = mysqli_insert_id($con); // Ultimo id insertado (producto)
+        $vendedor_id = $_SESSION['id_vendedor'];
         $insert_catalogo = "INSERT INTO `catalogodeproductos`(`vendedor_id`, `producto_id`, `avgcalificacion`) 
-        VALUES ('1','$producto_id','10')";
+        VALUES ('$vendedor_id','$producto_id','10')";
         $resultado_catalogo = mysqli_query($con, $insert_catalogo);
         if($resultado_catalogo){
             ?> <h3>Se registro el producto en el catalogo</h3> <?php 
              $proceso += 1;        
              if($proceso > 2){
-                 header('location:./productosVendedor.html?registro=0');
+                 header('location:./productosVendedor.php?registro=0');
              }  
         }
         else{

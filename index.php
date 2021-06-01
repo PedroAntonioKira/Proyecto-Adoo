@@ -103,9 +103,8 @@
 			<span class="fa fa-chevron-right"></span>
 		</div>
 	</div>
-	<div>
-	<a href="http://localhost/Proyecto-Adoo/html/registrarProductoNuevo.php">Publicar Producto.</a>
-	</div>
+
+	
 		<!--<section class="contenedor">
 
 		<h1> Equipo 01 ADOO </h1>

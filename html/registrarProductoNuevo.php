@@ -519,7 +519,7 @@
             <div class="collapse" id="collapseExample2">
                 <div class="card card-body">
                     FORM 2.
-                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+					Estamos trabajando en esta parte :c 
                 </div>
             </div>                
 
