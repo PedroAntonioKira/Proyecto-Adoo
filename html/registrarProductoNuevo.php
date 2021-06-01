@@ -299,7 +299,7 @@
             <!-- = = = = = = FORMULARIO 1: DISPOSITIVOS = = = = = = clase visible = 'collapse show' -->
             <div class="collapse" id="collapseExample1">
                 <h4>Rellena los datos del producto que vendes.</h4>
-                <form class="container" method="POST">
+                <form class="container" method="POST" action="registrarProductoCnx.php">
                     <div class="row">
 
                         <div class="col-4">
@@ -461,7 +461,23 @@
 							</div>                      
                         </div>     
 						
-						
+						<h5>Datos de venta</h5>
+						<div class="col-3">
+                            <div class="mb-3"> <!-- Stock -->
+                                <label class="form-label">Stock</label>
+                                <div class="input-group mb-3">
+                                    <input type="number" min="1" step="any" class="form-control" placeholder="00" name="stockProducto" required>
+                                    <span class="input-group-text" id="basic-addon2">Pzs.</span>
+                                    <div id="PriceHelp" class="form-text">Productos disponibles para su venta.</div>
+                                </div>
+                            </div>                       
+                        </div> 
+						<div class="col-1">
+                            <div class="mb-3">  <!-- Color -->
+                                <label for="exampleColorInput" class="form-label">Color</label>
+                                <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#007580" title="Elije el color de tu producto" name="color">                            
+                            </div>                       
+                        </div>     
                         <div class="col-3">
                             <div class="mb-3"> <!-- Precio -->
                                 <label for="exampleInputEmail1" class="form-label">Precio de venta</label>
@@ -516,7 +532,7 @@
 		<h5> @	Derechos reservados 2021.</h5>
 	</footer>
 	<?php 
-	include("registrarProductoCnx.php");
+	// include("registrarProductoCnx.php");
 	?>
 </body>
 
