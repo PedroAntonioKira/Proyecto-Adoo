@@ -33,7 +33,9 @@
 
 	}elseif($_SESSION['privilegio'] == 'Comprador'){
 		require 'assets/navs/headerComprador.php';
-		echo("SIUU");
+
+	}elseif($_SESSION['privilegio'] == 'Vendedor'){
+		require 'assets/navs/headerVendedor.php';
 	}
 
 

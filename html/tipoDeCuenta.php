@@ -46,7 +46,7 @@
 
 			<div class="sesionVendedor">
 
-				<a href="login.html">
+				<a href="login.php">
 					<button>
 						<h1>Vendedor</h1>
 						 <img src="../img/vendedor002.png" style="height:170px;">
