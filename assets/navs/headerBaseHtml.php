@@ -220,11 +220,11 @@
 
           <li> <a href="#" class="boton_categorias" id="boton_categorias"> Categorias <i class="fas fa-caret-down"></i> </a> </li>
 
-          <li> <a href="tipoDeCuenta.html"> <i class="fas fa-male"></i> Mi Cuenta </a> </li>
+          <li> <a href="tipoDeCuenta.php"> <i class="fas fa-male"></i> Mi Cuenta </a> </li>
 
           <li> <a href="carrito.html"> <i class="fas fa-shopping-cart"></i>Carrito </a> </li>
 
-          <li> <a href="search.html"> Buscador <i class="fas fa-search-dollar"></i> </a> </li>
+          <li> <a href="search.php"> Buscador <i class="fas fa-search-dollar"></i> </a> </li>
         </ul>
 
       </div>
