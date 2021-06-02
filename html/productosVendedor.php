@@ -3,11 +3,6 @@
     { 
         session_start(); 
     }
-	// else
-    // {
-    //     session_destroy();
-    //     session_start(); 
-    // }
 ?>	
 
 <!DOCTYPE html>
@@ -319,10 +314,10 @@
             <div class="toast-header">
             <i class="bi bi-check2-circle ounded me-2"></i>
             <!-- <img src="..." class="rounded me-2" alt="..."> -->
-            <strong class="me-auto">Operación exitosa</strong>
+            <strong class="me-auto" id="toast-title">Operación exitosa</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" onclick="cerrarToast()"></button>
             </div>
-            <div class="toast-body">
+            <div class="toast-body" id="toast-message">
             Se elimino el producto correctamente.
             </div>
         </div>
@@ -345,6 +340,23 @@
                     </thead>
                     <tbody>
 						<?php
+						if($_GET['registro']){ //Genera notificación del registro de producto.
+							switch($_GET['registro']){
+								case 1:
+									echo "<script>";
+									echo "mostrarToast('Operación exitosa', 'Se publico el producto exitosamente.');";
+									echo "</script>";
+									break;
+								case 2:
+									echo "<script>";
+									echo "mostrarToast('Operación fallida', 'No se pudo publicar el producto correctamente.');";
+									echo "</script>";
+									break;
+								default:
+									break;
+							}
+						} 
+
 						// session_start();
 						require '../assets/connections/database.php';
 						$id_vendedor = $_SESSION['id_vendedor'];
@@ -375,6 +387,9 @@
 					
 						  }						
 						?>	
+						<!-- <button onclick="mostrarToast('Probando Titulo', 'Probando mensaje')">Mostrar</button>
+						<button onclick="mostrarToast('CAMBIANDO Titulo', 'CAMBIANDO mensaje')">Mostrar otro</button> -->
+
                       <!-- <tr> -->
                         <!-- <th scope="row">1</th> -->
                         <!-- <td>Producto 01</td> -->
