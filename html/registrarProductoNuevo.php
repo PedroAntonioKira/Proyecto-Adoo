@@ -230,7 +230,7 @@
 						<div class="col-1">
                             <div class="mb-3">  <!-- Color -->
                                 <label for="exampleColorInput" class="form-label">Color</label>
-                                <input type="text" class="form-control" id="exampleColorInput" name="color" placeholder="Color">
+                                <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#007580" title="Elije el color de tu producto" name="color">
                             </div>
                         </div>
                         <div class="col-3">

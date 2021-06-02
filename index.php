@@ -37,8 +37,6 @@
 	}elseif($_SESSION['privilegio'] == 'Vendedor'){
 		require 'assets/navs/headerVendedor.php';
 	}
-
-
 ?>
 
 
@@ -104,7 +102,7 @@
 		</div>
 	</div>
 
-	
+
 		<!--<section class="contenedor">
 
 		<h1> Equipo 01 ADOO </h1>

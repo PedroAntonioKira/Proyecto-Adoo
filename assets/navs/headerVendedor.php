@@ -14,6 +14,7 @@
             <li> <a href="html/registrarProductoNuevo.php">  Publicar Producto </a> </li>
             <li> <a href="html/conversaciones.html">  Conversaciones </a> </li>
             <li> <a href="html/historialVentas.html">  Ventas </a> </li>
+            <li> <a href="html/productosVendedor.php">  Productos </a> </li>
             <li> <a href="./assets/connections/terminar.php"> Cerrar Sesión<i class="fas fa-male"></i> </a> </li>
           </ul>
         </div>

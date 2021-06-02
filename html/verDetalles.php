@@ -63,8 +63,6 @@
 
 							$ejecutar = $con->query($consulta);
 							$datos = $ejecutar->fetch_assoc();
-
-
 						?>
 	            <!-- NOMBRE Y DETALLES -->
 				<h1><?php echo($datos['nombreProd']); ?></h1>
