@@ -9,21 +9,6 @@ body {
   background: #2b2b2b;
 }
 
-  button {
-  outline: 0;
-  background: #007580;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  color: #FFFFFF;
-  font-size: 14px;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
 
 h1
 {
@@ -33,6 +18,31 @@ text-align: center;
 padding-top: 40px;
 
 
+}
+
+.btn-group button {
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
 }
 
 @media screen and (max-width: 580px) {
@@ -115,6 +125,8 @@ padding-top: 40px;
     padding: 2px 16px;
     display: block;
   }
+
+
 
 
 }
