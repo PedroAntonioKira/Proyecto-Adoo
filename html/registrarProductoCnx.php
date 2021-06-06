@@ -68,7 +68,7 @@
             ?> <h3>Se registro el producto en el catalogo</h3> <?php 
              $proceso += 1;        
              if($proceso > 2){
-                 header('location:./productosVendedor.php?registro=0');
+                 header('location:./productosVendedor.php?registro=1'); //registro = 1 significa que se registro correctamente
              }  
         }
         else{

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap');
+
+.bg-green-ceg{
+    background: #007580;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    /* font-weight: bold; */
+}
+.bg-green-ceg li{
+    font-size: 13pt;
+}
+
+.navbar-expand-lg .navbar-nav {
+    /* flex-direction: row; */
+    position: absolute;
+    right: 5rem;
+}
