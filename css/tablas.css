@@ -24,10 +24,10 @@ padding-top: 40px;
   background-color: #04AA6D; /* Green background */
   border: 1px solid green; /* Green border */
   color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
+  padding: 20px 100px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
-}
+  }
 
 .btn-group button:not(:last-child) {
   border-right: none; /* Prevent double borders */

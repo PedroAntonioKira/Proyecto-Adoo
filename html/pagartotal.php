@@ -1,3 +1,19 @@
+<?php
+  session_start();
+  require '../assets/connections/database.php';
+  require '../clases/Productos.php';
+
+  if(isset($_SESSION['correo'])){
+    $privilegio = $_SESSION['privilegio'];
+  }
+
+  $json=json_decode($_POST['carrito']);
+
+ echo $json[0]->id;
+
+
+  ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +32,7 @@
 	<script src="../js/jquery-3.6.0.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/habilitarPagarTotal.js"></script>
+
 
 </head>
 <body>

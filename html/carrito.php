@@ -18,6 +18,176 @@
 
     <script src="../js/jquery-3.6.0.js"></script>
     <script src="../js/main.js"></script>
+    <script type="text/javascript">
+
+    	
+
+    	document.addEventListener('DOMContentLoaded', function() {
+    	
+      displayCart();
+			}, false);
+
+	var shoppingCart = (function() {
+  // =============================
+  // Private methods and propeties
+  // =============================
+  cart = [];
+  
+  // Constructor
+  function Item(name, price, count) {
+    this.name = name;
+    this.price = price;
+    this.count = count;
+  }
+  
+  // Save cart
+  function saveCart() {
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+  }
+  
+    // Load cart
+  function loadCart() {
+    cart = JSON.parse(localStorage.getItem('shoppingCart'));
+  }
+  if (localStorage.getItem("shoppingCart") != null)   {
+    loadCart();
+  }
+  
+
+  // =============================
+  // Public methods and propeties
+  // =============================
+  var obj = {};
+  
+  // Add to cart
+  obj.addItemToCart = function(name, price, count) {
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart[item].count ++;
+        saveCart();
+        return;
+      }
+    }
+    var item = new Item(name, price, count);
+    cart.push(item);
+    saveCart();
+  }
+  // Set count from item
+  obj.setCountForItem = function(name, count) {
+    for(var i in cart) {
+      if (cart[i].name === name) {
+        cart[i].count = count;
+        break;
+      }
+    }
+  };
+  // Remove item from cart
+  obj.removeItemFromCart = function(name) {
+      for(var item in cart) {
+        if(cart[item].name === name) {
+          cart[item].count --;
+          if(cart[item].count === 0) {
+            cart.splice(item, 1);
+          }
+          break;
+        }
+    }
+    saveCart();
+  }
+
+  // Remove all items from cart
+  obj.removeItemFromCartAll = function(name) {
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart.splice(item, 1);
+        break;
+      }
+    }
+    saveCart();
+  }
+
+  // Clear cart
+  obj.clearCart = function() {
+    cart = [];
+    saveCart();
+  }
+
+  // Count cart 
+  obj.totalCount = function() {
+    var totalCount = 0;
+    for(var item in cart) {
+      totalCount += cart[item].count;
+    }
+    return totalCount;
+  }
+
+  // Total cart
+  obj.totalCart = function() {
+    var totalCart = 0;
+    for(var item in cart) {
+      totalCart += cart[item].price * cart[item].count;
+    }
+    return Number(totalCart.toFixed(2));
+  }
+
+  // List cart
+  obj.listCart = function() {
+    var cartCopy = [];
+    for(i in cart) {
+      item = cart[i];
+      itemCopy = {};
+      for(p in item) {
+        itemCopy[p] = item[p];
+
+      }
+      itemCopy.total = Number(item.price * item.count).toFixed(2);
+      cartCopy.push(itemCopy)
+    }
+    return cartCopy;
+  }
+
+  // cart : Array
+  // Item : Object/Class
+  // addItemToCart : Function
+  // removeItemFromCart : Function
+  // removeItemFromCartAll : Function
+  // clearCart : Function
+  // countCart : Function
+  // totalCart : Function
+  // listCart : Function
+  // saveCart : Function
+  // loadCart : Function
+  return obj;
+})();
+
+function displayCart() {
+  var cartArray = shoppingCart.listCart();
+  alert("cargado");
+  var output = "";
+  for(var i in cartArray) {
+    output += "<tr>"
+      + "<td>" + cartArray[i].name + "</td>"
+      alert(cartArray[i].name); 
+      + "<td>(" + cartArray[i].price + ")</td>"
+      + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+      + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
+      + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
+      + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+      + " = " 
+      + "<td>" + cartArray[i].total + "</td>" 
+      +  "</tr>";
+  }
+  $('.show-cart').html(output);
+  $('.total-cart').html(shoppingCart.totalCart());
+  $('.total-count').html(shoppingCart.totalCount());
+}
+         
+           
+             
+
+
+
+    </script>
 
 </head>
 <body>
@@ -279,222 +449,36 @@
 <div class="wrapper">
 
 
-  
-  <div class="table">
-    
-    <div class="row header">
-      <div class="cell">
-        Producto
-      </div>
-      <div class="cell">
-        Cantidad
-      </div>
-      <div class="cell">
-        Precio por unidad
-      </div>
-      <div class="cell">
-        Seleccion 
-      </div>
-  
 
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Nombre">
-        Luke Peters
+ <div  id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  role="document">
+    <div>
+      <div>
+        <h5 id="exampleModalLabel">Cart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="cell" data-title="Edad">
-        25
+      <div>
+        <table class="show-cart table">
+          
+        </table>
+        <div>Total price: $<span class="total-cart"></span></div>
       </div>
-      <div class="cell" data-title="Correo">
-        comprador@compras.com
+      <div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Order now</button>
       </div>
-      <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Joseph Smith
-      </div>
-      <div class="cell" data-title="Age">
-        27
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-  
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Maxwell Johnson
-      </div>
-      <div class="cell" data-title="Age">
-        26
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-     
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Harry Harrison
-      </div>
-      <div class="cell" data-title="Age">
-        25
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-    
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-
-        <div class="row">
-      <div class="cell" data-title="Nombre">
-        Luke Peters
-      </div>
-      <div class="cell" data-title="Edad">
-        25
-      </div>
-      <div class="cell" data-title="Correo">
-        comprador@compras.com
-      </div>
-      <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Joseph Smith
-      </div>
-      <div class="cell" data-title="Age">
-        27
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-  
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Maxwell Johnson
-      </div>
-      <div class="cell" data-title="Age">
-        26
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-     
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Harry Harrison
-      </div>
-      <div class="cell" data-title="Age">
-        25
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-    
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-
-        <div class="row">
-      <div class="cell" data-title="Nombre">
-        Luke Peters
-      </div>
-      <div class="cell" data-title="Edad">
-        25
-      </div>
-      <div class="cell" data-title="Correo">
-        comprador@compras.com
-      </div>
-      <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Joseph Smith
-      </div>
-      <div class="cell" data-title="Age">
-        27
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-  
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Maxwell Johnson
-      </div>
-      <div class="cell" data-title="Age">
-        26
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-     
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell" data-title="Name">
-        Harry Harrison
-      </div>
-      <div class="cell" data-title="Age">
-        25
-      </div>
-      <div class="cell" data-title="Occupation">
-        comprador@compras.com
-      </div>
-    
-       <div class="cell" data-title="Seleccion">
-        <center><input type="checkbox" name="check"></center>
-      </div>
-    </div>
 
 
     
-  </div>
-<div class="btn-group" style="width:100%">
-  <button >Comprar</button>
-  <button >Eliminar</button>
+    
+
+
+
+ 
 </div>
+
 
 </body>
 </html>

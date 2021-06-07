@@ -1,37 +1,15 @@
+
 <?php
-	session_start();
-	require '../assets/connections/database.php';
+  session_start();
+  require '../assets/connections/database.php';
   require '../clases/Productos.php';
 
-	if(isset($_SESSION['correo'])){
-		$privilegio = $_SESSION['privilegio'];
-	}
+  if(isset($_SESSION['correo'])){
+    $privilegio = $_SESSION['privilegio'];
+  }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Filtrando Computo</title>
-  <!--Links del filtrador-->
-  <link rel="stylesheet" href="../css/estilosFiltrador.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/editor/editor-91442cfd352c9551183b41e994cd890ad1abfb22e98f168ed0c17a1a871345d3.css">
-  <link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/editor/themes/twilight-a5a757de70a8d57373f9bc7c87208806adaa2b69d0f2c3e9fcce79a6f9babd65.css" id="cm-theme">
-
-  <!--Links del menú-->
-  <link rel="stylesheet" href="../css/menuPrincipal01.css">
-  <link rel="stylesheet" href="../css/Cuerpo01.css">
-  <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/global/global-42901a11fdeb8e3037fa8592b0daa21b2e7efdc6a736d9164be7857d2a03a34b.css">
-  <link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/packs/css/everypage-fbfd2350.css">
-
-  <script src="../js/jquery-3.6.0.js"></script>
-  <script src="../js/main.js"></script>
-  <script src="../js/buscar.js"></script>
-
+<html lang="en"><head>
 
   <meta charset="UTF-8">
   
@@ -46,97 +24,100 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../css/menuPrincipal01.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="../js/main.js"></script>
   
   
-            
+  
+<style>
+body {
+  padding-top: 80px;
+}
+
+.show-cart li {
+  display: flex;
+}
+.card {
+  margin-bottom: 20px;
+}
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
 
 </head>
 
-<body>
-
-  <?php
+<body translate="no">
+  <!-- Nav -->
+<?php
     if($_SESSION == NULL){
-      require '../assets/navs/carrito.php';
+      require '../assets/navs/carrito.html';
 
     }elseif($_SESSION['privilegio'] == 'Comprador'){
-      require '../assets/navs/headerCompradorHtml.php';
+      require '../assets/navs/carrito.html';
     }
   ?>
 
-  <div class="wrap">
-    <h1>Productos</h1>
-    <div class="store-wrapper">
-      <!--  <div class="category_list">
-        <a href="#" class="category_item" category="all">Todos</a>
-        <a href="#" class="category_item" category="Lenovo">Lenovo</a>
-        <a href="#" class="category_item" category="Asus">Asus</a>
-        <a href="#" class="category_item" category="HP">HP</a>
-        <a href="#" class="category_item" category="Samsung">Samsung</a>
-        <a href="#" class="category_item" category="Macbook">Macbook</a>
-      </div>-->
-
-      <section class="products-list">
-
-        <?php
+    <?php
           require '../assets/connections/database.php';
           $sentencia = "SELECT catalogodeproductos.precio,descripcion.imagen1,subcategoria.subcategoria,producto.id,producto.nombre,producto.estado,catalogodeproductos.vendedor_id FROM subcategoria INNER JOIN listacategorias ON listacategorias.subcategoria_id = subcategoria.id INNER JOIN producto ON producto.listacategorias_id = listacategorias.id INNER JOIN catalogodeproductos on catalogodeproductos.producto_id = producto.id INNER JOIN descripcion ON producto.descripcion_id = descripcion.id";
           $ejecutar = $con->query($sentencia);
+          $producto = new Producto;  ?>
 
-          $producto = new Producto; 
+          
 
-    			while ($datos = $ejecutar->fetch_assoc()) {
+
+
+<!-- Main -->
+<div class="container">
+    <div class="row">
+      <?php 
+
+          while ($datos = $ejecutar->fetch_assoc()) {
             $imagen1 = $datos['imagen1'];
             $subcategoria = $datos['subcategoria'];
-            $producto->setId($datos['id']);
-            $producto->setNombre($datos['nombre']);
-            $producto->setPrecio($datos['precio']);
+            //$producto->setId($datos['id']);
+            $nombre=($datos['nombre']);
+            $idv=$datos['vendedor_id'];
+            $precio=($datos['precio']);
             $estado = $datos['estado'];
-            $producto->setIdv($datos['vendedor_id']);
-            $array = json_encode($producto);
+      
             $id=$datos['id']; ?>
 
-             <div class="container">
-    <div class="row">
       <div class="col">
         <div class="card" style="width: 20rem;">
-  <img class="card-img-top" <?php echo "src='../img/imagenesProductos/$imagen1'" ?>  alt="Card image cap">
+  <img class="card-img-top" <?php echo "src='../img/imagenesProductos/$imagen1'" ?> alt="Card image cap">
   <div class="card-block">
-    <h4 class="card-title"></h4>
-    <p class="card-text"><?php $precio ?></p>
-    <a href="#" data-name="<?php $nombre ?>" data-price="<?php $precio ?>" class="add-to-cart btn btn-primary">Add to cart</a>
+    <h4 class="card-title"><?php echo $nombre ?></h4>
+    <p class="card-text"><?php echo $precio ?></p>
+    <a href="#" data-name="<?php echo $nombre ?>" data-price="<?php echo $precio ?>" data-id="<?php echo $id ?>" data-idv="<?php echo $idv ?>" class="add-to-cart btn btn-primary">Agregar</a>
   </div>
 </div>
-      
-  <?php    }?>
+      </div> <?php }?>
+      </div>
+    </div>
 
   
  <!-- Modal -->
-<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="show-cart table">
-          
-        </table>
-        <div>Total price: $<span class="total-cart"></span></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Order now</button>
-      </div>
-    </div>
-  </div>
-</div> 
 
-     <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -160,27 +141,11 @@
       </div>
     </div>
   </div>
-</div>       
+</div>
 
-  <script type="text/javascript">
-    function redirecVer(id){
-  
-      window.window.location.href='verDetalles.php?id_producto='+id;
-    };
-  </script>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69d01441f36c0ea791ae2d4469f0f8ff5326f00ae2d00e4bb7d20e24edb.js"></script>
 
-  <script type="text/javascript">
-    function redireCar(number){
-
-      window.window.location.href='carrito.php?id_producto='+number;
-    };
-  </script>
-
-      
-
-  <script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="../js/menuPrincipal01.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
       <script id="rendered-js">
 // ************************************************
 // Shopping Cart API
@@ -193,11 +158,12 @@ var shoppingCart = function () {
   cart = [];
 
   // Constructor
-  function Item(id, price, name, count) {
+  function Item(id, price, name, count,idv) {
     this.id = id;
     this.price = price;
     this.name = name;
     this.count = count;
+    this.idv= idv
     
   }
 
@@ -221,7 +187,7 @@ var shoppingCart = function () {
   var obj = {};
 
   // Add to cart
-  obj.addItemToCart = function (id, price,name ,count) {
+  obj.addItemToCart = function (id, price,name ,count,idv) {
     for (var item in cart) {
       if (cart[item].id === id) {
         cart[item].count++;
@@ -331,7 +297,8 @@ $('.add-to-cart').click(function (event) {
   var name = $(this).data('name');
   var price = Number($(this).data('price'));
   var id = Number($(this).data('id'))
-  shoppingCart.addItemToCart(id, price, name, 1);
+  var idv= Number($(this).data('idv'))
+  shoppingCart.addItemToCart(id, price, name, 1, idv);
   displayCart();
 });
 
@@ -399,6 +366,11 @@ $('.show-cart').on("change", ".item-count", function (event) {
 displayCart();
 //# sourceURL=pen.js
     </script>
-</body>
 
-</html>
+  
+
+
+
+
+ 
+</body></html>
