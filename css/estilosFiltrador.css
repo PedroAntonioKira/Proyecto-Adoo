@@ -7,7 +7,6 @@
 body{
 	background: #1a1a1a;
 	font-family: 'Open Sans', sans-serif;
-	padding-top: 80px;
 }
 
 .wrap{
@@ -118,7 +117,7 @@ body{
 #ver{
 	background: rgba(210, 232, 42, 0.9);
 }
-.add-to-cart{
+#carrito{
 	background: #20da16;
 }
 /* RESPONSIVE */
@@ -186,18 +185,4 @@ body{
 		width: 100%;
 		margin-left: 0px;
 	}
-}
-
-
-
-.show-cart li {
-  display: flex;
-}
-.card {
-  margin-bottom: 20px;
-}
-.card-img-top {
-  width: 200px;
-  height: 200px;
-  align-self: center;
 }

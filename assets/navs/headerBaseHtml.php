@@ -222,7 +222,7 @@
 
           <li> <a href="tipoDeCuenta.php"> <i class="fas fa-male"></i> Mi Cuenta </a> </li>
 
-          <li  data-toggle="modal" data-target="#cart" > <a href="productosprueba.php">  <i class="fas fa-shopping-cart"></i>Carrito(<span class="total-count"></span>) </a></li>
+          <li> <a href="carrito.html"> <i class="fas fa-shopping-cart"></i>Carrito </a> </li>
 
           <li> <a href="search.php"> Buscador <i class="fas fa-search-dollar"></i> </a> </li>
         </ul>
