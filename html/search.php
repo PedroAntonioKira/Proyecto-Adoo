@@ -18,18 +18,14 @@
     <link rel="stylesheet" href="../css/search.css">
     <title>Search</title>
 
-	<!--Estilos del menu superior-->
-	<link rel="stylesheet" href="../css/menuPrincipal01.css">
-	<link rel="stylesheet" href="../css/Cuerpo01.css">
-
-	<!--Estilos del slider-->
-	<link rel="stylesheet" href="../css/all.min.css">
-	<link rel="stylesheet" href="../css/recompra.css">
-
-	<script src="../js/jquery-3.6.0.js"></script>
-    <script src="../js/main.js"></script>
-
+    <!-- NOTIFICACIONES -->
     <script src="../js/admin_messages.js"></script>
+
+    <!-- HEADER AND FOOTER -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="../css/navbar.css"> 
 </head>
 <body>
   <?php

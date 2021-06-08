@@ -73,14 +73,14 @@
   text-align: center;
 }
 .container .info h1 {
-  margin: 0 0 15px;
   padding: 0;
   font-size: 36px;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #1a1a1a !important;
+  margin: 0;
 }
 .container .info span {
-  color: #4d4d4d;
+  color: #4d4d4d !important;
   font-size: 12px;
 }
 .container .info span a {
