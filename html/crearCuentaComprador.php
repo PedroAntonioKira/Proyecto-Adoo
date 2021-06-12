@@ -97,7 +97,7 @@
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información de Cuenta</h2>
-																				<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off">
+																				<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
 																				<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
 		                                </div>
 																		<input type="button" name="previous" class="previous action-button-previous" value="Previous" />

@@ -89,6 +89,7 @@ body{
 .products-list .product-item img{
 	width: 100%;
 }
+
 .products-list .product-item .Acceso{
 	display: block;
 	width: 100%;
@@ -99,13 +100,15 @@ body{
 	padding: 2px;
 		text-decoration: none;
 }
-
-
+.products-list .product-item .Acceso p{
+	width: 55%;
+	float: left;
+	margin-top: 9px;
+}
 
 .product-item .botones{
-	width: 40%
-	float: left;
-	text-align: center;
+	width: 40%;
+	float: right;
 }
 
 .botones button{
