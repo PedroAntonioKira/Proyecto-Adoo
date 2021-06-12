@@ -5,7 +5,7 @@
 	if(isset($_SESSION['correo'])){
 		$privilegio = $_SESSION['privilegio'];
 	}
-?>
+?>a
 
 <!DOCTYPE html>
 <html>
