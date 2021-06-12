@@ -15,9 +15,12 @@
     <link rel="stylesheet" href="../css/menuPrincipal01.css">
     <link rel="stylesheet" href="../css/Cuerpo01.css">
     <link rel="stylesheet" href="../css/login.css">
+    <!--Estilos del slider-->
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/estilos.css">
 
-    <!--Estilos del formulario de registro-->
-	<link rel="stylesheet" href="../css/formularioRegistro.css">
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/main.js"></script>
 
 </head>
 <body>
@@ -275,83 +278,27 @@
 <body>
 
     <main>
+        <div class="container">
+  <div class="info">
+    <h1 style="color:white;">
+      Inicio de sesion <br>
+      Vendedor
+    </h1>
+  </div>
+</div>
+<div class="form">
+  <div class="thumbnail">
+    <img src="../img/logo.png" />
+  </div>
+  <form class="login-form">
+    <input ,="" placeholder="username" type="text" />
+    <input ,="" placeholder="password" type="password" />
+	  
+<button><a href="perfilVendedor.html">login</a></button></form>
 
-    	<section>
-    		
-    		<div class="info">
- 			   <h1 style="color:white;">
-  			    Inicio de sesion <br>
-    			Comprador
- 			   </h1>
- 			 </div>
-
-			<div class="thumbnail">
-    			<img src="../img/logo.png" />
-			</div>
-
-			<form action="" class="formulario" id="formulario">
-
-				<!-- Grupo Correo -->
-				<div class="formulario__grupo" id="grupo__correo">
-					<label for="correo" class="formulario__label"> Correo </label>
-					<div class="formulario__grupo-input formulario__input-tamanio">
-						<input type="email" name="correo" class="formulario__input" id="correo" placeholder="correo@dominio.com">
-						<i class="formulario__validacion-estado fas fa-times-circle"></i>
-					</div>
-					<p class="formulario__input-error">
-						El correo debe estar bien escrito, como en el ejemplo, debe ser el personal que registro al crear la cuenta. 
-					</p>
-				</div>
-
-				<!-- Grupo Contraseña -->
-				<div class="formulario__grupo" id="grupo__password">
-					<label for="password" class="formulario__label"> Contraseña </label>
-					<div class="formulario__grupo-input formulario__input-tamanio">
-						<input type="password" name="password" class="formulario__input" id="password" >
-						<i class="formulario__validacion-estado fas fa-times-circle"></i>
-					</div>
-					<p class="formulario__input-error">
-						La Contraseña debe de ser de 4 a 20 caracteres.
-					</p>
-				</div>
-
-				<div class="formulario__grupo-btn-enviar">
-
-					<button type="submit" class="formulario__btn formulario__btn-tamanioG"> 
-						<a href="perfilVendedor.html">
-							login
-						</a>
-					</button>
-
-				</div>
-				
-			</form>
-
-			<br>
-    		
-    		<p>¿No tienes cuenta aun? <a href="crearCuentaComprador.html"> <br>Crea Una Cuenta ahora</a></p>
-
-    	</section>
-
-	<script type="text/javascript" src="../js/formularioLogin.js" ></script>
-
+    <br>
+    <p>¿No tienes cuenta aun? <a href="crearCuentaVendedor.html"> <br>Crea Una Cuenta ahora</a></p>
     </main>
 
-
-    <footer>
-		<h3> <a href="#">Av. Luis Enrique Erro S/N, Unidad Profesional Adolfo López Mateos, Zacatenco, Delegación Gustavo A. Madero, C.P. 07738, Ciudad de México </a> </h3>
-
-		<h4> <a href="#"> Terminos y Condiciones </a> <a href="#"> Aviso de Privacidad </a> </h4>
-
-		<h5> @	Derechos reservados 2021.</h5>
-		
-	</footer>
-
 </body>
-
-
-<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
-
-
 </html>

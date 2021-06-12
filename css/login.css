@@ -11,10 +11,10 @@
   border-bottom-right-radius: 3px;
   text-align: center;
 }
-.form .thumbnail {
+.thumbnail {
   background: #007580;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   margin: 0 auto 30px;
   padding: 50px 30px;
   border-top-left-radius: 100%;
@@ -22,8 +22,9 @@
   border-bottom-left-radius: 100%;
   border-bottom-right-radius: 100%;
   box-sizing: border-box;
+  border: solid 5px #dbf6e9; 
 }
-.form .thumbnail img {
+.thumbnail img {
   display: block;
   width: 100%;
 }
@@ -91,8 +92,15 @@
   color: #EF3B3A;
 }
 
-/* END Form */
-/* Demo Purposes */
-body {
-  background: #000000;
+
+
+
+p{
+  font-size: 25px;
+  color: white;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+
+  text-align: center;
 }
