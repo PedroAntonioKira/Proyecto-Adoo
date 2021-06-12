@@ -48,7 +48,7 @@
                 <!-- <form action="" method="get" class="search"> -->
                     <div class="box-search center-all">
                         <input type="text" name="text" class="input-search" autocomplete="off" placeholder="Search...">
-                        <a href="buscarProductos.php" class="btn-search center-all"><i class="bi bi-search"></i></a>
+                        <a href="productosprueba.php" class="btn-search center-all"><i class="bi bi-search"></i></a>
                     </div>
                 <!-- </form> -->
             </div>

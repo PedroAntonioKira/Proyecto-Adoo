@@ -93,7 +93,7 @@ body {
           while ($datos = $ejecutar->fetch_assoc()) {
             $imagen1 = $datos['imagen1'];
             $subcategoria = $datos['subcategoria'];
-            //$producto->setId($datos['id']);
+           //$producto->setId($datos['id']);
             $nombre=($datos['nombre']);
             $idv=$datos['vendedor_id'];
             $precio=($datos['precio']);

@@ -61,7 +61,7 @@
       require '../assets/navs/carrito.php';
 
     }elseif($_SESSION['privilegio'] == 'Comprador'){
-      require '../assets/navs/headerCompradorHtml.php';
+      require '../assets/navs/carrito.html';
     }
   ?>
 
