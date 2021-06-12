@@ -15,9 +15,10 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Filtrando Computo</title>
   <!--Links del filtrador-->
-  <link rel="stylesheet" href="../css/estilosFiltrador.css">
+
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="../css/estilosFiltrador.css">
   <!--Links del menú-->
   <link rel="stylesheet" href="../css/menuPrincipal01.css">
   <link rel="stylesheet" href="../css/Cuerpo01.css">
@@ -71,7 +72,7 @@
             echo "<div class='product-item' category= '$subcategoria'>";
             echo "<img src='../img/imagenesProductos/$imagen1'>";
             echo "<div class='Acceso'>";
-            echo "<a href='#'>$nombre</a>";
+            echo "<p>$nombre</p>";
             echo "<div class='botones'>";
             echo "<button id='ver' type='button' name='Ver' onclick='redirecVer($id)' class='ver'>";
             echo "<span class='fas fa-eye'></span>";
@@ -83,7 +84,6 @@
             echo "</div>";
             echo "</div>";
           }
-
         ?>
 
       <!-- <div class="product-item" category="Lenovo">
