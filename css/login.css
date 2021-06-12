@@ -74,14 +74,14 @@
   text-align: center;
 }
 .container .info h1 {
-  margin: 0 0 15px;
   padding: 0;
   font-size: 36px;
   font-weight: 300;
-  color: #1a1a1a;
+  color: #1a1a1a !important;
+  margin: 0;
 }
 .container .info span {
-  color: #4d4d4d;
+  color: #4d4d4d !important;
   font-size: 12px;
 }
 .container .info span a {
@@ -104,5 +104,8 @@ p{
 
   text-align: center;
 }
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> e8e93c3c54fe8f8b5eae2d177581ae77bb00a781

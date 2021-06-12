@@ -17,6 +17,11 @@
     box-sizing: border-box;
 }
 
+.msg-error-db{
+  background: tomato;
+  color: azure;
+}
+
 /*
 * Le Damos Formato A las etiquetas que vienen predefinidas por html
 */
