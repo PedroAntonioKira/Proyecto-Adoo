@@ -49,6 +49,8 @@ section.tipoDeCuenta div a button h2{
 section.tipoDeCuenta div.sesionComprador{
 	color: white;
 	width: 30%;
+	height: 100px;
+	margin: 20px 20px;
 	/*border: solid blue 5px;*/
 }
 
@@ -62,6 +64,7 @@ section.tipoDeCuenta img.logoIniciarSesion{
 section.tipoDeCuenta div.sesionVendedor{
 	color: red;
 	width: 30%;
+	height: 100px;
 	/*border: solid yellow 5px;*/
 }
 

@@ -98,7 +98,7 @@
         <p><?=  $message ?></p>
       <?php endif; ?>
         <br>
-        <p>¿No tienes cuenta aun? <a href="crearCuentaComprador.php"> <br>Crea Una Cuenta ahora</a></p>
+        <p>¿No tienes cuenta aun? <a href="crearCuentaComprador2.php"> <br>Crea Una Cuenta ahora</a></p>
       </main>
 
       <?php require '../assets/navs/footer.php'; ?>

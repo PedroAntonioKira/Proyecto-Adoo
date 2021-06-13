@@ -2,7 +2,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-green-ceg">
 		<div class="container-fluid">
 		  <a class="navbar-brand" href="../index.php">
-			  <img src="../img/ceg.png" alt="logo-CEG"> CEG
+			  <img src="img/ceg.png" alt="logo-CEG"> CEG
 		  </a>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -24,13 +24,13 @@
 			  </li>
 
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="../html/search.php"><i class="bi bi-search"></i> Buscar</a> 
+        <a class="nav-link active" aria-current="page" href="./html/search.php"><i class="bi bi-search"></i> Buscar</a> 
 			  </li>
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="../html/login.php"><i class="bi bi-person-fill"></i> Iniciar sesion</a> 
+        <a class="nav-link active" aria-current="page" href="./html/login.php"><i class="bi bi-person-fill"></i> Iniciar sesion</a> 
 			  </li>
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="../html/tipoDeCuenta.php"><i class="bi bi-person-plus-fill"></i> Registrarse</a> 
+        <a class="nav-link active" aria-current="page" href="./html/tipoDeCuenta.php"><i class="bi bi-person-plus-fill"></i> Registrarse</a> 
 			  </li>
 	
 

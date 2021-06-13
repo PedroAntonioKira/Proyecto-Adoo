@@ -214,3 +214,10 @@ h1{
 	color: white;
 	text-align: center;
 }
+
+.prin{
+    margin:auto;
+    width: auto;
+    height: 1000px;
+    background-color:white;
+}

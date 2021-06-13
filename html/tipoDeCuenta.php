@@ -24,14 +24,18 @@
 	<main class="contenedor">
 
 
-		<section class="tipoDeCuenta" id="tipoDeCuenta">
+		<section class="tipoDeCuenta" style="width: 50%;
+			height: 50%;
+			margin: 5% 30%;">
 
-			<div class="sesionComprador">
+			<div class="sesionComprador" style="width: 30%;
+			height: 80%;
+			margin: 0.5% 1%;">
 				<a href="login2.php">
 					<button>
-						<h1>Comprador</h1>
-						<img src="../img/comprador.png" style="height:170px;">
-						<h2> Iniciar Sesion</h2>
+						<h1 style="font-size: 2vw;">Comprador</h1>
+						<img src="../img/comprador.png" style="height:100%; width:100%;">
+						<h2 style="font-size: 2vw;"> Iniciar Sesion</h2>
 					</button>
 
 				</a>
@@ -39,13 +43,15 @@
 
 			<img src="../img/C.png" class="logoIniciarSesion">
 
-			<div class="sesionVendedor">
+			<div class="sesionVendedor" style="width: 30%;
+			height: 100px;
+			margin: 0.5% 1%;">
 
 				<a href="login.php">
 					<button>
-						<h1>Vendedor</h1>
-						 <img src="../img/vendedor002.png" style="height:170px;">
-						<h2> Iniciar Sesion</h2>
+						<h1 style="font-size: 2vw;">Vendedor</h1>
+						 <img src="../img/vendedor002.png" style="height:100%; width:100%">
+						<h2 style="font-size: 2vw;"> Iniciar Sesion</h2>
 					</button>
 
 				</a>

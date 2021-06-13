@@ -1,50 +1,45 @@
 <?php
-	session_start();
-	require '../assets/connections/database.php';
+  session_start();
+  require '../assets/connections/database.php';
 
-	if(isset($_SESSION['correo'])){
-		$privilegio = $_SESSION['privilegio'];
-	}
+  if(isset($_SESSION['correo'])){
+    $privilegio = $_SESSION['privilegio'];
+  }
 ?>
-
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRODUCTO | Detalles</title>
-    <!-- BOOTSTRAP CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!-- BOOTSTRAP JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <!-- BOOTSTRAP ICONS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <!-- ESTILOS INDIVIDUALES/PERSONALIZADOS   -->
-    <link rel="stylesheet" href="../css/verDetalles.css">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+      <title>Filtrando Computo</title>
+    <meta charset="utf-8">
+    <!--Links del filtrador-->
+    <link rel="stylesheet" href="../css/estilosFiltrador.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	<!--Estilos del menu superior-->
-	<link rel="stylesheet" href="../css/menuPrincipal01.css">
-	<link rel="stylesheet" href="../css/Cuerpo01.css">
+    <!--Estilos del formulario-->
+    <link rel="stylesheet" href="../css/formMultiStep.css">
 
-	<!--Estilos del slider-->
-	<link rel="stylesheet" href="../css/all.min.css">
-	<link rel="stylesheet" href="../css/recompra.css">
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/buscar.js"></script>
 
-	<script src="../js/jquery-3.6.0.js"></script>
-	<script src="../js/main.js"></script>
-
-</head>
+    <!-- HEADER AND FOOTER -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="../css/navbar.css">
+  </head>
 <body>
-
 	<?php
     if($_SESSION == NULL){
-      require '../assets/navs/headerBaseHtml.php';
-
-    }elseif($_SESSION['privilegio'] == 'Comprador'){
-      require '../assets/navs/headerCompradorHtml.php';
+      require '../assets/navs/headerBase.php';
+    }
+    elseif($_SESSION['privilegio'] == 'Comprador'){
+      require '../assets/navs/headerComprador.php';
     }
   ?>
-
-	<main class="contenedor">
+  <main class="contenedor">
 		<div class="container details-product">
 	    <div class="row justify-content-md-center">
 	        <div class="col col-7">
@@ -191,60 +186,50 @@
 
 	        <div class="col-5">
 	        <!-- SLIDER PRODUCT -->
-	            <div class="container-right">
-	                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-	                    <div class="carousel-indicators">
-	                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-	                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-	                    </div>
-	                    <div class="carousel-inner">
-	                    <div class="carousel-item active">
-	                        <img src="../img/imagenesProductos/<?php echo($datos['imagen1']) ?>" class="d-block w-100" alt="...">
-	                    </div>
-	                    <div class="carousel-item">
-	                        <img src="../img/imagenesProductos/<?php echo($datos['imagen2']) ?>" class="d-block w-100" alt="...">
-	                    </div>
-	                    <div class="carousel-item">
-	                        <img src="../img/imagenesProductos/<?php echo($datos['imagen3']) ?>" class="d-block w-100" alt="...">
-	                    </div>
-	                    </div>
-	                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-	                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	                    <span class="visually-hidden">Previous</span>
-	                    </button>
-	                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-	                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	                    <span class="visually-hidden">Next</span>
-	                    </button>
-	                </div>
-	            <!-- SLIDER PRODUCT END -->
-	            <!-- BUTTONS -->
-	                <div class="buttons-container center-all">
-	                	<a href="mensajeVendedor.html">
-	                    	<button type="button" class="btn btn-primary" title="Preguntar al vendedor"><i class="bi bi-chat-dots-fill"></i></button>
-	                    </a>
-	                    <a href="./carrito.html"  class="btn btn-success" title="Agregar al carrito"><i class="bi bi-cart-plus-fill"></i></a>
-	                    <!-- <button type="button" class="btn btn-primary">Preguntar</button>
-	                    <button type="button" class="btn btn-success">Agregar al carrito</button>                 -->
-	                </div>
-	            <!-- BUTTONS END -->
-	            </div>
-
+            <div class="container-right">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../img/imagenesProductos/<?php echo($datos['imagen1']) ?>" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/imagenesProductos/<?php echo($datos['imagen2']) ?>" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/imagenesProductos/<?php echo($datos['imagen3']) ?>" class="d-block w-100" alt="...">
+                    </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            <!-- SLIDER PRODUCT END -->
+            <!-- BUTTONS -->
+                <div class="buttons-container center-all">
+                	<a href="mensajeVendedor.html">
+                    	<button type="button" class="btn btn-primary" title="Preguntar al vendedor"><i class="bi bi-chat-dots-fill"></i></button>
+                    </a>
+                    <a href="./carrito.html"  class="btn btn-success" title="Agregar al carrito"><i class="bi bi-cart-plus-fill"></i></a>
+                    <!-- <button type="button" class="btn btn-primary">Preguntar</button>
+                    <button type="button" class="btn btn-success">Agregar al carrito</button>                 -->
+                </div>
+            <!-- BUTTONS END -->
+            </div>
 	        </div>
 	    </div>
 	</div>
-</main>
-
-	<footer>
-		<h3> <a href="#">Av. Luis Enrique Erro S/N, Unidad Profesional Adolfo López Mateos, Zacatenco, Delegación Gustavo A. Madero, C.P. 07738, Ciudad de México </a> </h3>
-
-		<h4> <a href="#"> Terminos y Condiciones </a> <a href="#"> Aviso de Privacidad </a> </h4>
-
-		<h5> @	Derechos reservados 2021.</h5>
-
-	</footer>
-
+	</main>
+	<?php require '../assets/navs/footer.php'; ?>
 </body>
-
+  
 </html>

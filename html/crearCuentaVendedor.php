@@ -69,12 +69,15 @@
 	<!--Estilos del formulario-->
 	<link rel="stylesheet" href="../css/formMultiStep.css">
 
+	<script src="../js/jquery-3.6.0.js"></script>
+	<script src="../js/main.js"></script>
+
 	<!-- HEADER AND FOOTER -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
 	<link rel="stylesheet" href="../css/navbar.css">
-
+	<script src="../js/validacionForm.js"></script>
 </head>
 
 <body>
@@ -94,40 +97,40 @@
 		                            <ul id="progressbar">
 		                                <li class="active" id="account"><strong>Información</strong></li>
 		                                <li id="payment"><strong>Datos Bancarios</strong></li>
-																		<li id="personal"><strong>Cuenta</strong></li>
+										<li id="personal"><strong>Cuenta</strong></li>
 		                            </ul>
 																<!-- fieldsets -->
 
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información De Usuario</h2>
-																				<input type="text" name="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off">
-																				<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
-																				<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
-																				<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
-		                                </div>
-																		<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
+											<input type="text" name="nombre" id="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off" pattern="[a-z]">
+											<input type="text" name="apellidop" id="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
+											<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
+											<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
+											
+											<input type="button" name="next" class="next action-button" value="Siguiente" />
 		                            </fieldset>
 
-																<fieldset>
+									<fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Datos Bancarios</h2>
-																				<input type="text" name="num" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
-																				<input type="text" name="exp" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" pattern="\d\d/\d\d">
-																				<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" pattern="^[0-9]{3,4}">
+											<input type="text" name="num" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
+											<input type="text" name="exp" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" pattern="\d\d/\d\d">
+											<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" pattern="^[0-9]{3,4}">
 		                                </div>
-																		<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
-																		<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
+											<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
+											<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
 		                            </fieldset>
 
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información de Cuenta</h2>
-																				<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
-																				<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
+											<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+											<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
 		                                </div>
-																		<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
-																		<button type="submit" name="Aceptar" class="btn btn-primary">Aceptar</button>
+										<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
+										<button type="submit" name="Aceptar" class="btn btn-primary">Aceptar</button>
 		                            </fieldset>
 		                        </form>
 		                    </div>

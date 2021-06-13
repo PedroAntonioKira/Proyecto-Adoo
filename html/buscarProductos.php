@@ -1,66 +1,55 @@
 <?php
-	session_start();
-	require '../assets/connections/database.php';
+  session_start();
+  require '../assets/connections/database.php';
 
-	if(isset($_SESSION['correo'])){
-		$privilegio = $_SESSION['privilegio'];
-	}
+  if(isset($_SESSION['correo'])){
+    $privilegio = $_SESSION['privilegio'];
+  }
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+      <title>Filtrando Computo</title>
+    <meta charset="utf-8">
+    <!--Links del filtrador-->
+    <link rel="stylesheet" href="../css/estilosFiltrador.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Filtrando Computo</title>
-  <!--Links del filtrador-->
+    <!--Estilos del formulario-->
+    <link rel="stylesheet" href="../css/formMultiStep.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="../css/estilosFiltrador.css">
-  <!--Links del menú-->
-  <link rel="stylesheet" href="../css/menuPrincipal01.css">
-  <link rel="stylesheet" href="../css/Cuerpo01.css">
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/buscar.js"></script>
 
-  <script src="../js/jquery-3.6.0.js"></script>
-  <script src="../js/main.js"></script>
-  <script src="../js/buscar.js"></script>
-</head>
-
+    <!-- HEADER AND FOOTER -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="../css/navbar.css">
+  </head>
 <body>
-
   <?php
     if($_SESSION == NULL){
-      require '../assets/navs/headerBaseHtml.php';
-
-    }elseif($_SESSION['privilegio'] == 'Comprador'){
-      require '../assets/navs/headerCompradorHtml.php';
+      require '../assets/navs/headerBase.php';
+    }
+    elseif($_SESSION['privilegio'] == 'Comprador'){
+      require '../assets/navs/headerComprador.php';
     }
   ?>
-
   <div class="wrap">
     <h1>Productos</h1>
     <div class="store-wrapper">
-      <!--  <div class="category_list">
-        <a href="#" class="category_item" category="all">Todos</a>
-        <a href="#" class="category_item" category="Lenovo">Lenovo</a>
-        <a href="#" class="category_item" category="Asus">Asus</a>
-        <a href="#" class="category_item" category="HP">HP</a>
-        <a href="#" class="category_item" category="Samsung">Samsung</a>
-        <a href="#" class="category_item" category="Macbook">Macbook</a>
-      </div>-->
-
       <section class="products-list">
-
-
         <?php
           require '../assets/connections/database.php';
           $sentencia = "SELECT descripcion.imagen1,subcategoria.subcategoria,producto.id,producto.nombre,producto.estado,catalogodeproductos.vendedor_id FROM subcategoria INNER JOIN listacategorias ON listacategorias.subcategoria_id = subcategoria.id INNER JOIN producto ON producto.listacategorias_id = listacategorias.id INNER JOIN catalogodeproductos on catalogodeproductos.producto_id = producto.id INNER JOIN descripcion ON producto.descripcion_id = descripcion.id";
           $ejecutar = $con->query($sentencia);
 
 
-    			while ($datos = $ejecutar->fetch_assoc()) {
+          while ($datos = $ejecutar->fetch_assoc()) {
             $imagen1 = $datos['imagen1'];
             $subcategoria = $datos['subcategoria'];
             $id = $datos['id'];
@@ -68,9 +57,8 @@
             $estado = $datos['estado'];
             $vendedor_id = $datos['vendedor_id'];
 
-
             echo "<div class='product-item' category= '$subcategoria'>";
-            echo "<img src='../img/imagenesProductos/$imagen1'>";
+            echo "<img src='../img/imagenesProductos/$imagen1' style:'width:60px; height:30px;'>";
             echo "<div class='Acceso'>";
             echo "<p>$nombre</p>";
             echo "<div class='botones'>";
@@ -85,141 +73,6 @@
             echo "</div>";
           }
         ?>
-
-      <!-- <div class="product-item" category="Lenovo">
-          <img src="../img/imagenesFiltro/laptop_hp.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">Lenovo</a>
-            <div class="botones">
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-item" category="Asus">
-          <img src="../img/imagenesFiltro/laptop_toshiba.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">Asus</a>
-            <div class="botones">
-
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-
-            </div>
-          </div>
-        </div>
-
-
-        <div class="product-item" category="HP">
-          <img src="../img/imagenesFiltro/samsung_galaxy.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">HP</a>
-            <div class="botones">
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="product-item" category="Samsung">
-          <img src="../img/imagenesFiltro/iphone.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">Samsung</a>
-            <div class="botones">
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="product-item" category="Macbook">
-          <img src="../img/imagenesFiltro/pc_hp.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">MacBook</a>
-            <div class="botones">
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="product-item" category="Lenovo">
-          <img src="../img/imagenesFiltro/pc_lenovo.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">Lenovo</a>
-            <div class="botones">
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="product-item" category="Asus">
-          <img src="../img/imagenesFiltro/monitor_asus.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">Asus</a>
-            <div class="botones">
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="product-item" category="Macbook">
-          <img src="../img/imagenesFiltro/jbl.jpg" alt="">
-          <div class="Acceso">
-            <a href="compra.html">Lenovo</a>
-            <div class="botones">
-              <button id="ver" type="button" name="Ver" onclick="window.location.href='verDetalles.html'" class="ver">
-                <span class="fas fa-eye"></span>
-              </button>
-              <button id="carrito" type="button" name="carrito" onclick="window.location.href='carrito.html'" class="carrito">
-                <span class="fas fa-shopping-cart"></span>
-              </button>
-            </div>
-          </div>
-        </div>-->
-
-
-
       </section>
     </div>
   </div>
@@ -239,6 +92,7 @@
 
   <script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="../js/menuPrincipal01.js"></script>
+  <?php require '../assets/navs/footer.php'; ?>
 </body>
-
+  
 </html>

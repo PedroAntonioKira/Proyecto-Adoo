@@ -72,7 +72,7 @@
 	  </nav> -->
 	<!-- = = = = = = = = END = = = = = = = = -->
 	<?php
-	if($_SESSION == NULL){
+	/*if($_SESSION == NULL){
 		header('location:./login.php'); 
 		// require '../assets/navs/headerBase.php';
 
@@ -81,7 +81,7 @@
 
 	}elseif($_SESSION['privilegio'] == 'Vendedor'){
 		require '../assets/navs/headerVendedor.php';
-	}
+	}*/
 	?>
 
 	<div class="container details-product">

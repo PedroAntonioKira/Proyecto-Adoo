@@ -59,8 +59,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
 	<link rel="stylesheet" href="../css/navbar.css">
-
+	<script src="../js/validacionForm.js"></script>
 </head>
+
+
 <body>
 
 		<?php require '../assets/navs/headerBaseHtml.php'; ?>
@@ -86,22 +88,22 @@
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información De Usuario</h2>
-																				<input type="text" name="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off">
-																				<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
-																				<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
-																				<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
+												<input type="text" name="nombre" id="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" title="que paso">
+												<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
+												<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
+												<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
 		                                </div>
-																		<input type="button" name="next" class="next action-button" value="Siguiente" />
+										<input type="button" name="next" class="next action-button" value="Siguiente" />
 		                            </fieldset>
 
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información de Cuenta</h2>
-																				<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
-																				<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
+											<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+											<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
 		                                </div>
-																		<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-																		<input type="submit" name="Aceptar" class="btn action-button" value="Aceptar" />
+										<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+										<input type="submit" name="Aceptar" class="btn action-button" value="Aceptar" />
 		                            </fieldset>
 		                        </form>
 		                    </div>
