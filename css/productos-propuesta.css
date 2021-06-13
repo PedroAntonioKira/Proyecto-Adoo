@@ -1,8 +1,18 @@
 /* = = = = = = PROPUESTA PRODUCTOS = = = = = = */
 .products-cards .row{
 	justify-content: center !important;
+    text-align: center;
 }
 .products-cards .row .card{
 	padding: 0;
     margin: 10px 10px;
 }
+.products-cards .row .card .buttons a:nth-child(1){
+	margin-right: 20%;
+}
+.products-cards .row .card .buttons a:nth-child(2){
+	margin-left: 20%;
+}
+
+
+
