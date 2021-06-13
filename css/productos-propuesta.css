@@ -1,0 +1,8 @@
+/* = = = = = = PROPUESTA PRODUCTOS = = = = = = */
+.products-cards .row{
+	justify-content: center !important;
+}
+.products-cards .row .card{
+	padding: 0;
+    margin: 10px 10px;
+}
