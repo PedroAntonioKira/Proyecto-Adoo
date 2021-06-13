@@ -33,6 +33,23 @@
     font-size: 13pt;
     margin-top: 5px;
 }
+.img-thumbnail-ceg{
+    padding: .25rem;
+    /* background-color: #fff; */
+    /* border: 1px solid #dee2e6; */
+    border-radius: .25rem;
+    max-width: 50%;
+    height: auto;
+}
+.vertical-middle{
+    display: flex;
+    align-items: center;
+}
+.vertical-horizontal-middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .total .col-2.text{
     border-top-style: dotted;
     border-color: #687980;
