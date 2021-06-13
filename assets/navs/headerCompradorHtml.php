@@ -1,33 +1,59 @@
-<header>
-  <div class="centrar_menu">
+<!-- NOTA: Se deben importar los nuevos estilos (copiar y pegar de la linea #2 a la #5):  -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+<link rel="stylesheet" href="./css/navbar.css"> -->
+  
+  <!-- = = = = = = = =  NAV-MENU = = = = = = = = -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-green-ceg">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="../index.php">
+			  <img src="../img/ceg.png" alt="logo-CEG"> CEG
+		  </a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+			  <li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="../index.php"><i class="bi bi-house"></i> Home</a>
+			  </li>
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					<i class="bi bi-shop"></i> Categorias
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				  <li><a class="dropdown-item" href="#">Action</a></li>
+				  <li><a class="dropdown-item" href="#">Another action</a></li>
+				  <li><a class="dropdown-item" href="#">Something else here</a></li>
+				</ul>
+			  </li>
 
-    <div class="cabecera_izquierda logo">
-      <img src="../img/logo.png">
-    </div>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./search.php"><i class="bi bi-search"></i> Buscar</a> 
+			  </li>
+         
+        <li class="nav-item">
+        <!-- <li class="nav-item d-flex justify-content-between align-items-start"> -->
+          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-cart4"></i> Carrito</a> 
+          <!-- <span class="badge bg-light rounded-pill" style="color:#000">14</span> -->
+			  </li>        
 
-    <div class="cabecera_derecha">
-      <nav class="menu_Navegacion" id="menu_Navegacion">
-        <div class="opciones_menu contenedor02 ">
-          <ul>
-            <li> <a href="../index.php"> <i class="fas fa-house-user"></i> Inicio  </a> </li>
-            <li> <a href="html/carrito.html">  Carrito </a> </li>
-            <li> <a href="conversaciones.html">  Conversaciones </a> </li>
-            <li> <a href="historialCompras.html">  Compras </a> </li>
-            <li> <a href="search.php"> Buscador <i class="fas fa-search-dollar"></i> </a> </li>
-            <li> <a href="../assets/connections/terminar.php"> Cerrar Sesión<i class="fas fa-male"></i> </a> </li>
+			  <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-fill"></i> Cuenta 
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="../assets/connections/terminar.php"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Mis compras</a></li>
           </ul>
-        </div>
+			  </li>
+	
 
-        <div class="botones_menu contenedor02">
-          <button id="btn_menu_barras" class="btn_menu_barras">
-            <i class="fas fa-bars"></i>
-          </button>
-
-          <button id="btn_menu_cerrar" class="btn_menu_cerrar">
-            <i class="fas fa-times-circle"></i>
-          </button>
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
+			</ul>
+		  </div>
+		</div>
+  </nav>
+	<!-- = = = = = = = = END = = = = = = = = -->
