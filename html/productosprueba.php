@@ -127,7 +127,7 @@ body {
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="pagartotal.php"> <table class="show-cart table"></table>
+        <form method="post" action="pruebavend.php"> <table class="show-cart table"></table>
 
         <div>Total a pagar:<span class="total-cart"> 0</span></div>
       </div>
@@ -195,7 +195,7 @@ var shoppingCart = function () {
         return;
       }
     }
-    var item = new Item(id, price, name, count);
+    var item = new Item(id, price, name, count, idv);
     cart.push(item);
     saveCart();
   };

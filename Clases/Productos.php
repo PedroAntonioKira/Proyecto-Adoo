@@ -1,30 +1,31 @@
 <?php
 
-class slot
+class Slot
 {
-	public $idslot;
-	public $producto;
+	public $idv;
+	public $productos=[];
 
-	function getIdslot()
+	
+	function getIdv()
 	{
-		return $this->idslot;
+		return $this->idv;
 	}
-	function getProducto()
+	function getProductos()
 	{
-		return $this->producto;
-	}
-
-	function setIdslot($id)
-	{
-
-		$this->idslot=$id;
-
+		return $this->productos;
 	}
 
-	function setProducto($idv)
+	function setIdv($idv)
 	{
 
-		$this->producto=$producto;
+		$this->idv=$idv;
+
+	}
+
+	function setProductos($productos)
+	{
+
+		$this->productos=$productos;
 
 	}
 
@@ -38,7 +39,8 @@ class Producto
 	public $nombre;
 	public $precio;
 	public $id;
-	public $idv;
+	public $cantidad;
+	public $total;
 
 	
 	function getNombre()
@@ -58,6 +60,16 @@ class Producto
 	function getIdv()
 	{
 		return $this->idv;
+	}
+
+	function getCantidad()
+	{
+		return $this->cantidad;
+	}
+
+	function getTotal()
+	{
+		return $this->total;
 	}
 
 	function setId($id)
@@ -86,6 +98,19 @@ class Producto
 
 		$this->precio=$precio;
 	}
+
+	function setCantidad($cantidad)
+	{
+
+		$this->cantidad=$cantidad;
+	}
+
+	function setTotal($total)
+	{
+
+		$this->total=$total;
+	}
+
 
 
 }
