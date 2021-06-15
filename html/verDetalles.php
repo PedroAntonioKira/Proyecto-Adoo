@@ -63,8 +63,9 @@
 				<h1><?php echo($datos['nombreProd']); ?></h1>
 				<h3>Price: $<?php echo($datos['precio']); ?> MXN</h3>
 
-	            <table class="table table-striped table-dark">
-	        			<thead>
+	            <table class="table table-striped table-bordered">
+	        			<thead class=" thead thead-dark">
+
 									<tr>
 										<th scope="col">Caracteristica</th>
 										<th scope="col">Descripción</th>

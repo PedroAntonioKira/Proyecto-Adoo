@@ -14,9 +14,9 @@
       $message = '';
 
       if(($datos != NULL) && ($datos['contrasena']==$contrasena)){
-        if($datos['actividad'] == 1){
+        if($datos['estatus'] == 'VERIFICADO'){
           $correo = $datos['correo'];
-          $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,comprador.id,usuario.correo,usuario.contrasena,usuario.actividad,privilegios.privilegio FROM info INNER JOIN comprador ON comprador.info_id = info.id INNER JOIN usuario ON comprador.usuario_correo = usuario.correo INNER JOIN privilegios ON privilegios.id = usuario.privilegios_id WHERE usuario.correo = '$correo'";
+          $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,comprador.id,usuario.correo,usuario.contrasena,usuario.estatus,privilegios.privilegio FROM info INNER JOIN comprador ON comprador.info_id = info.id INNER JOIN usuario ON comprador.usuario_correo = usuario.correo INNER JOIN privilegios ON privilegios.id = usuario.privilegios_id WHERE usuario.correo = '$correo'";
           $columnas = $con->query($sentencia);
           $obtenido = $columnas->fetch_assoc();
 
@@ -27,7 +27,7 @@
           $_SESSION['id_comprador']=$obtenido['id'];
           $_SESSION['correo']=$obtenido['correo'];
           $_SESSION['contrasena']=$obtenido['contrasena'];
-          $_SESSION['actividad']=$obtenido['actividad'];
+          $_SESSION['estatus']=$obtenido['estatus'];
           $_SESSION['privilegio']=$obtenido['privilegio'];
 
           header('location: ../index.php');

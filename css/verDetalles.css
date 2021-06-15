@@ -23,15 +23,14 @@
     margin: 10px 15px;
 }
 .container-right{
-    /* background: tomato; */
-    margin-top: 70px;
+    background: rgb(161, 30, 7); 
+    margin-top: 5000px;
 }
 .center-all{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 
 
 /* PARA TEMA OSCURO */
