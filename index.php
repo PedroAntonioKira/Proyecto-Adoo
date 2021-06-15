@@ -11,7 +11,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-	    <title>Cuenta | Registro</title>
+	    <title>CEG | Home</title>
 		<meta charset="utf-8">
 
 		<!--Estilos del formulario-->
@@ -33,11 +33,14 @@
 				require 'assets/navs/headerBaseIndex.php';
 
 			}elseif($_SESSION['privilegio'] == 'Comprador'){
-				require 'assets/navs/headerCompradorIndex.php';
+				require 'assets/navs/headerComprador.php';
 
 			}elseif($_SESSION['privilegio'] == 'Vendedor'){
 				require 'assets/navs/headerVendedorIndex.php';
+			}else{
+				require 'assets/navs/headerBaseIndex.php';
 			}
+			// echo $_SESSION['privilegio'];
 		?>
 
 		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">

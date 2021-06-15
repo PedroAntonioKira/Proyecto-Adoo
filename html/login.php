@@ -16,7 +16,18 @@
       if(($datos != NULL) && ($datos['contrasena']==$contrasena)){
         if($datos['actividad'] == 1){
           $correo = $datos['correo'];
-          $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,vendedor.id,usuario.correo,usuario.contrasena,usuario.actividad,privilegios.privilegio FROM info INNER JOIN vendedor ON vendedor.info_id = info.id INNER JOIN usuario ON vendedor.usuario_correo = usuario.correo INNER JOIN privilegios ON usuario.privilegios_id = privilegios.id WHERE vendedor.usuario_correo = '$correo'";
+          $sentencia = "SELECT info.nombre, info.apellidop, info.apellidom, info.institucion, vendedor.id, usuario.correo,
+              usuario.contrasena, usuario.actividad, privilegios.privilegio FROM info INNER JOIN vendedor 
+              ON vendedor.info_id = info.id INNER JOIN usuario ON vendedor.usuario_correo = usuario.correo 
+              INNER JOIN privilegios ON usuario.privilegios_id = privilegios.id WHERE vendedor.usuario_correo = '$correo'";
+          // Query para comprador
+          // SELECT info.nombre, info.apellidop, info.apellidom, info.institucion, comprador.id, usuario.correo,
+          // usuario.contrasena, usuario.actividad, privilegios.privilegio
+          // FROM info INNER JOIN comprador 
+          // ON comprador.info_id = info.id 
+          // INNER JOIN usuario ON comprador.usuario_correo = usuario.correo 
+          // INNER JOIN privilegios ON usuario.privilegios_id = privilegios.id WHERE comprador.usuario_correo = 'joss.alberto.r.m@gmail.com'          
+
           $columnas = $con->query($sentencia);
           $obtenido = $columnas->fetch_assoc();
 
