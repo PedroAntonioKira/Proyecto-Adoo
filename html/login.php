@@ -14,10 +14,10 @@
       $message = '';
 
       if(($datos != NULL) && ($datos['contrasena']==$contrasena)){
-        if($datos['actividad'] == 1){
+        if($datos['privilegios_id'] == 3){
           $correo = $datos['correo'];
           $sentencia = "SELECT info.nombre, info.apellidop, info.apellidom, info.institucion, vendedor.id, usuario.correo,
-              usuario.contrasena, usuario.actividad, privilegios.privilegio FROM info INNER JOIN vendedor 
+              usuario.contrasena, usuario.estatus, privilegios.privilegio FROM info INNER JOIN vendedor 
               ON vendedor.info_id = info.id INNER JOIN usuario ON vendedor.usuario_correo = usuario.correo 
               INNER JOIN privilegios ON usuario.privilegios_id = privilegios.id WHERE vendedor.usuario_correo = '$correo'";
           // Query para comprador
@@ -38,7 +38,7 @@
           $_SESSION['id_vendedor']=$obtenido['id'];
           $_SESSION['correo']=$obtenido['correo'];
           $_SESSION['contrasena']=$obtenido['contrasena'];
-          $_SESSION['actividad']=$obtenido['actividad'];
+          $_SESSION['estatus']=$obtenido['estatus'];
           $_SESSION['privilegio']=$obtenido['privilegio'];
 
           header('location: ../index.php');
