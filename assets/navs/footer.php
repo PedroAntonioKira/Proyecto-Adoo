@@ -1,7 +1,7 @@
 	<!-- NOTA: Se deben agregar la siguiente linea justo antes de </body> en el html (quitar los espacios en '< ?') -->
 	<!-- < ?php require '../assets/navs/footer.php'; ?> -->
 
-  <!-- = = = = = = = = FOOTER = = = = = = = = -->
+  <!-- = = = = = = = = FOOTER fkdsjfsdff = = = = = = = = -->
 	<footer class="row">
 			<div class="col col-4">
 				<a href="#">Vende tus productos</a>
