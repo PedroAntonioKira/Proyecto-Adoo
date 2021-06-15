@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-06-2021 a las 17:06:59
+-- Tiempo de generación: 15-06-2021 a las 19:59:25
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -73,7 +73,12 @@ CREATE TABLE `catalogodeproductos` (
 INSERT INTO `catalogodeproductos` (`id`, `vendedor_id`, `producto_id`, `avgcalificacion`, `precio`) VALUES
 (1, 1, 1, NULL, 0.00),
 (2, 1, 2, NULL, 0.00),
-(3, 1, 3, 10, 0.00);
+(3, 1, 3, 10, 0.00),
+(4, 3, 4, 10, 0.00),
+(5, 3, 5, 10, 0.00),
+(6, 3, 6, 10, 0.00),
+(7, 3, 7, 10, 0.00),
+(8, 3, 8, 10, 0.00);
 
 -- --------------------------------------------------------
 
@@ -195,7 +200,12 @@ CREATE TABLE `descripcion` (
 INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`, `bateriasinclu`, `tamañoram`, `tamañodiscoduro`, `sistemaoperativo`, `procesador`, `tamañopantalla`, `resolucion`, `numeroprocesadores`, `tipodiscoduro`, `imagen1`, `imagen2`, `imagen3`, `color`, `precio`, `descripcion`) VALUES
 (1, 'Motorola', 'Motorola', 15.24, 10.16, 'SI', 4, 128, 'Android 10.0', 'Snapdragon 730G', 6.80, '1080x 2400', 8, 'N/A', 'Motog9.jpg', 'Motog92.jpg', 'Motog93.jpg', 'Azul', 5362.46, ''),
 (2, 'Prueba', 'Prueba', 1.10, 1.10, 'Prueba', 1, 1, 'Prueba', 'Prueba', 1.10, '123', 2, 'N/A', 'prueba.jpg', 'prueba2.jpg', 'prueba3.jpg', 'Prueba', 123.00, ''),
-(3, 'Samsung', 'CANCELAR', 15.30, 12.20, 'CANCELAR', 4, 120, 'Android 10', 'Snapdragon', 10.20, '1920 x 2400', 4, 'N/A', 'Motog9.jpg', 'Motog92.jpg', 'Motog93.jpg', 'Negro', 3500.00, '');
+(3, 'Samsung', 'CANCELAR', 15.30, 12.20, 'CANCELAR', 4, 120, 'Android 10', 'Snapdragon', 10.20, '1920 x 2400', 4, 'N/A', 'Motog9.jpg', 'Motog92.jpg', 'Motog93.jpg', 'Negro', 3500.00, ''),
+(4, 'HUAWEI', 'CANCELAR', 9.00, 13.00, 'CANCELAR', 8, 256, '', 'AMD Ryzen 5 3500U', 13.00, '2160x1440', 4, 'SSD', 'HUAWEI-MATEBOOK-13-01.jpg', 'HUAWEI-MATEBOOK-13-02.jpg', 'HUAWEI-MATEBOOK-13-03.jpg', '#d1d1d1', 17999.00, ''),
+(5, 'HUAWEI', 'CANCELAR', 9.00, 14.00, 'CANCELAR', 8, 512, 'Windows 10 Home', '10th Gen Intel® Core™ i7-10510U Procesador', 14.00, '2160x1440', 4, 'SSD', 'HUAWEI-MATEBOOK-14-01.jpg', 'HUAWEI-MATEBOOK-14-02.jpg', 'HUAWEI-MATEBOOK-14-03.jpg', '#007580', 21000.00, ''),
+(6, 'HUAWEI', 'CANCELAR', 10.00, 16.00, 'CANCELAR', 16, 512, 'Windows 10 Home', 'Intel® Core ™ i5-1135G7 de 11.a generación', 15.60, '1920x1080', 4, 'SSD', 'HUAWEI-MATEBOOK-15-01', 'HUAWEI-MATEBOOK-15-02', 'HUAWEI-MATEBOOK-15-03', '#566a86', 22999.00, ''),
+(7, 'HUAWEI', 'CANCELAR', 7.00, 10.00, 'CANCELAR', 12, 128, 'EMUI 10.1 (Basado en Android 10.0)', 'Snapdragon 870', 10.40, '2000 x1200', 4, 'ROM', 'Huawei-Matepad-10-4-01', 'Huawei-Matepad-10-4-02', 'Huawei-Matepad-10-4-03', '#096390', 10999.00, ''),
+(8, 'HUAWEI', 'CANCELAR', 9.40, 6.30, 'CANCELAR', 3, 64, 'EMUI 10.1 (basado en Android 10.0)', 'Kirin 710A', 10.10, '1920 x 1200', 2, 'ROM', 'HUAWEI-MatePad-10.4-01.jpg', 'HUAWEI-MatePad-10.4-02.jpg', 'HUAWEI-MatePad-10.4-03.jpg', '#002080', 6999.00, '');
 
 -- --------------------------------------------------------
 
@@ -233,7 +243,8 @@ CREATE TABLE `info` (
 INSERT INTO `info` (`id`, `nombre`, `apellidop`, `apellidom`, `institucion`) VALUES
 (1, 'José Alberto', 'Rincón', 'Mendoza', 'ESCOM'),
 (2, 'Rodrigo', 'González', 'Pérez', 'ESCOM'),
-(3, 'Omar', 'Aguirre', 'Alvarez', 'ESCOM');
+(3, 'Omar', 'Aguirre', 'Alvarez', 'ESCOM'),
+(4, 'Omar', 'Doncel', 'Beltran', 'ESCOM');
 
 -- --------------------------------------------------------
 
@@ -378,7 +389,12 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`id`, `nombre`, `stock`, `estado`, `calificacion`, `listacategorias_id`, `descripcion_id`) VALUES
 (1, 'Moto G9 Plus', 6, 'PUBLICADO', NULL, 11, 1),
 (2, 'Prueba', 12, 'PUBLICADO', NULL, 8, 2),
-(3, 'Celular Prueba', 20, 'ESPERA', 5, 2, 3);
+(3, 'Celular Prueba', 20, 'PUBLICADO', 5, 2, 3),
+(4, 'HUAWEI MateBook 13', 12, 'PUBLICADO', 5, 1, 4),
+(5, 'HUAWEI MateBook 14', 5, 'PUBLICADO', 5, 1, 5),
+(6, 'HUAWEI MateBook D 15', 8, 'PUBLICADO', 5, 1, 6),
+(7, 'HUAWEI MatePad 10.4', 14, 'PUBLICADO', 5, 1, 7),
+(8, 'HUAWEI MatePad T 10s (Deepsea blue)', 3, 'PUBLICADO', 5, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -510,6 +526,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`correo`, `contrasena`, `estatus`, `privilegios_id`) VALUES
 ('admin@admin.com', 'Contraseña123', 'VERIFICADO', 1),
 ('joss.alberto.r.m@gmail.com', 'Contraseña', '1', 2),
+('omar_comprador@prueba.com', 'prueba', 'VERIFICADO', 2),
+('omar_vendedor@prueba.com', 'prueba', 'VERIFICADO', 3),
 ('prueba@prueba.com', 'Contraseña', '1', 2),
 ('rodrigo@rodrigo.com', 'Contraseña', '1', 3);
 
@@ -530,7 +548,8 @@ CREATE TABLE `vendedor` (
 --
 
 INSERT INTO `vendedor` (`id`, `usuario_correo`, `info_id`) VALUES
-(1, 'rodrigo@rodrigo.com', 2);
+(1, 'rodrigo@rodrigo.com', 2),
+(3, 'omar_vendedor@prueba.com', 4);
 
 --
 -- Índices para tablas volcadas
@@ -724,7 +743,7 @@ ALTER TABLE `aprobacionproductos`
 -- AUTO_INCREMENT de la tabla `catalogodeproductos`
 --
 ALTER TABLE `catalogodeproductos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -754,7 +773,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `descripcion`
 --
 ALTER TABLE `descripcion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `entregas_compras`
@@ -766,7 +785,7 @@ ALTER TABLE `entregas_compras`
 -- AUTO_INCREMENT de la tabla `info`
 --
 ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `infobancaria`
@@ -802,7 +821,7 @@ ALTER TABLE `privilegios`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `productos_comprados`
@@ -832,7 +851,7 @@ ALTER TABLE `subcategoria`
 -- AUTO_INCREMENT de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

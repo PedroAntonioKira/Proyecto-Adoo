@@ -100,7 +100,7 @@
 					</div>
 				</div>
 				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=2" class="card-img-top" alt="...">
+					<img src="https://picsum.photos/1000/1000?random=2" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Product title</h5>
 						<p class="card-text">$1250.65 MXN</p>
@@ -122,7 +122,7 @@
 					</div>
 				</div>
 				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=4" class="card-img-top" alt="...">
+					<img src="https://picsum.photos/300/300?random=4" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Product title</h5>
 						<p class="card-text">$1250.65 MXN</p>
@@ -166,7 +166,7 @@
 					</div>
 				</div>
 				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=8" class="card-img-top" alt="...">
+					<img src="https://picsum.photos/900/900?random=8" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Product title</h5>
 						<p class="card-text">$1250.65 MXN</p>

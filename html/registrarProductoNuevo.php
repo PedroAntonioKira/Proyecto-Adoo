@@ -10,28 +10,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <!-- BOOTSTRAP ICONS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../css/navbar.css">
+
     <!-- ESTILOS INDIVIDUALES/PERSONALIZADOS   -->
     <link rel="stylesheet" href="../css/registrarProductoNuevo.css">
-
-	<!--Estilos del menu superior-->
-	<link rel="stylesheet" href="../css/menuPrincipal01.css">
-	<link rel="stylesheet" href="../css/Cuerpo01.css">
-
-	<!--Estilos del slider-->
-	<!-- <link rel="stylesheet" href="../css/all.min.css">
-	<link rel="stylesheet" href="../css/recompra.css"> -->
-
-	<script src="../js/jquery-3.6.0.js"></script>
-    <script src="../js/main.js"></script>
-
     <!--JS REGISTRAR PRODUCTO-->
     <script src="../js/registrarProductoNuevo.js"></script>
 
 </head>
 <body>
 
-		<?php
-			require '../assets/navs/headerVendedorHtml.php';
+    <?php
+        require '../assets/navs/headerVendedorHtml.php';
 	 ?>
     <div class="container">
         <div class="row">
@@ -281,14 +272,10 @@
         </div>
     </div>
 
-	<footer>
-		<h3> <a href="#">Av. Luis Enrique Erro S/N, Unidad Profesional Adolfo López Mateos, Zacatenco, Delegación Gustavo A. Madero, C.P. 07738, Ciudad de México </a> </h3>
-		<h4> <a href="#"> Terminos y Condiciones </a> <a href="#"> Aviso de Privacidad </a> </h4>
-		<h5> @	Derechos reservados 2021.</h5>
-	</footer>
-	<?php
-	// include("registrarProductoCnx.php");
-	?>
+
+    <?php
+        require '../assets/navs/footer.php';
+	 ?>
 </body>
 
 </html>
