@@ -9,7 +9,7 @@
 			$institucion = $_POST['institucion'];
 			$correo = $_POST['correo'];
 			$contrasena = $_POST['contrasena'];
-
+// comentario de prueba
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
 			$datos = $ejecutar->fetch_assoc();
