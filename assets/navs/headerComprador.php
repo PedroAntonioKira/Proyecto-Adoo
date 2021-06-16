@@ -7,7 +7,7 @@
   <!-- = = = = = = = =  NAV-MENU = = = = = = = = -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-green-ceg">
 		<div class="container-fluid">
-		  <a class="navbar-brand" href="./index.php">
+		  <a class="navbar-brand" href="../index.php">
 			  <img src="./img/ceg.png" alt="logo-CEG"> CEG
 		  </a>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
 		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 			  <li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="./index.php"><i class="bi bi-house"></i> Home</a>
+				<a class="nav-link active" aria-current="page" href="../index.php"><i class="bi bi-house"></i> Home</a>
 			  </li>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,7 +45,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="./assets/connections/terminar.php"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="./html/modifCuenta.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Mis compras</a></li>
           </ul>
