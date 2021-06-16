@@ -44,12 +44,8 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="./assets/connections/terminar.php"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
-<<<<<<< HEAD
             <li><a class="dropdown-item" href="#"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
 			<li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Conversaciones</a></li>
-=======
-            <li><a class="dropdown-item" href="./html/modifCuenta.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
->>>>>>> 7afac60a7ab7da73a86d0dfc355e52de47f6feca
             <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
 			
           </ul>
