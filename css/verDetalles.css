@@ -23,8 +23,7 @@
     margin: 10px 15px;
 }
 .container-right{
-    background: rgb(161, 30, 7); 
-    margin-top: 5000px;
+    margin-top: 20vh;
 }
 .center-all{
     display: flex;

@@ -9,7 +9,7 @@
 			$institucion = $_POST['institucion'];
 			$correo = $_POST['correo'];
 			$contrasena = $_POST['contrasena'];
-
+// comentario de prueba
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
 			$datos = $ejecutar->fetch_assoc();
@@ -18,7 +18,7 @@
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
 			}else{
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
-				$usuario = "INSERT INTO usuario (correo,contrasena,actividad,privilegios_id) VALUES ('$correo', '$contrasena','1','2')";
+				$usuario = "INSERT INTO usuario (correo,contrasena,estatus,privilegios_id) VALUES ('$correo', '$contrasena','VERIFICADO','2')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
 
 
@@ -55,9 +55,9 @@
 	<script src="../js/main.js"></script>
 
 	<!-- HEADER AND FOOTER -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="../css/navbar.css">
 	<script src="../js/validacionForm.js"></script>
 </head>
@@ -88,7 +88,7 @@
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información De Usuario</h2>
-												<input type="text" name="nombre" id="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" title="que paso">
+												<input type="text" name="nombre" id="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off"  title="que paso">
 												<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
 												<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
 												<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
