@@ -30,10 +30,10 @@
 <body>
   <?php
   	if($_SESSION == NULL){
-  		require '../assets/navs/headerBaseHtml.php';
+  		require '../assets/navs/headerBase.php';
 
   	}elseif($_SESSION['privilegio'] == 'Comprador'){
-  		require '../assets/navs/headerCompradorHtml.php';
+  		require '../assets/navs/headerComprador.php';
   	}
 
 

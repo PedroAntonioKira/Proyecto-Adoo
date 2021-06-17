@@ -18,7 +18,7 @@
 <body>
 
 	<?php
-		require '../assets/navs/headerBaseHtml.php';
+		require '../assets/navs/headerBase.php';
 	?>
 
 	<main class="contenedor">
@@ -31,11 +31,11 @@
 			<div class="sesionComprador" style="width: 30%;
 			height: 80%;
 			margin: 0.5% 1%;">
-				<a href="login2.php">
+				<a href="crearCuentaComprador.php">
 					<button>
 						<h1 style="font-size: 2vw;">Comprador</h1>
 						<img src="../img/comprador.png" style="height:100%; width:100%;">
-						<h2 style="font-size: 2vw;"> Iniciar Sesion</h2>
+						<h2 style="font-size: 2vw;">Registrarse</h2>
 					</button>
 
 				</a>
@@ -47,11 +47,11 @@
 			height: 100px;
 			margin: 0.5% 1%;">
 
-				<a href="login.php">
+				<a href="crearCuentaVendedor.php">
 					<button>
 						<h1 style="font-size: 2vw;">Vendedor</h1>
 						 <img src="../img/vendedor002.png" style="height:100%; width:100%">
-						<h2 style="font-size: 2vw;"> Iniciar Sesion</h2>
+						<h2 style="font-size: 2vw;">Registrarse</h2>
 					</button>
 
 				</a>

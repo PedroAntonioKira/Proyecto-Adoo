@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require 'assets/connections/database.php';
+	require '../assets/connections/database.php';
 
 	if(isset($_SESSION['correo'])){
 		$privilegio = $_SESSION['privilegio'];
@@ -15,30 +15,30 @@
 		<meta charset="utf-8">
 
 		<!--Estilos del formulario-->
-		<link rel="stylesheet" href="css/formMultiStep.css">
+		<link rel="stylesheet" href="../css/formMultiStep.css">
 
-		<script src="js/jquery-3.6.0.js"></script>
-		<script src="js/main.js"></script>
+		<script src="../js/jquery-3.6.0.js"></script>
+		<script src="../js/main.js"></script>
 
 		<!-- HEADER AND FOOTER -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
-		<link rel="stylesheet" href="css/navbar.css">
-		<link rel="stylesheet" href="css/productos-propuesta.css">
+		<link rel="stylesheet" href="../css/navbar.css">
+		<link rel="stylesheet" href="../css/productos-propuesta.css">
 	</head>
 	<body>
 		<?php
 			if($_SESSION == NULL){
-				require 'assets/navs/headerBaseIndex.php';
+				require '../assets/navs/headerBase.php';
 
 			}elseif($_SESSION['privilegio'] == 'Comprador'){
-				require 'assets/navs/headerComprador.php';
+				require '../assets/navs/headerComprador.php';
 
 			}elseif($_SESSION['privilegio'] == 'Vendedor'){
-				require 'assets/navs/headerVendedorIndex.php';
+				require '../assets/navs/headerVendedor.php';
 			}else{
-				require 'assets/navs/headerBaseIndex.php';
+				require '../assets/navs/headerBase.php';
 			}
 			// echo $_SESSION['privilegio'];
 		?>
@@ -52,7 +52,7 @@
 
 	  	<div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="./img/Fondo1.png" class="d-block w-100" alt="Promocion 1">
+		      <img src="../img/Fondo1.png" class="d-block w-100" alt="Promocion 1">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Promocion 1</h5>
 						<p>Procesador Intel Core i5-11400 a solo $5,600.00</p>
@@ -60,7 +60,7 @@
 		    </div>
 
 		    <div class="carousel-item">
-		      <img src="./img/Fondo2.png" class="d-block w-100" alt="Promocion 2">
+		      <img src="../img/Fondo2.png" class="d-block w-100" alt="Promocion 2">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Promocion 2</h5>
 						<p>Compra tu pic o arduino con nosotros con un 20% de descuento.</p>
@@ -68,7 +68,7 @@
 		    </div>
 
 		    <div class="carousel-item">
-		      <img src="./img/Fondo3.png" class="d-block w-100" alt="Promocion 3">
+		      <img src="../img/Fondo3.png" class="d-block w-100" alt="Promocion 3">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Promocion 3</h5>
 						<p>2X1 en aire comprimido</p>
@@ -182,7 +182,7 @@
 
 	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
-	<?php require 'assets/navs/footer.php'; ?>
+	<?php require '../assets/navs/footer.php'; ?>
 		
 	
 </html>

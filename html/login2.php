@@ -73,13 +73,12 @@
 </head>
 <body>
 
-   	<?php require '../assets/navs/headerBaseHtml.php'; ?>
+   	<?php require '../assets/navs/headerBase.php'; ?>
   <main>
     <div class="container">
       <div class="info">
         <h1 style="color:white;">
-          Inicio de sesion <br>
-          Comprador
+          Inicio de sesion
         </h1>
       </div>
     </div>
@@ -98,7 +97,7 @@
         <p><?=  $message ?></p>
       <?php endif; ?>
         <br>
-        <p>¿No tienes cuenta aun? <a href="crearCuentaComprador.php"> <br>Crea Una Cuenta ahora</a></p>
+        <p>¿No tienes cuenta aun? <a href="tipoDeCuenta.php"> <br>Crea Una Cuenta ahora</a></p>
       </main>
 
       <?php require '../assets/navs/footer.php'; ?>

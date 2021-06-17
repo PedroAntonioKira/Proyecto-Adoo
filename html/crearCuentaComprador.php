@@ -1,5 +1,5 @@
 <?php
-	require '../assets/connections/database.php';
+  require '../assets/connections/database.php';
 
 	if(isset($_POST['Aceptar'])){
 		if(!empty($_POST['nombre']) && !empty($_POST['apellidop']) && !empty($_POST['apellidom']) && !empty($_POST['institucion']) && !empty($_POST['correo']) && !empty($_POST['contrasena'])){
@@ -18,7 +18,7 @@
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
 			}else{
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
-				$usuario = "INSERT INTO usuario (correo,contrasena,estatus,privilegios_id) VALUES ('$correo', '$contrasena','VERIFICADO','2')";
+				$usuario = "INSERT INTO usuario (correo,contrasena,actividad,privilegios_id) VALUES ('$correo', '$contrasena','1','2')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
 
 
@@ -41,28 +41,39 @@
 		}
 	}
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-    <title>Cuenta | Registro</title>
-	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <title>Cuenta | Iniciar Sesion</title>
+    <meta charset="utf-8">
 
-	<!--Estilos del formulario-->
-	<link rel="stylesheet" href="../css/formMultiStep.css">
 
-	<script src="../js/jquery-3.6.0.js"></script>
-	<script src="../js/main.js"></script>
+    <!--bootstrap-->
+  	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
-	<!-- HEADER AND FOOTER -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="../css/navbar.css">
-	<script src="../js/validacionForm.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <script src="../js/productos.js"></script>
+    <script src="../js/scriptp.js"></script>
+
+    <!-- ESTILOS INDIVIDUALES/PERSONALIZADOS   -->
+    <link rel="stylesheet" href="../css/login.css">
+
+    <!-- <script src="../js/jquery-3.6.0.js"></script> -->
+    <script src="../js/main.js"></script>
+    <link rel="stylesheet" href="../css/formMultiStep.css">
+    <script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
+
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+
 </head>
-
-
 <body>
 
 		<?php require '../assets/navs/headerBaseHtml.php'; ?>
@@ -76,7 +87,6 @@
 		                <p>Rellena todos los capos y presiona siguiente</p>
 		                <div class="row">
 		                    <div class="col-md-12 mx-0">
-
 		                        <form id="msform" action="crearCuentaComprador.php" method="post">
 		                            <!-- progressbar -->
 		                            <ul id="progressbar">
@@ -88,10 +98,10 @@
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información De Usuario</h2>
-												<input type="text" name="nombre" id="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off"  title="que paso">
-												<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
-												<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
-												<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
+											<input type="text" name="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off">
+											<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
+											<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
+											<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
 		                                </div>
 										<input type="button" name="next" class="next action-button" value="Siguiente" />
 		                            </fieldset>
@@ -102,8 +112,8 @@
 											<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
 											<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
 		                                </div>
-										<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-										<input type="submit" name="Aceptar" class="btn action-button" value="Aceptar" />
+											<input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+											<input type="submit" name="Aceptar" class="btn action-button" value="Aceptar" />
 		                            </fieldset>
 		                        </form>
 		                    </div>
@@ -125,3 +135,4 @@
 </body>
 
 </html>
+
