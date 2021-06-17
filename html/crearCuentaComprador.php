@@ -76,7 +76,7 @@
 </head>
 <body>
 
-		<?php require '../assets/navs/headerBaseHtml.php'; ?>
+		<?php require '../assets/navs/headerBase.php'; ?>
 
 	<main class="contenedor">
 		<div class="container-fluid" id="grad1">
