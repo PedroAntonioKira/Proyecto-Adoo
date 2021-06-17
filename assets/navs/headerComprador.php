@@ -33,9 +33,9 @@
           <a class="nav-link active" aria-current="page" href="search.php"><i class="bi bi-search"></i> Buscar</a> 
 			  </li>
          
-        <li class="nav-item">
+        <li class="nav-item" data-toggle="modal" data-target="#cart">
         <!-- <li class="nav-item d-flex justify-content-between align-items-start"> -->
-          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-cart4"></i> Carrito</a> 
+          <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-cart4"></i> Carrito(<span class="total-count"></span>)</a> 
           <!-- <span class="badge bg-light rounded-pill" style="color:#000">14</span> -->
 			  </li>        
 
