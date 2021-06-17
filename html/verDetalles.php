@@ -44,10 +44,12 @@
 	    <div class="row justify-content-md-center">
 	        <div class="col col-7">
 						<?php
+
+						try{
 							$id_Producto = $_GET['id_producto'];
 
 							$consulta = "SELECT descripcion.marca,descripcion.fabricante,descripcion.altoprod,descripcion.anchoprod,
-							descripcion.bateriasinclu,descripcion.tamañoram,descripcion.tamañodiscoduro,descripcion.sistemaoperativo,
+							descripcion.bateriasinclu,descripcion.tamaram,descripcion.tamadiscoduro,descripcion.sistemaoperativo,
 							descripcion.procesador,descripcion.tamañopantalla,descripcion.resolucion,descripcion.numeroprocesadores,
 							descripcion.tipodiscoduro,descripcion.imagen1,descripcion.imagen2,descripcion.imagen3,descripcion.color,
 							descripcion.precio,producto.nombre AS nombreProd,producto.stock,catalogodeproductos.avgcalificacion,info.nombre,
@@ -57,8 +59,12 @@
 							INNER JOIN info ON vendedor.info_id = info.id WHERE catalogodeproductos.producto_id = '$id_Producto'";
 
 							$ejecutar = $con->query($consulta);
-							$datos = $ejecutar->fetch_assoc();
-						?>
+							echo $ejecutar;
+						//	$datos = $ejecutar->fetch_assoc();
+						}catch (Exception $e) {
+						    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+						}
+												?>
 	            <!-- NOMBRE Y DETALLES -->
 				<h1><?php echo($datos['nombreProd']); ?></h1>
 				<h3>Price: $<?php echo($datos['precio']); ?> MXN</h3>
@@ -131,6 +137,13 @@
 				<h5>Sold By: <a href="#"><?php echo($datos['nombre']." ".$datos['apellidop']." ".$datos['apellidom']) ?></a></h5>
 
 				<?php
+
+				$consulta2 = "SELECT avgcalificacion from catalogodeproductos where producto_id=$id_Producto";
+				$ejecutar2 = $con->query($consulta2);
+				$datos = $ejecutar2->fetch_assoc();
+
+
+
 					if($datos['avgcalificacion'] == NULL){
 						echo("<div class='qualification-vendor'>");
 						echo("<i class='bi bi-star'></i>");
