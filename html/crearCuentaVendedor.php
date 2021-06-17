@@ -96,7 +96,7 @@
 
 </head>
 <body>
-	<?php require '../assets/navs/headerBaseHtml.php'; ?>
+	<?php require '../assets/navs/headerBase.php'; ?>
 	<main class="contenedor">
 		<div class="container-fluid" id="grad1">
 		    <div class="row justify-content-center mt-0">
@@ -141,21 +141,8 @@
 		                            <fieldset>
 		                                <div class="form-card">
 	                                    <h2 class="fs-title">Información de Cuenta</h2>
-	                                    <!--<label>Puntos de entrega</label><br>
-	                                    <select name="lista1" id="lista1">
-	                                    	<option value="0">Seleccione un transporte</option>
-	                                    	<option value="1">Metro</option>
-	                                    	<option value="2">Metrobus</option>
-	                                    	<option value="3">Escuela del IPN</option>
-	                                    </select>
-	                                    <br>
-
-	                                    <div id="select2lista"></div>
-	                                    
-	                                    
-	                                    <br><br>
-	                                    <input type="text" name="EstacionReferencia" placeholder="Estacion o Referencia">-->
-	                                    <button class="agregar"onclick="agregardir()"><i class="fas fa-plus"></i> Agregar</button>
+	                                    <div id="caja0"></div>
+	                                    <button class="agregar" onclick="agregardir()"><i class="fas fa-plus"></i> Agregar</button>
 
 		                                    
 
@@ -189,84 +176,64 @@
 </html>
 
 
-<!--<script type="text/javascript">
-	$(document).ready(function(){
-		$('#lista1').val(0);
-		recargarLista();
-
-		$('#lista1').change(function(){
-			recargarLista();
-		});
-
-
-	})
-</script>
-<script type="text/javascript">
-	function recargarLista(){
-		$.ajax({
-			type:"POST",
-			url:"puntos.php",
-			data:"trans=" + $('#lista1').val(),
-			success:function(r){
-				$('#select2lista').html(r);
-			}
-		});
-	}
-
-	
-</script>-->	
 
 <script type="text/javascript">
-	var add=0;
-
-	$(document).ready(function(){
-		$('#lista'+add).val(0);
-		recargarLista();
-
-		$('#lista'+add).change(function(){
-			recargarLista();
-		});
-
-
-	})
-
+	var aux1=0;
+	var aux2=1;
 	function agregardir(){
-		var prueba = document.getElementById('prueba');
-		prueba.innerHTML = "<label>Puntos de entrega</label><br> "+
-		                    "<select name='lista"+add+ "' id='lista"+add+"'>"+
+		var prueba = document.getElementById("caja" + aux1);
+		prueba.innerHTML = "<label>Punto de entrega " + aux2 + "</label><br>"+
+		                    "<select name='lista" + aux1 + "' id='lista" + aux1 + "'>"+
 		                    "<option value='0'>Seleccione un transporte</option>"+
 		                    "<option value='1'>Metro</option>"+
 		                    "<option value='2'>Metrobus</option>"+
 		                    "<option value='3'>Escuela del IPN</option>"+
 		                    "</select>"+
 		                    "<br>"+
-		                    "<div id='select"+add+1+"lista'></div>"+
+		                    "<div id='select" + aux2 + "lista'></div>"+
 		                    "<br>"+
-		                    "<input type='text' name='EstacionReferencia' placeholder='Estacion o Referencia'>";
+		                    "<input type='text' name='EstacionReferencia' placeholder='Estacion o Referencia'>"+
+		                    "<div id='caja" + aux2 + "'></div>";
 		$(document).ready(function(){
-		$('#lista'+add).val(0);
-		recargarLista();
+			$('#lista' + aux1).val(0);
+			recargarLista + aux1();
 
-		$('#lista'+add).change(function(){
-			recargarLista();
-		});
+			$('#lista' + aux1).change(function(){
+				recargarLista();
+			});
 
+			/*$('#lista1').val(0);
+			recargarLista2();
 
-	})
+			$('#lista1').change(function(){
+				recargarLista2();
+			});
+		})*/
+		aux1++;
+		aux2++;
 	}
 </script>
 
 <script type="text/javascript">
-	function recargarLista(){
+	function aux1(){
 		$.ajax({
 			type:"POST",
-			url:"puntos.php",
-			data:"trans=" + $('#lista'+add).val(),
+			url:"puntos2.php",
+			data:"trans=" + $('#lista0' ).val(),
 			success:function(r){
-				$('#selectlista').html(r);
+				$('#select1lista').html(r);
 			}
 		});
 	}
 
-	
+	function recargarLista2(){
+		$.ajax({
+			type:"POST",
+			url:"puntos.php",
+			data:"trans=" + $('#lista1' ).val(),
+			success:function(r){
+				$('#select2lista').html(r);
+			}
+		});
+	}
 </script>
