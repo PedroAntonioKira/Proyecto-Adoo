@@ -137,7 +137,7 @@ CREATE TABLE `descripcion` (
   `tamadiscoduro` int(11) DEFAULT NULL,
   `sistemaoperativo` varchar(45) DEFAULT NULL,
   `procesador` varchar(45) DEFAULT NULL,
-  `tamañopantalla` float(9,2) DEFAULT NULL,
+  `tamapantalla` float(9,2) DEFAULT NULL,
   `resolucion` varchar(45) DEFAULT NULL,
   `numeroprocesadores` int(11) DEFAULT NULL,
   `tipodiscoduro` varchar(45) DEFAULT NULL,
@@ -152,7 +152,7 @@ CREATE TABLE `descripcion` (
 -- Volcado de datos para la tabla `descripcion`
 --
 
-INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`, `bateriasinclu`, `tamaram`, `tamadiscoduro`, `sistemaoperativo`, `procesador`, `tamañopantalla`, `resolucion`, `numeroprocesadores`, `tipodiscoduro`, `imagen1`, `imagen2`, `imagen3`, `color`, `precio`) VALUES
+INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`, `bateriasinclu`, `tamaram`, `tamadiscoduro`, `sistemaoperativo`, `procesador`, `tamapantalla`, `resolucion`, `numeroprocesadores`, `tipodiscoduro`, `imagen1`, `imagen2`, `imagen3`, `color`, `precio`) VALUES
 (1, 'Motorola', 'Motorola', 15.24, 10.16, 'SI', 4, 128, 'Android 10.0', 'Snapdragon 730G', 6.80, '1080x 2400', 8, 'N/A', 'Motog9.jpg', 'Motog92.jpg', 'Motog93.jpg', 'Azul', 5362.46),
 (2, 'Prueba', 'Prueba', 1.10, 1.10, 'Prueba', 1, 1, 'Prueba', 'Prueba', 1.10, '123', 2, 'N/A', 'prueba.jpg', 'prueba2.jpg', 'prueba3.jpg', 'Prueba', 123.00),
 (3, 'Samsung', 'CANCELAR', 15.30, 12.20, 'CANCELAR', 4, 120, 'Android 10', 'Snapdragon', 10.20, '1920 x 2400', 4, 'N/A', 'Motog9.jpg', 'Motog92.jpg', 'Motog93.jpg', 'Negro', 3500.00);
