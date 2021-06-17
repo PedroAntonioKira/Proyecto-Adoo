@@ -14,10 +14,11 @@
       $message = '';
 
       if(($datos != NULL) && ($datos['contrasena']==$contrasena)){
-        if($datos['estatus'] == 'VERIFICADO'){
+        if($datos['actividad'] == 1 ){
           $correo = $datos['correo'];
+
           $sentencia = "SELECT info.nombre, info.apellidop, info.apellidom, info.institucion, vendedor.id, usuario.correo,
-              usuario.contrasena, usuario.estatus, privilegios.privilegio FROM info INNER JOIN vendedor
+              usuario.contrasena, usuario.actividad, privilegios.privilegio FROM info INNER JOIN vendedor
               ON vendedor.info_id = info.id INNER JOIN usuario ON vendedor.usuario_correo = usuario.correo
               INNER JOIN privilegios ON usuario.privilegios_id = privilegios.id WHERE vendedor.usuario_correo = '$correo'";
           // Query para comprador
@@ -38,10 +39,10 @@
           $_SESSION['id_vendedor']=$obtenido['id'];
           $_SESSION['correo']=$obtenido['correo'];
           $_SESSION['contrasena']=$obtenido['contrasena'];
-          $_SESSION['estatus']=$obtenido['estatus'];
+          $_SESSION['estatus']=$obtenido['actividad'];
           $_SESSION['privilegio']=$obtenido['privilegio'];
 
-          header('location: ../index.php');
+          header('location: index.php');
 
         }else{
           $message = "<p style='color:#FF0000'>Tu estatus es inactivo<p/>";

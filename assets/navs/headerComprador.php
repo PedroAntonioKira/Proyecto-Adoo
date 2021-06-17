@@ -16,7 +16,7 @@
 		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 			  <li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="../index.php"><i class="bi bi-house"></i> Home</a>
+				<a class="nav-link active" aria-current="page" href="index.php"><i class="bi bi-house"></i> Home</a>
 			  </li>
 			  <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,7 +30,7 @@
 			  </li>
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./html/search.php"><i class="bi bi-search"></i> Buscar</a> 
+          <a class="nav-link active" aria-current="page" href="search.php"><i class="bi bi-search"></i> Buscar</a> 
 			  </li>
          
         <li class="nav-item">
@@ -44,8 +44,8 @@
             <i class="bi bi-person-fill"></i> Cuenta 
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="./assets/connections/terminar.php"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
-            <li><a class="dropdown-item" href="./html/modifCuenta.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="../assets/connections/terminar.php"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
+            <li><a class="dropdown-item" href="modifCuenta.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
 			<li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Conversaciones</a></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Mis compras</a></li>
