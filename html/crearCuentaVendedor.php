@@ -10,17 +10,23 @@
 		&& !empty($_POST['contrasena'])
 		&& !empty($_POST['num'])
 		&& !empty($_POST['exp'])
-		&& !empty($_POST['codigo'])){
+		&& !empty($_POST['codigo'])
+		&& !empty($_POST['lista1'])
+		&& !empty($_POST['lista2'])
+		&& !empty($_POST['lista3'])){
 
-			$nombre = $_POST['nombre'];
-			$apellidop = $_POST['apellidop'];
-			$apellidom = $_POST['apellidom'];
+			$nombre      = $_POST['nombre'];
+			$apellidop   = $_POST['apellidop'];
+			$apellidom   = $_POST['apellidom'];
 			$institucion = $_POST['institucion'];
-			$correo = $_POST['correo'];
-			$contrasena = $_POST['contrasena'];
-			$num = $_POST['num'];
-			$exp = $_POST['exp'];
-			$codigo = $_POST['codigo'];
+			$correo      = $_POST['correo'];
+			$contrasena  = $_POST['contrasena'];
+			$num         = $_POST['num'];
+			$exp         = $_POST['exp'];
+			$codigo      = $_POST['codigo'];
+			$lista1      = $_POST['lista1'];
+			$lista2      = $_POST['lista2'];
+			$lista2      = $_POST['lista3'];
 
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
@@ -130,22 +136,20 @@
 																<fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Datos Bancarios</h2>
-											<input type="text" name="num" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
-											<input type="text" name="exp" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" pattern="\d\d/\d\d">
-											<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" pattern="^[0-9]{3,4}">
-		                                </div>
-											<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
-											<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
+																				<input type="text" name="num" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
+																				<input type="text" name="exp" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" pattern="\d\d/\d\d" style="width: 300px; margin-right:10px ;">
+																				<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" pattern="^[0-9]{3,4}" style="width: 100px; ">
+											                                </div>
+																				<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
+																				<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
 		                            </fieldset>
 
 		                            <fieldset>
 		                                <div class="form-card">
 	                                    <h2 class="fs-title">Información de Cuenta</h2>
 	                                    <div id="caja0"></div>
-	                                    <button class="agregar" onclick="agregardir()"><i class="fas fa-plus"></i> Agregar</button>
-
-		                                    
-
+	                                    <button class="agregar" onclick="agregardir()" style="background-color:rgb(51, 122, 255); border-radius: 5px; color:white; width: 200px; right: 80px; font-family: 'calibri';"><i class="fas fa-plus"></i> Agregar punto de entrega</button>
+	                                    <br><br>
 																			<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
 																			<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
 											
@@ -193,33 +197,44 @@
 		                    "<div id='select" + aux2 + "lista'></div>"+
 		                    "<br>"+
 		                    "<input type='text' name='EstacionReferencia' placeholder='Estacion o Referencia'>"+
+		                    "<input type='text' name='dia' placeholder='Dia' style='width:200px;'>"+
+		                    "<input type='time' name='hora' placeholder='Hora' style='width:200px; margin-left:10px ;' min='00:00' max='23:59'>"+
 		                    "<div id='caja" + aux2 + "'></div>";
 		$(document).ready(function(){
-			$('#lista' + aux1).val(0);
-			recargarLista + aux1();
+			$('#lista0').val(0);
+			recargarLista();
 
-			$('#lista' + aux1).change(function(){
+			$('#lista0').change(function(){
 				recargarLista();
 			});
 
-			/*$('#lista1').val(0);
+			$('#lista1').val(0);
 			recargarLista2();
 
 			$('#lista1').change(function(){
 				recargarLista2();
 			});
-		})*/
-		aux1++;
-		aux2++;
+
+			$('#lista2').val(0);
+			recargarLista3();
+
+			$('#lista2').change(function(){
+				recargarLista3();
+			});
+		})
+		if (aux1<=1) {
+			aux1++;
+			aux2++;
+		}
 	}
 </script>
 
 <script type="text/javascript">
-	function aux1(){
+	function recargarLista(){
 		$.ajax({
 			type:"POST",
-			url:"puntos2.php",
-			data:"trans=" + $('#lista0' ).val(),
+			url:"puntos.php",
+			data:"trans=" + $('#lista0').val(),
 			success:function(r){
 				$('#select1lista').html(r);
 			}
@@ -229,10 +244,21 @@
 	function recargarLista2(){
 		$.ajax({
 			type:"POST",
-			url:"puntos.php",
-			data:"trans=" + $('#lista1' ).val(),
+			url:"puntos2.php",
+			data:"trans=" + $('#lista1').val(),
 			success:function(r){
 				$('#select2lista').html(r);
+			}
+		});
+	}
+
+	function recargarLista3(){
+		$.ajax({
+			type:"POST",
+			url:"puntos3.php",
+			data:"trans=" + $('#lista2').val(),
+			success:function(r){
+				$('#select3lista').html(r);
 			}
 		});
 	}
