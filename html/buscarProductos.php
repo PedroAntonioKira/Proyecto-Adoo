@@ -57,7 +57,7 @@
             $estado = $datos['estado'];
             $vendedor_id = $datos['vendedor_id'];
 
-            echo "<div class='product-item' category= '$subcategoria'>";
+            /*echo "<div class='product-item' category= '$subcategoria'>";
             echo "<img src='../img/imagenesProductos/$imagen1' style:'width:60px; height:30px;'>";
             echo "<div class='Acceso'>";
             echo "<p>$nombre</p>";
@@ -70,7 +70,21 @@
             echo "</button>";
             echo "</div>";
             echo "</div>";
-            echo "</div>";
+            echo "</div>";*/
+
+            echo"<div class='card' style='width: 18rem;'>";
+            echo"<img src='../img/imagenesProductos/$imagen1'";
+            echo" class='card-img-top' alt='...''>";
+            echo"<div class='card-body'>";
+            echo"<h5 class='card-title'>$nombre</h5>";
+            echo"<p class='card-text'>$$$</p>";
+            echo"<div class='buttons'>";
+            echo"<a href='#'' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>";
+            echo"<a href='#' class='btn btn-success' onclick='redireCar($id)'><i class='bi bi-cart-plus'></i></a>";
+            echo"</div>";
+            echo"</div>";
+            echo"</div>";
+
           }
         ?>
       </section>
