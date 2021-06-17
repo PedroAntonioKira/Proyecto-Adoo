@@ -5,7 +5,7 @@
 -- Servidor: 127.0.0.1
 -- Tiempo de generación: 02-06-2021 a las 04:32:11
 -- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.3
+-- Versión de PHP: 8.0.3 deja de borrar la base
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
