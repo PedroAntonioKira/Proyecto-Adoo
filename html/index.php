@@ -87,8 +87,38 @@
 		<div class="container products-cards">
 			<div class="row">
 				
-				<h2>Nuevos productos</h2>
-				<div class="card" style="width: 18rem;">
+			<h2>Nuevos productos</h2>
+
+			<?php 
+				require '../assets/connections/database.php';
+				$selectNuevosProductos = "SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
+					FROM `producto`, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;";
+				$ejecutar = $con->query($selectNuevosProductos);
+
+				while ($datos = $ejecutar->fetch_assoc()) {
+					$id = $datos['id'];
+					$nombre = $datos['nombre'];
+					$precio = $datos['precio'];
+					$imagen = $datos['imagen1'];
+					
+					ECHO "
+						<div class='card' style='width: 18rem;'>
+							<img src='../img/imagenesProductos/$imagen' class='card-img-top' alt=''>
+							<div class='card-body'>
+								<h5 class='card-title'>$nombre</h5>
+								<p class='card-text'>$$precio MXN</p>
+								<div class='buttons'>
+									<a href='#' class='btn btn-primary'><i class='bi bi-eye'></i></a>
+									<a href='#' class='btn btn-success'><i class='bi bi-cart-plus'></i></a>
+								</div>
+							</div>
+						</div>					
+					";
+
+				}
+			?>
+
+				<!-- <div class="card" style="width: 18rem;">
 					<img src="https://picsum.photos/500/500?random=1" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Product title</h5>
@@ -98,84 +128,9 @@
 							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
 						</div>
 					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/1000/1000?random=2" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=3" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/300/300?random=4" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=5" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=6" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=7" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/900/900?random=8" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
+				</div> -->
+
+
 			</div>
 		</div>
 	</body>
