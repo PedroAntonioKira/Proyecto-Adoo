@@ -14,7 +14,7 @@
       $message = '';
 
       if(($datos != NULL) && ($datos['contrasena']==$contrasena)){
-        if($datos['actividad'] == 1 ){
+        if($datos['estatus'] == 'VERIFICADO'){
           $correo = $datos['correo'];
 
           $sentencia = "SELECT info.nombre, info.apellidop, info.apellidom, info.institucion, vendedor.id, usuario.correo,

@@ -29,7 +29,7 @@
         <a class="nav-link active" aria-current="page" href="search.php"><i class="bi bi-search"></i> Buscar</a> 
 			  </li>
         <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="login.php"><i class="bi bi-person-fill"></i> Iniciar sesion</a> 
+        <a class="nav-link active" aria-current="page" href="login2.php"><i class="bi bi-person-fill"></i> Iniciar sesion</a> 
 			  </li>
         <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="tipoDeCuenta.php"><i class="bi bi-person-plus-fill"></i> Registrarse</a> 
