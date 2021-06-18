@@ -1,7 +1,7 @@
 :root{
-	--width:300px;
+	--width:500px;
 	--padding:10px;
-	--bgcolor:rgb(24,24,24);
+	--bgcolor:rgb(255,255,255);
 	--hovercolor:rgb(0,117,128);
 	--width-collapsed: 50px;
 }
@@ -30,9 +30,9 @@ body{
 	background-color: var(--bgcolor);
 	color: black;
 	position: fixed;
-	height: 78%;
+	height: 80%;
 	left: 0;
-	top: 60;
+	top: 70;
 }
 
 #menuPerfil a{
