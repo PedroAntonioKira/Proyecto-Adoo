@@ -16,23 +16,22 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			
 			<ul class="navbar-nav">
-
-			<form class="d-flex form-search">
-				<input class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Buscar">
-				<button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
-			</form>	
-
+				
+			<form class="d-flex form-search" METHOD="POST" ACTION="buscarProductos.php">
+				<input name="busqueda" class="form-control me-2" type="search"  autocomplete="off" placeholder="Buscar productos..." aria-label="Buscar">
+				<button class="btn btn-outline-light" type="submit" name="buscar"><i class="bi bi-search"></i></button>
+			</form>		
 			
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					<i class="bi bi-shop"></i> Categorias
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<li><a class="dropdown-item" href="#">Computo</a></li>
-					<li><a class="dropdown-item" href="#">Telefonia</a></li>
-					<li><a class="dropdown-item" href="#">Electronica</a></li>
-					<li><a class="dropdown-item" href="#">Medición</a></li>
-					<li><a class="dropdown-item" href="#">Refacciones</a></li>
+				  <li><a class="dropdown-item" href="#" onClick="busqueda('Computo')">Computo</a></li>
+				  <li><a class="dropdown-item" href="#" onClick="busqueda('Telefonia')">Telefonia</a></li>
+				  <li><a class="dropdown-item" href="#" onClick="busqueda('Electronica')">Electronica</a></li>
+				  <li><a class="dropdown-item" href="#" onClick="busqueda('Medición')">Medición</a></li>
+				  <li><a class="dropdown-item" href="#" onClick="busqueda('Refacciones')">Refacciones</a></li>
 				</ul>
 			</li>
 

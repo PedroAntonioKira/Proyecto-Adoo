@@ -33,14 +33,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
     <link rel="stylesheet" href="../css/navbar.css">
 		<link rel="stylesheet" href="../css/productos-propuesta.css">
+
+    <script src="../js/buscar.js"></script>    
   </head>
 <body>
   <?php
-    if($_SESSION == NULL){
+    if($privilegio == NULL){
       require '../assets/navs/headerBase.php';
     }
-    elseif($_SESSION['privilegio'] == 'Comprador'){
+    elseif($privilegio == 'Comprador'){
       require '../assets/navs/headerComprador.php';
+    }
+    elseif($privilegio == 'Vendedor'){
+      require '../assets/navs/headerVendedor.php';
     }
   ?>
   <!-- <div class="wrap"> -->
@@ -62,13 +67,13 @@
           $infoProducto = " descripcion.imagen1, descripcion.precio, subcategoria.subcategoria, producto.id, producto.nombre, 
               producto.estado, catalogodeproductos.vendedor_id ";
 
-          if(isset($_POST['buscar'])){
+          if(isset($_POST['busqueda'])){
             $busquedaUsuario = trim($_POST['busqueda']);
             $selectQuery = "
             SELECT  $infoProducto
             FROM producto, descripcion, subcategoria, categorias, listacategorias, catalogodeproductos
-            WHERE (producto.nombre LIKE '$busquedaUsuario' OR descripcion.marca LIKE '$busquedaUsuario' 
-            OR categorias.categoria LIKE '$busquedaUsuario' OR subcategoria.subcategoria LIKE '$busquedaUsuario')
+            WHERE (producto.nombre LIKE '%$busquedaUsuario%' OR descripcion.marca LIKE '%$busquedaUsuario%' 
+            OR categorias.categoria LIKE '%$busquedaUsuario%' OR subcategoria.subcategoria LIKE '%$busquedaUsuario%')
             AND (producto.descripcion_id = descripcion.id)
             AND (producto.listacategorias_id = listacategorias.id) 
             AND (listacategorias.subcategoria_id = subcategoria.id)
