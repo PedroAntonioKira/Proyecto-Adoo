@@ -2,61 +2,64 @@
   require '../assets/connections/database.php';
 
 	if(isset($_POST['Aceptar'])){
-		if(!empty($_POST['nombre']) && !empty($_POST['apellidop']) && !empty($_POST['apellidom']) && !empty($_POST['institucion']) && !empty($_POST['correo']) && !empty($_POST['contrasena'])){
-			$nombre = $_POST['nombre'];
-			$apellidop = $_POST['apellidop'];
-			$apellidom = $_POST['apellidom'];
+		if(!empty($_POST['nombre'])
+		&& !empty($_POST['apellidop'])
+		&& !empty($_POST['apellidom'])
+		&& !empty($_POST['institucion'])
+		&& !empty($_POST['correo'])
+		&& !empty($_POST['contrasena'])
+		&& !empty($_POST['num'])
+		&& !empty($_POST['exp'])
+		&& !empty($_POST['codigo'])
+		&& !empty($_POST['lista1'])
+		&& !empty($_POST['lista2'])
+		&& !empty($_POST['lista3'])){
+
+			$nombre      = $_POST['nombre'];
+			$apellidop   = $_POST['apellidop'];
+			$apellidom   = $_POST['apellidom'];
 			$institucion = $_POST['institucion'];
-			$correo = $_POST['correo'];
-			$contrasena = $_POST['contrasena'];
-// comentario de prueba
+			$correo      = $_POST['correo'];
+			$contrasena  = $_POST['contrasena'];
+			$num         = $_POST['num'];
+			$exp         = $_POST['exp'];
+			$codigo      = $_POST['codigo'];
+			$lista1      = $_POST['lista1'];
+			$lista2      = $_POST['lista2'];
+			$lista2      = $_POST['lista3'];
+
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
 			$datos = $ejecutar->fetch_assoc();
-			$hash = md5( rand(0,1000)); // Generate random 32 character hash and assign it to a local variable.
+
 			if($datos != NULL){
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
 			}else{
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
-				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '$hash', 'SIN_VERIFICAR', '3')";
+				$usuario = "INSERT INTO usuario (correo,contrasena,actividad,privilegios_id) VALUES ('$correo', '$contrasena','1','3')";
+				$infoTarjeta = "INSERT INTO infotarjeta (num,exp,codigo) VALUES ('$num', '$exp', '$codigo')";
+
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
+				$vinculoTarjeta = "SELECT id FROM infotarjeta WHERE infotarjeta.num = '$num' AND infotarjeta.exp = '$exp' AND infotarjeta.codigo = '$codigo'";
 
-				
 
-				if(!$con->query($info) || !$con->query($usuario)){
+				if(!$con->query($info) || !$con->query($usuario) || !$con->query($infoTarjeta)){
 					echo("Falló: (".$con->errno.") ". $con->error);
 				}
 
-				if(!($vinculoDatos = $con->query($vinculo)->fetch_assoc())){
+				if(!($idInfo = $con->query($vinculo)->fetch_assoc()) || !($idTarjeta = $con->query($vinculoTarjeta)->fetch_assoc())){
 					echo("Falló: (".$con->errno.") ". $con->error);
 				}
-				$id = $vinculoDatos['id'];
-				$vendedor = "INSERT INTO `vendedor` (`id`, `usuario_correo`, `info_id`) VALUES (NULL, '$correo', '$id')";
 
-				if(!$con->query($vendedor)){
+				$idInfoid = $idInfo['id'];
+				$idTarjetaid = $idTarjeta['id'];
+
+				$infoBancaria = "INSERT INTO infobancaria (info_id, infotarjeta_id) VALUES ('$idInfoid', '$idTarjetaid') ";
+				$vendedor = "INSERT INTO vendedor (usuario_correo,info_id) VALUES ('$correo', '$idInfoid')";
+
+				if(!$con->query($vendedor) || !$con->query($infoBancaria)){
 					echo("Falló: (" . $con->errno . ") " . $con->error);
 				}
-
-
-				$msg = 'Te envie un correo, <br /> porfavor verifica con un click el link de activación que te enviamos a tu correo.';
-				$to      = $correo;   // Send email to our user
-				$subject = 'Signup | Verification'; // Give the email a subject 
-				$message = '
-				 
-				Thanks for signing up!
-				Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-				 
-				------------------------
-				Username: '.$nombre.'
-				Password: '.$contrasena.'
-				------------------------
-				 
-				Please click this link to activate your account:
-				http://www.yourwebsite.com/activarcorreo.php?correo='.$correo.'&hash='.$hash.''; // Our message above including the link  http://localhost/Proyecto-Adoo/html/activarcorreo.php?correo='.$correo.'&hash='.$hash.'';
-									 
-				$headers = 'From:noreply@yourwebsite.com' . "\r\n"; // Set from headers
-				mail($to, $subject, $message, $headers); // Send our email*/
-
 				header('location: login2.php');
 			}
 		}

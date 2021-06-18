@@ -10,7 +10,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-      <title>Filtrando Computo</title>
+      <title>Busqueda | Resultados</title>
     <meta charset="utf-8">
     <!--Links del filtrador-->
     <link rel="stylesheet" href="../css/estilosFiltrador.css">
@@ -29,6 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
     <link rel="stylesheet" href="../css/navbar.css">
+		<link rel="stylesheet" href="../css/productos-propuesta.css">
   </head>
 <body>
   <?php
@@ -39,21 +40,29 @@
       require '../assets/navs/headerComprador.php';
     }
   ?>
-  <div class="wrap">
-    <h1>Productos</h1>
-    <div class="store-wrapper">
-      <section class="products-list">
+  <!-- <div class="wrap"> -->
+    <!-- <div class="store-wrapper"> -->
+      <!-- <section class="products-list"> -->
+      <div class="container products-cards">
+			<div class="row">      
+      <h1>Productos</h1>
+
         <?php
           require '../assets/connections/database.php';
-          $sentencia = "SELECT descripcion.imagen1,subcategoria.subcategoria,producto.id,producto.nombre,producto.estado,catalogodeproductos.vendedor_id FROM subcategoria INNER JOIN listacategorias ON listacategorias.subcategoria_id = subcategoria.id INNER JOIN producto ON producto.listacategorias_id = listacategorias.id INNER JOIN catalogodeproductos on catalogodeproductos.producto_id = producto.id INNER JOIN descripcion ON producto.descripcion_id = descripcion.id";
+          $sentencia = "SELECT descripcion.imagen1, descripcion.precio, subcategoria.subcategoria, producto.id, producto.nombre, 
+              producto.estado, catalogodeproductos.vendedor_id FROM subcategoria INNER JOIN listacategorias 
+              ON listacategorias.subcategoria_id = subcategoria.id INNER JOIN producto 
+              ON producto.listacategorias_id = listacategorias.id INNER JOIN catalogodeproductos 
+              ON catalogodeproductos.producto_id = producto.id INNER JOIN descripcion ON producto.descripcion_id = descripcion.id";
           $ejecutar = $con->query($sentencia);
 
 
           while ($datos = $ejecutar->fetch_assoc()) {
-            $imagen1 = $datos['imagen1'];
+            $imagen = $datos['imagen1'];
             $subcategoria = $datos['subcategoria'];
             $id = $datos['id'];
             $nombre = $datos['nombre'];
+            $precio = $datos['precio'];
             $estado = $datos['estado'];
             $vendedor_id = $datos['vendedor_id'];
 
@@ -72,22 +81,35 @@
             echo "</div>";
             echo "</div>";*/
 
-            echo"<div class='card' style='width: 18rem;'>";
-            echo"<img src='../img/imagenesProductos/$imagen1'";
-            echo" class='card-img-top' alt='...''>";
-            echo"<div class='card-body'>";
-            echo"<h5 class='card-title'>$nombre</h5>";
-            echo"<p class='card-text'>$$$</p>";
-            echo"<div class='buttons'>";
-            echo"<a href='#'' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>";
-            echo"<a href='#' class='btn btn-success' onclick='redireCar($id)'><i class='bi bi-cart-plus'></i></a>";
-            echo"</div>";
-            echo"</div>";
-            echo"</div>";
+            // echo"<div class='card' style='width: 18rem;'>";
+            // echo"<img src='../img/imagenesProductos/$imagen1'";
+            // echo" class='card-img-top' alt='...''>";
+            // echo"<div class='card-body'>";
+            // echo"<h5 class='card-title'>$nombre</h5>";
+            // echo"<p class='card-text'>$$$</p>";
+            // echo"<div class='buttons'>";
+            // echo"<a href='#'' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>";
+            // echo"<a href='#' class='btn btn-success' onclick='redireCar($id)'><i class='bi bi-cart-plus'></i></a>";
+            // echo"</div>";
+            // echo"</div>";
+            // echo"</div>";
 
+            ECHO "
+						<div class='card' style='width: 18rem;'>
+							<img src='../img/imagenesProductos/$imagen' class='card-img-top' alt='$nombre'>
+							<div class='card-body'>
+								<h5 class='card-title'>$nombre</h5>
+								<p class='card-text'>$$precio MXN</p>
+								<div class='buttons'>
+									<a href='#' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>
+									<a href='#' class='btn btn-success' onclick='redireCar($id)'><i class='bi bi-cart-plus'></i></a>
+								</div>
+							</div>
+						</div>					
+					";            
           }
         ?>
-      </section>
+      <!-- </section> -->
     </div>
   </div>
 

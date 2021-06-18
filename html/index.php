@@ -52,7 +52,7 @@
 
 	  	<div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="../img/Fondo1.png" class="d-block w-100" alt="Promocion 1">
+		      <img src="../img/Banner04.png" class="d-block w-100" alt="Promocion 1">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Promocion 1</h5>
 						<p>Procesador Intel Core i5-11400 a solo $5,600.00</p>
@@ -60,7 +60,7 @@
 		    </div>
 
 		    <div class="carousel-item">
-		      <img src="../img/Fondo2.png" class="d-block w-100" alt="Promocion 2">
+		      <img src="../img/Banner02.png" class="d-block w-100" alt="Promocion 2">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Promocion 2</h5>
 						<p>Compra tu pic o arduino con nosotros con un 20% de descuento.</p>
@@ -68,7 +68,7 @@
 		    </div>
 
 		    <div class="carousel-item">
-		      <img src="../img/Fondo3.png" class="d-block w-100" alt="Promocion 3">
+		      <img src="../img/Banner03.png" class="d-block w-100" alt="Promocion 3">
 					<div class="carousel-caption d-none d-md-block">
 						<h5>Promocion 3</h5>
 						<p>2X1 en aire comprimido</p>
@@ -87,95 +87,42 @@
 		<div class="container products-cards">
 			<div class="row">
 				
-				<h2>Nuevos productos</h2>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=1" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/1000/1000?random=2" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=3" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/300/300?random=4" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=5" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=6" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/500/500?random=7" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="https://picsum.photos/900/900?random=8" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Product title</h5>
-						<p class="card-text">$1250.65 MXN</p>
-						<div class="buttons">
-							<a href="#" class="btn btn-primary"><i class="bi bi-eye"></i></a>
-							<a href="#" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
-						</div>
-					</div>
-				</div>
+			<h2>Nuevos productos</h2>
+
+			<?php 
+				require '../assets/connections/database.php';
+				$selectNuevosProductos = "SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
+					FROM `producto`, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;";
+				$ejecutar = $con->query($selectNuevosProductos);
+
+				while ($datos = $ejecutar->fetch_assoc()) {
+					$id = $datos['id'];
+					$nombre = $datos['nombre'];
+					$precio = $datos['precio'];
+					$imagen = $datos['imagen1'];
+					
+					ECHO "
+						<div class='card' style='width: 18rem;'>
+							<img src='../img/imagenesProductos/$imagen' class='card-img-top' alt=''>
+							<div class='card-body'>
+								<h5 class='card-title'>$nombre</h5>
+								<p class='card-text'>$$precio MXN</p>
+								<div class='buttons'>
+									<a href='#' class='btn btn-primary'><i class='bi bi-eye'></i></a>
+									<a href='#' class='btn btn-success'><i class='bi bi-cart-plus'></i></a>
+								</div>
+							</div>
+						</div>					
+					";
+
+				}
+			?>
+
+		</div>
+	</div>
+
+
+
 			</div>
 		</div>
 	</body>
