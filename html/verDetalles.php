@@ -65,13 +65,15 @@
 							$id_Producto = $_GET['id_producto'];
 
 							$consulta = "SELECT marca, fabricante, altoprod, anchoprod, bateriasinclu, tamaram, tamadiscoduro, sistemaoperativo, procesador, 
-              tamapantalla, resolucion, numeroprocesadores, tipodiscoduro, imagen1, imagen2, imagen3, color, descripcion.precio, catalogodeproductos.vendedor_id, 
-              producto.nombre AS nombreProd, stock, avgcalificacion, info.nombre, info.apellidop, info.apellidom	FROM descripcion
-								INNER JOIN producto ON producto.descripcion_id = descripcion.id
-								INNER JOIN catalogodeproductos ON catalogodeproductos.producto_id = producto.id
-								INNER JOIN vendedor ON catalogodeproductos.vendedor_id = vendedor.id
-								INNER JOIN info ON vendedor.info_id = info.id
-								WHERE catalogodeproductos.producto_id ='$id_Producto'";
+              tamapantalla, resolucion, numeroprocesadores, tipodiscoduro, imagen1, imagen2, imagen3, color, descripcion.precio, 		
+                catalogodeproductos.vendedor_id, producto.nombre AS nombreProd, stock, avgcalificacion, info.nombre, info.apellidop, 
+                info.apellidom,	producto.calificacion
+                FROM descripcion
+                INNER JOIN producto ON producto.descripcion_id = descripcion.id
+                INNER JOIN catalogodeproductos ON catalogodeproductos.producto_id = producto.id
+                INNER JOIN vendedor ON catalogodeproductos.vendedor_id = vendedor.id
+                INNER JOIN info ON vendedor.info_id = info.id
+                WHERE catalogodeproductos.producto_id = '$id_Producto'";
 
 							$ejecutar = $con->query($consulta);
 							$datos = $ejecutar->fetch_assoc();
@@ -79,9 +81,11 @@
 							$imagen2= $datos["imagen2"];
 							$imagen3= $datos["imagen3"];
 							$nombre=($datos['nombreProd']);
-				            $idv=$datos['vendedor_id'];
-				            $precio=($datos['precio']);
+              $idv=$datos['vendedor_id'];
+              $precio=($datos['precio']);
+              $calificacion=($datos['calificacion']);
 				            $id=$id_Producto;
+              
 
 						}catch (Exception $e) {
 						    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
@@ -89,6 +93,66 @@
 												?>
 	            <!-- NOMBRE Y DETALLES -->
 				<h1><?php echo($datos['nombreProd']); ?></h1>
+				<?php
+
+				// $consulta2 = "SELECT avgcalificacion from catalogodeproductos where producto_id=$id_Producto";
+				// $ejecutar2 = $con->query($consulta2);
+				// $datos = $ejecutar2->fetch_assoc();
+
+
+
+					if ($calificacion == 1) {
+						echo("<div class='qualification-vendor'>");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("</div>");
+					}elseif($calificacion == 2){
+						echo("<div class='qualification-vendor'>");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("</div>");
+					}elseif($calificacion == 3){
+						echo("<div class='qualification-vendor'>");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("</div>");
+					}elseif($calificacion == 4){
+						echo("<div class='qualification-vendor'>");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("</div>");
+					}elseif($calificacion == 5){
+						echo("<div class='qualification-vendor'>");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("<i class='bi bi-star-fill'></i> ");
+						echo("</div>");
+					}
+					else{
+						echo("<div class='qualification-vendor'>");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("<i class='bi bi-star'></i> ");
+						echo("</div>");          
+          }
+				 ?>
+				 <!-- ESTRELLAS CALIFICACIÓN -->        
 				<h3>Price: $<?php echo($datos['precio']); ?> MXN</h3>
 
 	            <table class="table table-striped table-bordered">
@@ -158,65 +222,7 @@
 				<h5>Stock: <?php echo($datos['stock']) ?> Disponibles.</h5>
 				<h5>Sold By: <a href="#"><?php echo($datos['nombre']." ".$datos['apellidop']." ".$datos['apellidom']) ?></a></h5>
 
-				<?php
 
-				$consulta2 = "SELECT avgcalificacion from catalogodeproductos where producto_id=$id_Producto";
-				$ejecutar2 = $con->query($consulta2);
-				$datos = $ejecutar2->fetch_assoc();
-
-
-
-					if($datos['avgcalificacion'] == NULL){
-						echo("<div class='qualification-vendor'>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("</div>");
-					}elseif ($datos['avgcalificacion'] == 1) {
-						echo("<div class='qualification-vendor'>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("</div>");
-					}elseif($datos['avgcalificacion'] == 2){
-						echo("<div class='qualification-vendor'>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("</div>");
-					}elseif($datos['avgcalificacion'] == 3){
-						echo("<div class='qualification-vendor'>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("</div>");
-					}elseif($datos['avgcalificacion'] == 4){
-						echo("<div class='qualification-vendor'>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star'></i>");
-						echo("</div>");
-					}elseif($datos['avgcalificacion'] == 5){
-						echo("<div class='qualification-vendor'>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("<i class='bi bi-star-fill'></i>");
-						echo("</div>");
-					}
-				 ?>
-				 <!-- ESTRELLAS CALIFICACIÓN -->
 
 			</div>
 
@@ -250,6 +256,9 @@
                     </button>
                 </div>
             <!-- SLIDER PRODUCT END -->
+            <?php
+                if($_SESSION['privilegio'] != 'Vendedor'){ //Para que el vendedor no pueda comprar
+            ?>
             <!-- BUTTONS -->
                 <div class="buttons-container center-all">
                 	<a href="mensajeVendedor.html">
@@ -258,8 +267,11 @@
                     <a href="#" data-name="<?php echo $nombre ?>" data-price="<?php echo $precio ?>" data-id="<?php echo $id ?>" data-idv="<?php echo $idv ?>" class="add-to-cart btn btn-success" title="Agregar al carrito"><i class="bi bi-cart-plus-fill"></i></a>
                     <!-- <button type="button" class="btn btn-primary">Preguntar</button>
                     <button type="button" class="btn btn-success">Agregar al carrito</button>                 -->
-                </div>
+                </div>                
             <!-- BUTTONS END -->
+            <?php
+                }
+            ?>            
             </div>
 	        </div>
 	    </div>

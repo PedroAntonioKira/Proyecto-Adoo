@@ -30,10 +30,16 @@
     /* flex-direction: row; */
     position: absolute;
     right: 4rem;
+    justify-content: center;
+    align-items: center;
 }
 .navbar-collapse.collapse.show .navbar-nav{
     transition: 0.5s;
     position: initial;
+}
+
+.form-search{
+    margin: 0;
 }
 
 
