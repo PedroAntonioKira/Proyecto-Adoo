@@ -23,9 +23,11 @@
 					<i class="bi bi-shop"></i> Categorias
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				  <li><a class="dropdown-item" href="#">Action</a></li>
-				  <li><a class="dropdown-item" href="#">Another action</a></li>
-				  <li><a class="dropdown-item" href="#">Something else here</a></li>
+				  <li><a class="dropdown-item" href="#">Computo</a></li>
+				  <li><a class="dropdown-item" href="#">Telefonia</a></li>
+				  <li><a class="dropdown-item" href="#">Electronica</a></li>
+				  <li><a class="dropdown-item" href="#">Medición</a></li>
+				  <li><a class="dropdown-item" href="#">Refacciones</a></li>
 				</ul>
 			  </li>
 

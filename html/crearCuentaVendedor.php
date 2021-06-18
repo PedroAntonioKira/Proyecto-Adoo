@@ -60,7 +60,7 @@
 				if(!$con->query($vendedor) || !$con->query($infoBancaria)){
 					echo("Falló: (" . $con->errno . ") " . $con->error);
 				}
-				header('location: login.php');
+				header('location: login2.php');
 			}
 		}
 	}
