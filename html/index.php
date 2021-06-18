@@ -5,6 +5,9 @@
 	if(isset($_SESSION['correo'])){
 		$privilegio = $_SESSION['privilegio'];
 	}
+	else{
+		$privilegio = NULL;
+	}
 ?>
 
 <!DOCTYPE html>
@@ -29,13 +32,13 @@
 	</head>
 	<body>
 		<?php
-			if($_SESSION == NULL){
+			if($privilegio == NULL){
 				require '../assets/navs/headerBase.php';
-
-			}elseif($_SESSION['privilegio'] == 'Comprador'){
+			}					
+			elseif($privilegio == 'Comprador'){
 				require '../assets/navs/headerComprador.php';
 
-			}elseif($_SESSION['privilegio'] == 'Vendedor'){
+			}elseif($privilegio == 'Vendedor'){
 				require '../assets/navs/headerVendedor.php';
 			}else{
 				require '../assets/navs/headerBase.php';
@@ -88,7 +91,7 @@
 			<div class="row">
 				
 			<h2>Nuevos productos</h2>
-
+			<!-- MOSTRANDO PRODUCTOS NUEVOS -->
 			<?php 
 				require '../assets/connections/database.php';
 				$selectNuevosProductos = "SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
@@ -100,7 +103,12 @@
 					$nombre = $datos['nombre'];
 					$precio = $datos['precio'];
 					$imagen = $datos['imagen1'];
-					
+					$urlAgregarCarrito = '#';
+
+					if($_SESSION == NULL){
+						$urlAgregarCarrito = "./login2.php";		
+					}			
+												
 					ECHO "
 						<div class='card' style='width: 18rem;'>
 							<img src='../img/imagenesProductos/$imagen' class='card-img-top' alt=''>
@@ -108,16 +116,23 @@
 								<h5 class='card-title'>$nombre</h5>
 								<p class='card-text'>$$precio MXN</p>
 								<div class='buttons'>
-									<a href='#' class='btn btn-primary'><i class='bi bi-eye'></i></a>
-									<a href='#' class='btn btn-success'><i class='bi bi-cart-plus'></i></a>
-								</div>
+								<a href='verDetalles.php?id_producto=$id' class='btn btn-primary'><i class='bi bi-eye'></i></a>								
+						";
+
+						if($privilegio != 'Vendedor'){
+							ECHO "
+								<a href='$urlAgregarCarrito' class='btn btn-success'><i class='bi bi-cart-plus'></i></a>
+							";
+						}
+					ECHO "
 							</div>
-						</div>					
+						</div>
+					</div>						
 					";
 
 				}
 			?>
-
+			 <!-- = = = = = = = = = = END  = = = = = = = = = = = = -->
 		</div>
 	</div>
 
