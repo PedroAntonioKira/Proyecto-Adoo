@@ -18,7 +18,7 @@
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
 			}else{
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
-				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '', 'ACTIVO', '2')";
+				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '', 'VERIFICADO1', '2')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
 
 
@@ -31,7 +31,7 @@
 					echo("Falló: (".$con->errno.") ". $con->error);
 				}
 				$id = $vinculoDatos['id'];
-				$comprador = "INSERT INTO comprador (usuario_correo,info_id) VALUES ('$correo', '$id')";
+				$comprador = "INSERT INTO `comprador` (`id`, `usuario_correo`, `info_id`) VALUES (NULL, '$correo', '$id')";
 
 				if(!$con->query($comprador)){
 					echo("Falló: (" . $con->errno . ") " . $con->error);

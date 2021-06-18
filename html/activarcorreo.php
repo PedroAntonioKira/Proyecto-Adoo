@@ -9,7 +9,7 @@ if(isset($_GET['correo']) && !empty($_GET['correo']) AND isset($_GET['hash']) &&
     $correo = $_GET['correo']; // Set correo variable
     $hash = $_GET['hash']; // Set hash variable
 
-    $search = "SELECT correo, hash, estatus FROM usuario WHERE correo='prueba@prueba.com' AND hash='10000' AND estatus!='VERIFICADO'"    
+    $search = "SELECT correo, hash, estatus FROM usuario WHERE correo='$correo' AND hash='$hash' AND estatus!='VERIFICADO'"    
     $ejecutar=$con->query($search);
     $datos = $ejecutar->fetch_assoc();
 
