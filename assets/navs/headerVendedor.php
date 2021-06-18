@@ -2,7 +2,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-green-ceg">
 		<div class="container-fluid">
 		  <a class="navbar-brand" href="../index.php">
-			  <img src="./img/ceg.png" alt="logo-CEG"> CEG
+			  <img src="../img/ceg.png" alt="logo-CEG"> CEG
 		  </a>
 		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -17,9 +17,11 @@
 					<i class="bi bi-shop"></i> Categorias
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				  <li><a class="dropdown-item" href="#">Action</a></li>
-				  <li><a class="dropdown-item" href="#">Another action</a></li>
-				  <li><a class="dropdown-item" href="#">Something else here</a></li>
+				  <li><a class="dropdown-item" href="#">Computo</a></li>
+				  <li><a class="dropdown-item" href="#">Telefonia</a></li>
+				  <li><a class="dropdown-item" href="#">Electronica</a></li>
+				  <li><a class="dropdown-item" href="#">Medición</a></li>
+				  <li><a class="dropdown-item" href="#">Refacciones</a></li>
 				</ul>
 			  </li>
 
@@ -44,7 +46,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="../assets/connections/terminar.php"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="perfilVendedor.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
 			<li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Conversaciones</a></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
 			

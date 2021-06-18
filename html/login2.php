@@ -16,7 +16,12 @@
       if(($datos != NULL) && ($datos['contrasena']==$contrasena)){
         if($datos['estatus'] == 'VERIFICADO'){
           $correo = $datos['correo'];
-          $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,comprador.id,usuario.correo,usuario.contrasena,usuario.estatus,privilegios.privilegio FROM info INNER JOIN comprador ON comprador.info_id = info.id INNER JOIN usuario ON comprador.usuario_correo = usuario.correo INNER JOIN privilegios ON privilegios.id = usuario.privilegios_id WHERE usuario.correo = '$correo'";
+          if($datos['privilegios_id'] == '2'){
+            $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,comprador.id,usuario.correo,usuario.contrasena,usuario.estatus,privilegios.privilegio FROM info INNER JOIN comprador ON comprador.info_id = info.id INNER JOIN usuario ON comprador.usuario_correo = usuario.correo INNER JOIN privilegios ON privilegios.id = usuario.privilegios_id WHERE usuario.correo = '$correo'";
+          }
+          else{
+            $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,vendedor.id,usuario.correo,usuario.contrasena,usuario.estatus,privilegios.privilegio FROM info INNER JOIN vendedor ON vendedor.info_id = info.id INNER JOIN usuario ON vendedor.usuario_correo = usuario.correo INNER JOIN privilegios ON privilegios.id = usuario.privilegios_id WHERE usuario.correo = '$correo'";
+          }
           $columnas = $con->query($sentencia);
           $obtenido = $columnas->fetch_assoc();
 
@@ -30,7 +35,7 @@
           $_SESSION['estatus']=$obtenido['estatus'];
           $_SESSION['privilegio']=$obtenido['privilegio'];
 
-          header('location: ../index.php');
+          header('location: index.php');
 
         }else{
           $message = "<p style='color:#FF0000'>Tu estatus es inactivo<p/>";
@@ -90,7 +95,9 @@
 
       <form class="login-form" action="login2.php" method="post">
         <input type="email" name="correo" placeholder="Correo" required autocomplete="off">
-        <input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
+        <div>
+          <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required autocomplete="off" style="width: 80%;"><button id="contrasena" class="contrasena" type="button" onclick="mostrarPassword()" style="width:20%;"><span class="fa fa-eye-slash icon"></span> </button>
+        </div>   
         <button type="submit" name="Aceptar">Aceptar</button>
       </form>
       <?php if (!empty($message)): ?>
@@ -106,3 +113,16 @@
       <script type="text/javascript" src="../js/menuPrincipal01.js"></script>
 </body>
 </html>
+
+<script>
+  function mostrarPassword(){
+    var cambio = document.getElementById("contrasena");
+    if(cambio.type == "password"){
+      cambio.type = "text";
+      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+    }else{
+      cambio.type = "password";
+      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+    }
+  } 
+</script>
