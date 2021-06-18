@@ -10,9 +10,9 @@
 		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 
-			<form class="d-flex form-search">
-				<input class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Buscar">
-				<button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+			<form class="d-flex form-search" METHOD="POST" ACTION="buscarProductos.php">
+				<input name="busqueda" class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Buscar">
+				<button class="btn btn-outline-light" type="submit" name="buscar"><i class="bi bi-search"></i></button>
 			</form>	
 			<!-- <li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="#"><i class="bi bi-search"></i> Buscar</a> 
