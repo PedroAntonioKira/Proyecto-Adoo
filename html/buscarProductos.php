@@ -5,6 +5,9 @@
   if(isset($_SESSION['correo'])){
     $privilegio = $_SESSION['privilegio'];
   }
+  else{
+    $privilegio = NULL;
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,12 +104,29 @@
 								<h5 class='card-title'>$nombre</h5>
 								<p class='card-text'>$$precio MXN</p>
 								<div class='buttons'>
+                ";
+            if($privilegio == "Comprador"){
+              ECHO "
 									<a href='#' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>
 									<a href='#' class='btn btn-success' onclick='redireCar($id)'><i class='bi bi-cart-plus'></i></a>
-								</div>
+                  ";
+            }
+            elseif($privilegio == "Vendedor"){
+              ECHO "
+                  <a href='#' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>
+                  ";
+            }
+            else{
+              ECHO "
+                  <a href='#' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>
+                  <a href='./login2.php' class='btn btn-success'><i class='bi bi-cart-plus'></i></a>
+                  ";
+            }
+            ECHO "
+                </div>
 							</div>
 						</div>					
-					";            
+					  ";            
           }
         ?>
       <!-- </section> -->

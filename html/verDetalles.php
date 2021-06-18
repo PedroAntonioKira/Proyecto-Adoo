@@ -5,6 +5,9 @@
   if(isset($_SESSION['correo'])){
     $privilegio = $_SESSION['privilegio'];
   }
+  else{
+    $privilegio = NULL;
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -257,14 +260,23 @@
                 </div>
             <!-- SLIDER PRODUCT END -->
             <?php
-                if($_SESSION['privilegio'] != 'Vendedor'){ //Para que el vendedor no pueda comprar
+                if($privilegio != 'Vendedor'){ //Para que el vendedor no pueda comprar
             ?>
             <!-- BUTTONS -->
                 <div class="buttons-container center-all">
-                	<a href="mensajeVendedor.html">
-                    	<button type="button" class="btn btn-primary" title="Preguntar al vendedor"><i class="bi bi-chat-dots-fill"></i></button>
-                    </a>
+                    <?php
+                    if($privilegio != NULL){
+                    ?>
+                    <a type="button" class="btn btn-primary" title="Preguntar al vendedor"><i class="bi bi-chat-dots-fill"></i></a>
                     <a href="#" data-name="<?php echo $nombre ?>" data-price="<?php echo $precio ?>" data-id="<?php echo $id ?>" data-idv="<?php echo $idv ?>" class="add-to-cart btn btn-success" title="Agregar al carrito"><i class="bi bi-cart-plus-fill"></i></a>
+                    <?php
+                    }else{
+                      ECHO "
+                    	<a href='./login2.php' type='button' class='btn btn-primary' title='Preguntar al vendedor'><i class='bi bi-chat-dots-fill'></i></a>
+                      <a href='./login2.php' type='button' class='btn btn-success'><i class='bi bi-cart-plus-fill'></i></a>
+                      ";
+                    }
+                    ?>
                     <!-- <button type="button" class="btn btn-primary">Preguntar</button>
                     <button type="button" class="btn btn-success">Agregar al carrito</button>                 -->
                 </div>                
