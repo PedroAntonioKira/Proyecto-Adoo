@@ -51,14 +51,31 @@
       <h1>Productos</h1>
 
         <?php
-          require '../assets/connections/database.php';
-          $sentencia = "SELECT descripcion.imagen1, descripcion.precio, subcategoria.subcategoria, producto.id, producto.nombre, 
-              producto.estado, catalogodeproductos.vendedor_id FROM subcategoria INNER JOIN listacategorias 
-              ON listacategorias.subcategoria_id = subcategoria.id INNER JOIN producto 
-              ON producto.listacategorias_id = listacategorias.id INNER JOIN catalogodeproductos 
-              ON catalogodeproductos.producto_id = producto.id INNER JOIN descripcion ON producto.descripcion_id = descripcion.id";
-          $ejecutar = $con->query($sentencia);
+          // require '../assets/connections/database.php';
+          // $sentencia = "SELECT descripcion.imagen1, descripcion.precio, subcategoria.subcategoria, producto.id, producto.nombre, 
+          //     producto.estado, catalogodeproductos.vendedor_id FROM subcategoria INNER JOIN listacategorias 
+          //     ON listacategorias.subcategoria_id = subcategoria.id INNER JOIN producto 
+          //     ON producto.listacategorias_id = listacategorias.id INNER JOIN catalogodeproductos 
+          //     ON catalogodeproductos.producto_id = producto.id INNER JOIN descripcion ON producto.descripcion_id = descripcion.id";
+          // $ejecutar = $con->query($sentencia);
 
+          $infoProducto = " descripcion.imagen1, descripcion.precio, subcategoria.subcategoria, producto.id, producto.nombre, 
+              producto.estado, catalogodeproductos.vendedor_id ";
+
+          if(isset($_POST['buscar'])){
+            $busquedaUsuario = trim($_POST['busqueda']);
+            $selectQuery = "
+            SELECT  $infoProducto
+            FROM producto, descripcion, subcategoria, categorias, listacategorias, catalogodeproductos
+            WHERE (producto.nombre LIKE '$busquedaUsuario' OR descripcion.marca LIKE '$busquedaUsuario' 
+            OR categorias.categoria LIKE '$busquedaUsuario' OR subcategoria.subcategoria LIKE '$busquedaUsuario')
+            AND (producto.descripcion_id = descripcion.id)
+            AND (producto.listacategorias_id = listacategorias.id) 
+            AND (listacategorias.subcategoria_id = subcategoria.id)
+            AND (listacategorias.categorias_id = categorias.id) 
+            AND (catalogodeproductos.id = producto.id);             
+            ";
+            $ejecutar = $con->query($selectQuery);
 
           while ($datos = $ejecutar->fetch_assoc()) {
             $imagen = $datos['imagen1'];
@@ -128,6 +145,10 @@
 						</div>					
 					  ";            
           }
+        } // Cerrando IF medoto POST
+        else{
+          ECHO "NO RECIBI UNA BUSQUEDA";
+        }
         ?>
       <!-- </section> -->
     </div>
