@@ -28,15 +28,17 @@
 			$lista2      = $_POST['lista2'];
 			$lista2      = $_POST['lista3'];
 
+			
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
 			$datos = $ejecutar->fetch_assoc();
+			$hash = md5( rand(0,1000)); // Generate random 32 character hash and assign it to a local variable.
 
 			if($datos != NULL){
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
 			}else{
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
-				$usuario = "INSERT INTO usuario (correo,contrasena,actividad,privilegios_id) VALUES ('$correo', '$contrasena','1','3')";
+				$usuario = "INSERT INTO usuario (correo,contrasena,actividad,privilegios_id,hash) VALUES ('$correo', '$contrasena','1','3','$hash')";
 				$infoTarjeta = "INSERT INTO infotarjeta (num,exp,codigo) VALUES ('$num', '$exp', '$codigo')";
 
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
@@ -60,8 +62,31 @@
 				if(!$con->query($vendedor) || !$con->query($infoBancaria)){
 					echo("Falló: (" . $con->errno . ") " . $con->error);
 				}
+
+				$msg = 'Te envie un correo, <br /> porfavor verifica con un click el link de activación que te enviamos a tu correo.';
+				$to      = $correo;   // Send email to our user
+				$subject = 'Signup | Verification'; // Give the email a subject 
+				$message = '
+				 
+				Thanks for signing up!
+				Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+				 
+				------------------------
+				Username: '.$nombre.'
+				Password: '.$contrasena.'
+				------------------------
+				 
+				Please click this link to activate your account:
+				http://localhost/Proyecto-Adoo/html/activarcorreo.php?correo='.$correo.'&hash='.$hash.''; // Our message above including the link
+									 
+				$headers = 'From:noreply@yourwebsite.com' . "\r\n"; // Set from headers
+				mail($to, $subject, $message, $headers); // Send our email
+				
 				header('location: login.php');
+
+
 			}
+
 		}
 	}
 ?>
