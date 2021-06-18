@@ -35,7 +35,16 @@
 </head>
 <body>
 
-	<?php require '../assets/navs/headerVendedorHtml.php'; ?>
+    <?php
+        if($_SESSION == NULL){
+            header('location:./login.php'); 
+            // require '../assets/navs/headerBase.php';
+        }
+        elseif($_SESSION['privilegio'] == 'Vendedor'){
+            require '../assets/navs/headerVendedor.php';
+        }
+        // require '../assets/navs/headerVendedorHtml.php';
+	?>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -96,7 +105,7 @@
 						<?php
 						// session_start();
 						require '../assets/connections/database.php';
-						$id_vendedor = $_SESSION['id_vendedor'];
+						$id_vendedor = $_SESSION['id_comprador'];
 						$sentencia = "SELECT cptos.id, pto.nombre, pto.stock, pto.estado FROM catalogodeproductos cptos, producto pto
 						WHERE cptos.producto_id = pto.id AND vendedor_id = '$id_vendedor'";
 						$ejecutar = $con->query($sentencia);

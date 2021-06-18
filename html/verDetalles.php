@@ -10,7 +10,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-      <title>Filtrando Computo</title>
+      <title>Producto | Detalles de producto</title>
     <meta charset="utf-8">
     <!--Links del filtrador-->
     <link rel="stylesheet" href="../css/estilosFiltrador.css">
@@ -40,6 +40,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/verDetalles.css">
   </head>
 <body>
 
@@ -50,11 +51,9 @@
     elseif($_SESSION['privilegio'] == 'Comprador'){
       require '../assets/navs/headerComprador.php';
     }
-    else
-    {
-    	require '../assets/navs/headerComprador.php';
-
-    }
+    elseif($_SESSION['privilegio'] == 'Vendedor'){
+      require '../assets/navs/headerVendedor.php';
+    }   
   ?>
   <main class="contenedor">
 		<div class="container details-product">
@@ -65,7 +64,9 @@
 						try{
 							$id_Producto = $_GET['id_producto'];
 
-							$consulta = "SELECT marca, fabricante, altoprod, anchoprod, bateriasinclu, tamaram, tamadiscoduro, sistemaoperativo, procesador, tamapantalla, resolucion, numeroprocesadores, tipodiscoduro, imagen1, imagen2, imagen3, color, catalogodeproductos.precio,catalogodeproductos.vendedor_id, producto.nombre AS nombreProd, stock, avgcalificacion, info.nombre, info.apellidop, info.apellidom								FROM descripcion
+							$consulta = "SELECT marca, fabricante, altoprod, anchoprod, bateriasinclu, tamaram, tamadiscoduro, sistemaoperativo, procesador, 
+              tamapantalla, resolucion, numeroprocesadores, tipodiscoduro, imagen1, imagen2, imagen3, color, descripcion.precio, catalogodeproductos.vendedor_id, 
+              producto.nombre AS nombreProd, stock, avgcalificacion, info.nombre, info.apellidop, info.apellidom	FROM descripcion
 								INNER JOIN producto ON producto.descripcion_id = descripcion.id
 								INNER JOIN catalogodeproductos ON catalogodeproductos.producto_id = producto.id
 								INNER JOIN vendedor ON catalogodeproductos.vendedor_id = vendedor.id
@@ -219,7 +220,7 @@
 
 			</div>
 
-	        <div class="col-5">
+	        <div class="col-5 slider-container">
 	        <!-- SLIDER PRODUCT -->
             <div class="container-right">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
