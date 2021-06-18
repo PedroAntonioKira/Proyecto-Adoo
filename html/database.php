@@ -1,14 +1,13 @@
 <?php
-    $server = ''; // Aquí colocan la URL del servidor para accesar a él
-    $username = ''; // Se necesita el usuario del servidor de MySQL
-    $password = ''; // Colocar la contraseña
-    $database = ''; // Elegir la base de datos que se requiere usar
-
-	// Se utiliza un try catch para intentar la conexión y en caso de no establecerse nos regrese un mensaje de error y cierre la conexión
-    try{
-        $conn = new PDO("mysql:host=$server;dbname=$database;",$username, $password);
-    } catch (PDOException $e) {
-        
-        die('Connection failed: '.$e->getMessage());
-    }
+  $host = 'localhost';
+  $user = 'root';
+  $pwd = '';
+  $base = 'ceg';
+  $puerto = '3306';
+  echo "<div class='msg-error-db'>";
+  $con = new mysqli($host,$user,$pwd,$base,$puerto);
+  if($con->connect_errno){
+    echo "Fallo al conectar a MySQL: (" . $con->connect_errno . ")" . $con->connect_error;
+  }
+  echo "</div>";
 ?>

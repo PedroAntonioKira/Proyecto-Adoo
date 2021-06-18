@@ -10,17 +10,17 @@
   $apellidop=$_SESSION['apellidop'];
   $apellidom=$_SESSION['apellidom'];
 
-  echo $nombre;
+  /*echo $nombre;
   echo "<br>";
   echo $apellidop;
   echo "<br>";
-  echo $apellidom;
+  echo $apellidom;*/
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-	      <title>Filtrando Computo</title>
+	      <title>Perfil comprador</title>
 	    <meta charset="utf-8">
 	    <!--Links del filtrador-->
 	    <link rel="stylesheet" href="../css/estilosFiltrador.css">
@@ -35,6 +35,16 @@
 	    <script src="../js/jquery-3.6.0.js"></script>
 	    <script src="../js/main.js"></script>
 	    <script src="../js/buscar.js"></script>
+
+	    <!--Estilos del menu superior-->
+			
+
+			<!--Estilos del slider-->
+			
+			<link rel="stylesheet" href="../css/menuPerfil.css">
+
+			<script src="../js/jquery-3.6.0.js"></script>
+			<script src="../js/main.js"></script>
 
 	    <!-- HEADER AND FOOTER -->
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
@@ -53,7 +63,7 @@
 	  ?>
 
 	  <main class="contenedor">
-		<div id="prin">
+		<div class="prin">
 			<div id="menuPerfil" class="menu-expanded">
 				<div id="header">
 					<div id="menu-btn">
@@ -61,7 +71,7 @@
 						<div class="btn-hamburger"></div>
 						<div class="btn-hamburger"></div>
 					</div>
-					<div id="title">
+					<div id="title" style="background: blue;">
 						<span>Perfil Vendedor</span>
 					</div>
 				</div>	
@@ -164,7 +174,7 @@
 				</div>
 			</div>
 
-			<div id="main-container">
+			<div id="">
 				Realiza Tu primer Venta
 			</div>
 		
