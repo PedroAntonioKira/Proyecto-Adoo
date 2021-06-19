@@ -1,7 +1,14 @@
+.principal {
+	border-style:solid; 
+	width:20%; 
+	right:500px;
+	background:white;
+}
+
 :root{
-	--width:500px;
+	--width:300px;
 	--padding:10px;
-	--bgcolor:rgb(255,255,255);
+	--bgcolor:rgb(24,24,24);
 	--hovercolor:rgb(0,117,128);
 	--width-collapsed: 50px;
 }
@@ -30,9 +37,9 @@ body{
 	background-color: var(--bgcolor);
 	color: black;
 	position: fixed;
-	height: 80%;
+	height: 78%;
 	left: 0;
-	top: 70;
+	top: 60;
 }
 
 #menuPerfil a{

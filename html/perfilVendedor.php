@@ -20,31 +20,18 @@
 <html>
 	<head>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-	      <title>Perfil comprador</title>
+	      <title>Perfil Vendedor</title>
 	    <meta charset="utf-8">
 	    <!--Links del filtrador-->
 	    <link rel="stylesheet" href="../css/estilosFiltrador.css">
-	    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    
 
 	    <!--Estilos del formulario-->
-	    <link rel="stylesheet" href="../css/formMultiStep.css">
-
+	    
+	    <link rel="stylesheet" href="../css/menuPerfil.css">
 	    <script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
-	  	<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
-	    <script src="../js/jquery-3.6.0.js"></script>
-	    <script src="../js/main.js"></script>
-	    <script src="../js/buscar.js"></script>
-
-	    <!--Estilos del menu superior-->
+	  	<script src="../js/jquery-3.6.0.js"></script>
 			
-
-			<!--Estilos del slider-->
-			
-			<link rel="stylesheet" href="../css/menuPerfil.css">
-
-			<script src="../js/jquery-3.6.0.js"></script>
-			<script src="../js/main.js"></script>
 
 	    <!-- HEADER AND FOOTER -->
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
@@ -63,6 +50,19 @@
 	  ?>
 
 	  <main class="contenedor">
+	  	<!--<div class="header" style="border-style:solid;width:20%; right:90%; background:white;">
+	  		<div id="title" class="fas fa-bars">
+						<span>Perfil Vendedor</span>
+						<div class="item">
+							<a href="#">
+								<div class="icon"><i class="fas fa-plus"></i></div>
+								<div class="title"><span>Agregar Producto</span></div>
+							</a>
+						</div>
+				</div>
+			</div>	
+	  	</div>-->
+
 		<div class="prin">
 			<div id="menuPerfil" class="menu-expanded">
 				<div id="header">
@@ -71,7 +71,7 @@
 						<div class="btn-hamburger"></div>
 						<div class="btn-hamburger"></div>
 					</div>
-					<div id="title" style="background: blue;">
+					<div id="title">
 						<span>Perfil Vendedor</span>
 					</div>
 				</div>	
