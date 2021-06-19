@@ -55,26 +55,26 @@
 
 	  	<div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="../img/Banner04.png" class="d-block w-100" alt="Promocion 1">
+		      <img src="../img/Banner01.png" class="d-block w-100" alt="Promocion 1">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Promocion 1</h5>
-						<p>Procesador Intel Core i5-11400 a solo $5,600.00</p>
+						<!-- <h5>Somos de confianza</h5>
+						<p>Procesador Intel Core i5-11400 a solo $5,600.00</p> -->
 					</div>
 		    </div>
 
 		    <div class="carousel-item">
 		      <img src="../img/Banner02.png" class="d-block w-100" alt="Promocion 2">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Promocion 2</h5>
-						<p>Compra tu pic o arduino con nosotros con un 20% de descuento.</p>
+						<!-- <h5>Promocion 2</h5>
+						<p>Compra tu pic o arduino con nosotros con un 20% de descuento.</p> -->
 					</div>
 		    </div>
 
 		    <div class="carousel-item">
 		      <img src="../img/Banner03.png" class="d-block w-100" alt="Promocion 3">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Promocion 3</h5>
-						<p>2X1 en aire comprimido</p>
+						<!-- <h5>Promocion 3</h5>
+						<p>2X1 en aire comprimido</p> -->
 					</div>
 		    </div>
 	  	</div>
