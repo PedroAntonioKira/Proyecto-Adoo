@@ -1,3 +1,4 @@
+
 <?php
   require '../assets/connections/database.php';
 

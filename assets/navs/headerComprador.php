@@ -51,7 +51,7 @@
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 					<li><a class="dropdown-item" href="../assets/connections/terminar.php"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
-					<li><a class="dropdown-item" href="modifCuenta.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
+					<li><a class="dropdown-item" href="perfilComprador.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-chat-dots"></i> Conversaciones</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Mis compras</a></li>

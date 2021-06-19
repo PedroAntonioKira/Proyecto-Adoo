@@ -6,10 +6,29 @@
     $privilegio = $_SESSION['privilegio'];
   }
 
+    
+
   $nombre = $_SESSION['nombre'];
   $apellidop=$_SESSION['apellidop'];
   $apellidom=$_SESSION['apellidom'];
+  $correo=$_SESSION['correo'];
+  $contrasena=$_SESSION['contrasena'];
 
+  if(isset($_POST['actualizar'])){
+  	$nombre1 = $_POST['nombre'];
+	  $apellidop1=$_POST['apellidop'];
+	  $apellidom1=$_POST['apellidom'];
+	  $correo1=$_POST['correo'];
+	  $contrasena1=$_POST['contrasena'];
+	 	$id_comprador=$_SESSION['id_vendedor'];
+
+	  $actualiza="UPDATE `info` SET `id` = '$id_vendedor', `nombre` = '$nombre1', `apellidop` = '$apellidoP', `apellidom` = '$apellidoM', `institucion` = '$nombre1' WHERE `info`.`id` = '$id_vendedor' ";
+
+	  print_r($_SESSION);
+  }
+    
+
+  
   /*echo $nombre;
   echo "<br>";
   echo $apellidop;
@@ -185,136 +204,29 @@
 
 					<!-- Grupo Nombre -->
 					<div class="formulario__grupo" id="grupo__nombres">
-						<label for="usuario" class="formulario__label"> Nombre(s) </label>
-						<div class="formulario__grupo-input">
-							<input type="text" name="nombres" class="formulario__input" id="usuario" value="<?php echo $_SESSION['nombre'] ?>">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							El nombre debe tener entre 4 y 40 letras y no puede contener numeros ni simbolos extraños. <br>
-							Ademas solo se permite hasta un maximo de dos nombres. <br> 
-							Tampoco debe comenzar ni terminar con un espacio en blanco.
-						</p>
-					</div>
-
-
-					<!-- Grupo Apellido Paterno -->
-					<div class="formulario__grupo" id="grupo__apellidoP">
+						<label for="usuario" class="formulario__label"> Nombre(s) </label><label for="apellidoP" class="formulario__label"> Apellido Paterno </label><br>
 						
-						<div class="formulario__grupo-input">
-							<label for="apellidoP" class="formulario__label"> Apellido Paterno </label><label for="apellidoP" class="formulario__label"> Apellido Paterno </label>
-							<input type="text" name="apellidoPat" class="formulario__input" id="apellidoP" value="<?php echo $_SESSION['apellidop'] ?>">
-							<input type="text" name="apellidoPat" class="formulario__input" id="apellidoP" value="<?php echo $_SESSION['apellidop'] ?>">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							El Apellido Paterno debe tener entre 4 y 20 letras y no puede contener numeros ni simbolos extraños. 
-						</p>
+						<input type="text" name="nombre" class="formulario__input" id="usuario" value="<?php echo $_SESSION['nombre'] ?>"><input type="text" name="apellidoP" class="formulario__input" id="apellidoP" value="<?php echo $_SESSION['apellidop'] ?>">
+							
+						<label for="apellidoM" class="formulario__label"> Apellido Materno </label><br>
+						<input type="text" name="apellidoM" class="formulario__input" id="apellidoM" value="<?php echo $_SESSION['apellidom'] ?>">
 					</div>
 
-
-					<!-- Grupo Apellido Materno -->
-					<div class="formulario__grupo" id="grupo__apellidoM">
-						<label for="apellidoM" class="formulario__label"> Apellido Materno </label>
-						<div class="formulario__grupo-input">
-							<input type="text" name="apellidoMat" class="formulario__input" id="apellidoM" value="<?php echo $_SESSION['apellidom'] ?>">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							El Apellido Materno debe tener entre 4 y 20 letras y no puede contener numeros ni simbolos extraños. 
-						</p>
-					</div>
-
-					<!-- Grupo Telefono -->
 					<div class="formulario__grupo" id="grupo__telefono">
-						<label for="telefono" class="formulario__label"> Telefono</label>
-						<div class="formulario__grupo-input">
-							<input type="text" name="telefono" class="formulario__input" id="telefono" placeholder="Ejemplo: 4491234567">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							Ingrese unicamente los 10 digitos de su telefono. 
-						</p>
+						
+						<label for="correo" class="formulario__label"> Correo </label><label for="password" class="formulario__label"> Contraseña </label><br>
+						<input type="text" name="correo" class="formulario__input" id="correo" placeholder="<?php echo $_SESSION['correo'] ?>">
+						<input type="password" name="password" class="formulario__input" id="password" value="<?php echo $_SESSION['contrasena'] ?>">
 					</div>
-
-
-					<!-- Grupo Correo -->
-					<div class="formulario__grupo" id="grupo__correo">
-						<label for="correo" class="formulario__label"> Correo </label>
-						<div class="formulario__grupo-input">
-							<input type="email" name="correo" class="formulario__input" id="correo" placeholder="correo@dominio.com">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							El correo debe estar bien escrito, como en el ejemplo, debe ser personal. 
-						</p>
-					</div>
-
-
-					<!-- Grupo Repetir Correo -->
-					<div class="formulario__grupo" id="grupo__repetir-correo">
-						<label for="repetir-correo" class="formulario__label"> Repetir Correo</label>
-						<div class="formulario__grupo-input">
-							<input type="email" name="correo2" class="formulario__input" id="repetir-correo" placeholder="correo@dominio.com">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							Ambos correos electronicos deben ser iguales. 
-						</p>
-					</div>
-
 
 					<!-- Grupo Contraseña -->
 					<div class="formulario__grupo" id="grupo__password">
-						<label for="password" class="formulario__label"> Contraseña </label>
-						<div class="formulario__grupo-input">
-							<input type="password" name="password" class="formulario__input" id="password" value="">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							La Contraseña debe de ser de 4 a 20 caracteres.
-						</p>
-					</div>
-
-
-					<!-- Grupo Repetir Contraseña -->
-					<div class="formulario__grupo" id="grupo__repetir-password">
-						<label for="repetir-password" class="formulario__label"> Repetir Contraseña </label>
-						<div class="formulario__grupo-input">
-							<input type="password" name="password2" class="formulario__input" id="repetir-password">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
-						</div>
-						<p class="formulario__input-error">
-							Ambas contraseñas deben de ser iguales. 
-						</p>
-					</div>
-
-					<!-- Grupo para terminos y condiciones-->
-					<div class="formulario__grupo-terminos" id="formulario__grupo-terminos">
-						<label class="formulario__label">
-							<input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
-							Acepto los terminos y condiciones.
-						</label>
-					</div>
-
-					<div class="formulario__mensaje" id="formulario__mensaje">
-						<p>
-							<i class="fas fa-skull-crossbones"></i>	
-							<b> Error: </b> Por Favor Rellene El Formulario Correctamente
-						</p>
-					</div>
-
-					<!-- Grupo para el boton-->
-
-					<div class="formulario__grupo-btn-enviar">
-						<button type="submit" class="formulario__btn"> Actualizar </button>
 						
-						<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">
-							¡Ha Completado el registro de manera Exitosa! <br> Felicidades <br>
-							Si desea iniciar sesion ahora <a href="inicioVendedor.html"> Presione aqui. </a> <br>
-							Si desea ir a la pagina principal ahora <a href="../index.html"> Presione aqui. </a>
-							Si desea buscar un producto ahora <a href="crearCuentaVendedor.html"> Presione aqui. </a>
-						</p>
+						
+					</div>
+					<br>
+					<div class="formulario__grupo-btn-enviar">
+						<button type="submit" class="formulario__btn" name="actualizar"> Actualizar </button>
 					</div>
 
 				</form>
