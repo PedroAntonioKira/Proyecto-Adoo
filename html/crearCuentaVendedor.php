@@ -7,9 +7,16 @@
 			$apellidop = $_POST['apellidop'];
 			$apellidom = $_POST['apellidom'];
 			$institucion = $_POST['institucion'];
-			$correo = $_POST['correo'];
 			$contrasena = $_POST['contrasena'];
-// comentario de prueba
+			$correo = $_POST['correo'];
+			// Tarjeta
+			$numTarjeta = $_POST['num_tarjeta'];
+			$fechaExpiracion = $_POST['fecha_expiracion'];
+			$codigoTarjetaSeguridad = $_POST['codigo'];
+			$insertTarjeta = "INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`, `correo_usuario`) 
+				VALUES (NULL, '$numTarjeta', '$fechaExpiracion', '$codigoTarjetaSeguridad', '$correo')";
+			$con->query($insertTarjeta);			// Insertamos la tarjeta
+			// = = = = = = = == = = = = = =
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
 			$datos = $ejecutar->fetch_assoc();
@@ -20,7 +27,7 @@
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
 				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '$hash', 'SIN_VERIFICAR', '3')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
-
+				
 				
 
 				if(!$con->query($info) || !$con->query($usuario)){
@@ -130,14 +137,14 @@
 		                            </fieldset>
 
 																<fieldset>
-		                                <div class="form-card">
-		                                    <h2 class="fs-title">Datos Bancarios</h2>
-																				<input type="text" name="num" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
-																				<input type="text" name="exp" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" pattern="\d\d/\d\d" style="width: 300px; margin-right:10px ;">
-																				<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" pattern="^[0-9]{3,4}" style="width: 100px; ">
-											                                </div>
-																				<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
-																				<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
+									<div class="form-card">
+										<h2 class="fs-title">Datos Bancarios</h2>
+										<input type="text" name="num_tarjeta" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
+										<input type="text" name="fecha_expiracion" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" pattern="\d\d/\d\d" style="width: 300px; margin-right:10px ;">
+										<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" pattern="^[0-9]{3,4}" style="width: 100px; ">
+									</div>
+										<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
+										<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
 		                            </fieldset>
 
 		                            <fieldset>
@@ -145,13 +152,12 @@
 	                                    <h2 class="fs-title">Información de Cuenta</h2>
 	                                    <div id="caja0"></div>
 	                                    <button class="agregar" onclick="agregardir()" style="background-color:rgb(51, 122, 255); border-radius: 5px; color:white; width: 200px; right: 80px; font-family: 'calibri';"><i class="fas fa-plus"></i> Agregar punto de entrega</button>
-	                                    <br><br>
-																			<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
-																			<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
-											
-		                                </div>
-																		<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
-																		<button type="submit" name="Aceptar" class="btn btn-primary">Aceptar</button>
+									<br><br>
+										<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+										<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
+									</div>
+										<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
+										<button type="submit" name="Aceptar" class="btn btn-primary">Aceptar</button>
 		                            </fieldset>
 		                        </form>
 		                    </div>
