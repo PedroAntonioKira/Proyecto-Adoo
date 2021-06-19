@@ -38,7 +38,7 @@
           header('location: index.php');
 
         }else{
-          $message = "<p style='color:#FF0000'>Tu estatus es inactivo<p/>";
+          $message = "<p style='color:#FF0000'>Tu estatus es inactivo porfavor confirma tu correo<p/>";
         }
       }else{
         $message = "<p style='color:#FF0000'>No hay coincidencia en la base de datos<p/>";

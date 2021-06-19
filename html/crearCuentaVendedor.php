@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
   require '../assets/connections/database.php';
 
 	if(isset($_POST['Aceptar'])){
@@ -21,6 +23,7 @@
 			$ejecutar = $con->query($records);
 			$datos = $ejecutar->fetch_assoc();
 			$hash = md5( rand(0,1000)); // Generate random 32 character hash and assign it to a local variable.
+
 			if($datos != NULL){
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
 			}else{
@@ -28,8 +31,7 @@
 				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '$hash', 'SIN_VERIFICAR', '3')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
 				
-				
-
+			
 				if(!$con->query($info) || !$con->query($usuario)){
 					echo("Falló: (".$con->errno.") ". $con->error);
 				}
@@ -44,27 +46,52 @@
 					echo("Falló: (" . $con->errno . ") " . $con->error);
 				}
 
-				/*$msg = 'Te envie un correo, <br /> porfavor verifica con un click el link de activación que te enviamos a tu correo.';
-				$to      = $correo;   // Send email to our user
-				$subject = 'Signup | Verification'; // Give the email a subject 
-				$message = '
-				 
-				Thanks for signing up!
-				Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-				 
-				------------------------
-				Username: '.$nombre.'
-				Password: '.$contrasena.'
-				------------------------
-				 
-				Please click this link to activate your account:
-				http://www.yourwebsite.com/activarcorreo.php?correo='.$correo.'&hash='.$hash.''; // Our message above including the link  http://localhost/Proyecto-Adoo/html/activarcorreo.php?correo='.$correo.'&hash='.$hash.'';
-									 
-				$headers = 'From:noreply@yourwebsite.com' . "\r\n"; // Set from headers
-				mail($to, $subject, $message, $headers); // Send our email*/
+				require 'PHPMailer/Exception.php';
+				require 'PHPMailer/PHPMailer.php';
+				require 'PHPMailer/SMTP.php';
 
-				header('location: login2.php');
-			}
+				
+				//Instantiation and passing `true` enables exceptions
+				$mail = new PHPMailer(true);
+
+				try {
+					//Server settings
+					$mail->SMTPDebug = 0;                      //Enable verbose debug output
+					$mail->isSMTP();                                            //Send using SMTP
+					$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+					$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+					$mail->Username   = 'electroguysescom@gmail.com';                     //SMTP username
+					$mail->Password   = 'idaliaadoo';                               //SMTP password
+					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+					$mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+					//Recipients
+					$mail->setFrom('electroguysescom@gmail.com', 'CODE PE');
+					$mail->addAddress($correo,$nombre);     //Add a recipient
+
+					//Content
+					$mail->isHTML(true);                                  //Set email format to HTML
+					$mail->Subject = 'Bienvenid@ a nuestra pagina';
+					$mail->Body    = ' 
+					<b>Siguenos en nuestras redes
+					
+					Thanks for signing up!
+					Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+				 
+					------------------------
+					Username: '.$nombre.'
+					Password: '.$contrasena.'
+					http://localhost/Proyecto-Adoo/html/activarcorreo.php?correo='.$correo.'&hash='.$hash.'
+					------------------------
+					</b>';
+
+					$mail->send();
+					echo 'Mensaje fue enviado';
+				} catch (Exception $e) {
+					echo "Mensaje no fue enviado hay un error{$mail->ErrorInfo}";
+				}
+					header('location: login2.php');
+				}
 		}
 	}
 ?>

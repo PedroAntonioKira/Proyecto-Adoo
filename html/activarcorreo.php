@@ -9,16 +9,18 @@ if(isset($_GET['correo']) && !empty($_GET['correo']) AND isset($_GET['hash']) &&
     $correo = $_GET['correo']; // Set correo variable
     $hash = $_GET['hash']; // Set hash variable
 
-    $search = "SELECT correo, hash, estatus FROM usuario WHERE correo='$correo' AND hash='$hash' AND estatus!='VERIFICADO'"    
-    $ejecutar=$con->query($search);
+    $search = "SELECT correo, hash, estatus FROM usuario WHERE correo='$correo' AND hash='$hash' AND estatus!='VERIFICADO'";
+    echo $search;
+    $ejecutar= $con->query($search);
     $datos = $ejecutar->fetch_assoc();
-
-    if($datos != NULL){
+     
+    if($datos == NULL){
         echo("<script type='text/javascript'>alert('Este correo ya esta verificado o no Existe'); </script>");
-    }else{
-    
+    }
+    else{
     $actualiza = "update usuario set estatus = 'VERIFICADO' where correo='$correo'";
-    $ejecutar=$con->query($actualiza);
-    
+    $ejecutar= $con->query($actualiza);
+    }
 }
+    header('location: login2.php');
 ?>
