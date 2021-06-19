@@ -1,20 +1,21 @@
 .principal {
 	border-style:solid; 
-	width:20%; 
+	width:90%; 
 	right:500px;
 	background:white;
 }
 
 :root{
 	--width:300px;
+	--right: 1000px;
 	--padding:10px;
-	--bgcolor:rgb(24,24,24);
+	--bgcolor:rgb(120, 120, 120);
 	--hovercolor:rgb(0,117,128);
 	--width-collapsed: 50px;
 }
 
 body{
-	background-color: #536162;
+	background-color:white;
 	font-family: Arial,Helvetica,sans-serif;
 	font-size:18px ;
 	padding: 0;
@@ -27,17 +28,19 @@ body{
 }
 
 #main-container{
-	position: fixed;
+	position: absolute;
 	top: 80;
 	left: calc(var(--width) + 10px);
-	color: white;
+	color: black;
+	border: solid;
+	width: 50%;
 }
 
 #menuPerfil{
 	background-color: var(--bgcolor);
 	color: black;
-	position: fixed;
-	height: 78%;
+	position: absolute;
+	height: 66%;
 	left: 0;
 	top: 60;
 }
@@ -49,7 +52,7 @@ body{
 
 #menuPerfil #header{
 	box-sizing: border-box;
-	border-bottom: solid 1px var(--hovercolor);
+	border-bottom: solid 1px rgb(120, 120, 120);
 }
 
 #menuPerfil #header #title{
@@ -72,7 +75,7 @@ body{
 }
 
 #menuPerfil #header #menu-btn:hover{
-	background-color: var(--hovercolor);
+	background-color: rgb(120, 120, 120);
 }
 
 #menuPerfil #header #menu-btn .btn-hamburger{
@@ -87,7 +90,7 @@ body{
 */
 
 #menuPerfil #profile{
-	border-bottom: solid 1px var(--hovercolor);
+	border-bottom: solid 1px rgb(120, 120, 120);
 	padding: var(--padding) 0;
 	text-align: center;
 }
@@ -158,7 +161,7 @@ body{
 
 #menuPerfil #menu-items .item.separador{
 	height: 1px;
-	border-bottom: solid 1px var(--hovercolor);
+	border-bottom: solid 1px rgb(120,120,120);
 	
 }
 
