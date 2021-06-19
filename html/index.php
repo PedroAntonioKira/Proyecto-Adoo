@@ -94,8 +94,12 @@
 			<!-- MOSTRANDO PRODUCTOS NUEVOS -->
 			<?php 
 				require '../assets/connections/database.php';
+				// CONSULTA ANTERIOR 
+				// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
+				// FROM `producto`, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;
 				$selectNuevosProductos = "SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
-					FROM `producto`, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;";
+				FROM `producto`, descripcion WHERE (producto.descripcion_id = descripcion.id) 
+				AND (producto.estado LIKE 'PUBLICADO') AND (producto.stock > 0) ORDER BY producto.id DESC";
 				$ejecutar = $con->query($selectNuevosProductos);
 
 				while ($datos = $ejecutar->fetch_assoc()) {

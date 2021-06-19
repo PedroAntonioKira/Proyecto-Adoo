@@ -73,3 +73,10 @@ footer.row .col a{
     text-decoration: none;
     font-size: 13pt;
 }
+
+footer p, a{
+    font-size: 13pt !important;
+}
+footer p{
+    margin-top: 17px;
+}

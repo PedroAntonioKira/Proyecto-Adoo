@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-06-2021 a las 08:11:15
+-- Tiempo de generación: 19-06-2021 a las 07:39:54
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -160,7 +160,8 @@ INSERT INTO `comprador` (`id`, `usuario_correo`, `info_id`) VALUES
 (1, 'joss.alberto.r.m@gmail.com', 1),
 (2, 'prueba@prueba.com', 3),
 (3, 'eliel_comprador@prueba.com', 5),
-(4, 'adrian@comprador.ipn.com', 7);
+(4, 'adrian@comprador.ipn.com', 7),
+(5, 'omar_comprador@prueba.com', 3);
 
 -- --------------------------------------------------------
 
@@ -190,11 +191,11 @@ CREATE TABLE `descripcion` (
   `altoprod` float(9,2) DEFAULT NULL,
   `anchoprod` float(9,2) DEFAULT NULL,
   `bateriasinclu` varchar(20) DEFAULT NULL,
-  `tamañoram` int(11) DEFAULT NULL,
-  `tamañodiscoduro` int(11) DEFAULT NULL,
+  `tamaram` int(11) DEFAULT NULL,
+  `tamadiscoduro` int(11) DEFAULT NULL,
   `sistemaoperativo` varchar(45) DEFAULT NULL,
   `procesador` varchar(45) DEFAULT NULL,
-  `tamañopantalla` float(9,2) DEFAULT NULL,
+  `tamapantalla` float(9,2) DEFAULT NULL,
   `resolucion` varchar(45) DEFAULT NULL,
   `numeroprocesadores` int(11) DEFAULT NULL,
   `tipodiscoduro` varchar(45) DEFAULT NULL,
@@ -210,14 +211,14 @@ CREATE TABLE `descripcion` (
 -- Volcado de datos para la tabla `descripcion`
 --
 
-INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`, `bateriasinclu`, `tamañoram`, `tamañodiscoduro`, `sistemaoperativo`, `procesador`, `tamañopantalla`, `resolucion`, `numeroprocesadores`, `tipodiscoduro`, `imagen1`, `imagen2`, `imagen3`, `color`, `precio`, `descripcion`) VALUES
+INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`, `bateriasinclu`, `tamaram`, `tamadiscoduro`, `sistemaoperativo`, `procesador`, `tamapantalla`, `resolucion`, `numeroprocesadores`, `tipodiscoduro`, `imagen1`, `imagen2`, `imagen3`, `color`, `precio`, `descripcion`) VALUES
 (1, 'Motorola', 'Motorola', 15.24, 10.16, 'SI', 4, 128, 'Android 10.0', 'Snapdragon 730G', 6.80, '1080x 2400', 8, 'N/A', 'Motog9.jpg', 'Motog92.jpg', 'Motog93.jpg', 'Azul', 5362.46, ''),
 (2, 'Prueba', 'Prueba', 1.10, 1.10, 'Prueba', 1, 1, 'Prueba', 'Prueba', 1.10, '123', 2, 'N/A', 'prueba.jpg', 'prueba2.jpg', 'prueba3.jpg', 'Prueba', 123.00, ''),
 (3, 'Samsung', 'CANCELAR', 15.30, 12.20, 'CANCELAR', 4, 120, 'Android 10', 'Snapdragon', 10.20, '1920 x 2400', 4, 'N/A', 'Motog9.jpg', 'Motog92.jpg', 'Motog93.jpg', 'Negro', 3500.00, ''),
 (4, 'HUAWEI', 'CANCELAR', 9.00, 13.00, 'CANCELAR', 8, 256, '', 'AMD Ryzen 5 3500U', 13.00, '2160x1440', 4, 'SSD', 'HUAWEI-MATEBOOK-13-01.jpg', 'HUAWEI-MATEBOOK-13-02.jpg', 'HUAWEI-MATEBOOK-13-03.jpg', '#d1d1d1', 17999.00, ''),
 (5, 'HUAWEI', 'CANCELAR', 9.00, 14.00, 'CANCELAR', 8, 512, 'Windows 10 Home', '10th Gen Intel® Core™ i7-10510U Procesador', 14.00, '2160x1440', 4, 'SSD', 'HUAWEI-MATEBOOK-14-01.jpg', 'HUAWEI-MATEBOOK-14-02.jpg', 'HUAWEI-MATEBOOK-14-03.jpg', '#007580', 21000.00, ''),
-(6, 'HUAWEI', 'CANCELAR', 10.00, 16.00, 'CANCELAR', 16, 512, 'Windows 10 Home', 'Intel® Core ™ i5-1135G7 de 11.a generación', 15.60, '1920x1080', 4, 'SSD', 'HUAWEI-MATEBOOK-15-01', 'HUAWEI-MATEBOOK-15-02', 'HUAWEI-MATEBOOK-15-03', '#566a86', 22999.00, ''),
-(7, 'HUAWEI', 'CANCELAR', 7.00, 10.00, 'CANCELAR', 12, 128, 'EMUI 10.1 (Basado en Android 10.0)', 'Snapdragon 870', 10.40, '2000 x1200', 4, 'ROM', 'Huawei-Matepad-10-4-01', 'Huawei-Matepad-10-4-02', 'Huawei-Matepad-10-4-03', '#096390', 10999.00, ''),
+(6, 'HUAWEI', 'CANCELAR', 10.00, 16.00, 'CANCELAR', 16, 512, 'Windows 10 Home', 'Intel® Core ™ i5-1135G7 de 11.a generación', 15.60, '1920x1080', 4, 'SSD', 'HUAWEI-MATEBOOK-15-01.jpg', 'HUAWEI-MATEBOOK-15-02.jpg', 'HUAWEI-MATEBOOK-15-03.jpg', '#566a86', 22999.00, ''),
+(7, 'HUAWEI', 'CANCELAR', 7.00, 10.00, 'CANCELAR', 12, 128, 'EMUI 10.1 (Basado en Android 10.0)', 'Snapdragon 870', 10.40, '2000 x1200', 4, 'ROM', 'Huawei-Matepad-10-4-01.jpg', 'Huawei-Matepad-10-4-02.jpg', 'Huawei-Matepad-10-4-03.jpg', '#096390', 10999.00, ''),
 (8, 'HUAWEI', 'CANCELAR', 9.40, 6.30, 'CANCELAR', 3, 64, 'EMUI 10.1 (basado en Android 10.0)', 'Kirin 710A', 10.10, '1920 x 1200', 2, 'ROM', 'HUAWEI-MatePad-10.4-01.jpg', 'HUAWEI-MatePad-10.4-02.jpg', 'HUAWEI-MatePad-10.4-03.jpg', '#002080', 6999.00, ''),
 (9, 'Iphone', 'CANCELAR', 5.00, 3.00, 'CANCELAR', 3, 256, 'iOS 12.1', 'Apple A12 Bionic', 4.00, '1920x1080', 4, 'SSD', 'CaratulaIphoneRojo.jpg', 'IphoneRojoImagen1.jpg', 'IphoneRojoImagen2.jpg', '#e13d5e', 13000.00, ''),
 (10, 'Iphone', 'CANCELAR', 5.00, 3.00, 'CANCELAR', 4, 128, 'iOS 13', 'Apple A13 Bionic', 6.00, '1.792x828', 4, 'SSD', 'CaratulaIphone11Negro.jpg', 'Iphone11Imagen1.jpg', 'Iphone11Imagen2.jpg', '#e13d5e', 22000.00, ''),
@@ -271,7 +272,8 @@ INSERT INTO `info` (`id`, `nombre`, `apellidop`, `apellidom`, `institucion`) VAL
 (4, 'Omar', 'Doncel', 'Beltran', 'ESCOM'),
 (5, 'Eliel', 'Guerra', 'Garcia', 'ESCOM'),
 (6, 'Josue', 'Guerra ', 'Garcia', 'ESCOM'),
-(7, 'Adrian', 'Castañeda', 'Lopez', 'ESCOM');
+(7, 'Adrian', 'Castañeda', 'Lopez', 'ESCOM'),
+(8, 'Prueba', 'de', 'Tarjeta', 'ESCOM');
 
 -- --------------------------------------------------------
 
@@ -302,15 +304,17 @@ CREATE TABLE `infotarjeta` (
   `id` int(11) NOT NULL,
   `num` varchar(30) NOT NULL,
   `exp` varchar(10) NOT NULL,
-  `codigo` varchar(4) NOT NULL
+  `codigo` varchar(4) NOT NULL,
+  `correo_usuario` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `infotarjeta`
 --
 
-INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`) VALUES
-(1, '1234 1234 1234 1234', '09/25', '123');
+INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`, `correo_usuario`) VALUES
+(1, '1234 1234 1234 1234', '09/25', '123', '0'),
+(2, '123456789123456', '12/12', '1234', 'omar.fi.wwr@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -451,6 +455,52 @@ CREATE TABLE `productos_comprados` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `punto_e`
+--
+
+CREATE TABLE `punto_e` (
+  `id` int(11) NOT NULL,
+  `id_tipotrans` int(11) DEFAULT NULL,
+  `linea_esc` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `punto_e`
+--
+
+INSERT INTO `punto_e` (`id`, `id_tipotrans`, `linea_esc`) VALUES
+(1, 1, 'Linea 1'),
+(2, 1, 'Linea 2'),
+(3, 1, 'Linea 3'),
+(4, 1, 'Linea 4'),
+(5, 1, 'Linea 4'),
+(6, 1, 'Linea 5'),
+(7, 1, 'Linea 6'),
+(8, 1, 'Linea 7'),
+(9, 1, 'Linea 8'),
+(10, 1, 'Linea 9'),
+(11, 1, 'Linea A'),
+(12, 1, 'Linea B'),
+(13, 1, 'Linea 12'),
+(14, 2, 'Linea 1'),
+(15, 2, 'Linea 2'),
+(16, 2, 'Linea 3'),
+(17, 2, 'Linea 4'),
+(18, 2, 'Linea 4'),
+(19, 2, 'Linea 5'),
+(20, 2, 'Linea 6'),
+(21, 2, 'Linea 7'),
+(22, 3, 'ESCOM'),
+(23, 3, 'ESIME TICOMAN'),
+(24, 3, 'ESIME ZACATENCO'),
+(25, 3, 'ESIME CULHUACAN'),
+(26, 3, 'ESIME AZCAPOTZALCO'),
+(27, 3, 'UPIITA'),
+(28, 3, 'UPIICSA');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `registrodechat`
 --
 
@@ -553,7 +603,7 @@ INSERT INTO `subcategoria` (`id`, `subcategoria`) VALUES
 CREATE TABLE `usuario` (
   `correo` varchar(50) NOT NULL,
   `contrasena` varchar(45) NOT NULL,
-  `Hash` varchar(32) NOT NULL,
+  `hash` varchar(32) NOT NULL,
   `estatus` varchar(30) NOT NULL,
   `privilegios_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -562,13 +612,14 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`correo`, `contrasena`, `Hash`, `estatus`, `privilegios_id`) VALUES
+INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES
 ('admin@admin.com', 'Contraseña123', '', 'VERIFICADO', 1),
 ('adrian@comprador.ipn.com', '12345', '', 'VERIFICADO', 2),
 ('adrian@vendedor.ipn.com', '12345', '', 'VERIFICADO', 3),
 ('eliel_comprador@prueba.com', 'prueba', '', 'VERIFICADO', 2),
 ('eliel_vendedor@prueba.com', 'prueba', '', 'VERIFICADO', 3),
 ('joss.alberto.r.m@gmail.com', 'Contraseña', '', 'VERIFICADO', 2),
+('omar.fi.wwr@gmail.com', '1234', '285e19f20beded7d215102b49d5c09a0', 'SIN_VERIFICAR', 3),
 ('omar_comprador@prueba.com', 'prueba', '', 'VERIFICADO', 2),
 ('omar_vendedor@prueba.com', 'prueba', '', 'VERIFICADO', 3),
 ('prueba@prueba.com', 'Contraseña', '', 'VERIFICADO', 2),
@@ -594,7 +645,8 @@ INSERT INTO `vendedor` (`id`, `usuario_correo`, `info_id`) VALUES
 (1, 'rodrigo@rodrigo.com', 2),
 (3, 'omar_vendedor@prueba.com', 4),
 (4, 'eliel_vendedor@prueba.com', 5),
-(5, 'adrian@vendedor.ipn.com', 7);
+(5, 'adrian@vendedor.ipn.com', 7),
+(6, 'omar.fi.wwr@gmail.com', 8);
 
 --
 -- Índices para tablas volcadas
@@ -723,6 +775,12 @@ ALTER TABLE `productos_comprados`
   ADD KEY `id_producto` (`id_producto`);
 
 --
+-- Indices de la tabla `punto_e`
+--
+ALTER TABLE `punto_e`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `registrodechat`
 --
 ALTER TABLE `registrodechat`
@@ -806,7 +864,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT de la tabla `comprador`
 --
 ALTER TABLE `comprador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -830,7 +888,7 @@ ALTER TABLE `entregas_compras`
 -- AUTO_INCREMENT de la tabla `info`
 --
 ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `infobancaria`
@@ -842,7 +900,7 @@ ALTER TABLE `infobancaria`
 -- AUTO_INCREMENT de la tabla `infotarjeta`
 --
 ALTER TABLE `infotarjeta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `listacategorias`
@@ -875,6 +933,12 @@ ALTER TABLE `productos_comprados`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `punto_e`
+--
+ALTER TABLE `punto_e`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT de la tabla `registrodechat`
 --
 ALTER TABLE `registrodechat`
@@ -896,7 +960,7 @@ ALTER TABLE `subcategoria`
 -- AUTO_INCREMENT de la tabla `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
