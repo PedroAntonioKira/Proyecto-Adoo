@@ -78,7 +78,7 @@
             AND (producto.listacategorias_id = listacategorias.id) 
             AND (listacategorias.subcategoria_id = subcategoria.id)
             AND (listacategorias.categorias_id = categorias.id) 
-            AND (catalogodeproductos.id = producto.id);             
+            AND (catalogodeproductos.id = producto.id) AND (producto.estado LIKE 'PUBLICADO') AND (producto.stock > 0);             
             ";
             $ejecutar = $con->query($selectQuery);
 
