@@ -18,9 +18,12 @@
     text-align: center;
 }
 .card a{
-    font-size: 16pt;
+    font-size: 26pt;
     /* position: absolute; */
     display: block;
+}
+button i{
+    font-size: 25pt !important;
 }
 .card a:nth-child(1){
     margin-right: 30px;

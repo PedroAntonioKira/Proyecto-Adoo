@@ -38,12 +38,16 @@
           header('location: index.php');
 
         }else{
-          $message = "<p style='color:#FF0000'>Tu estatus es inactivo<p/>";
+          $message = "<p style='color:#FF0000'>Tu estatus es inactivo porfavor confirma tu correo<p/>";
         }
       }else{
         $message = "<p style='color:#FF0000'>No hay coincidencia en la base de datos<p/>";
       }
     }
+  }
+
+  if(isset($_GET['alert'])){
+    $mensaje = "<div class='alert alert-success'>Te has registrado correctamente</div>";
   }
 ?>
 
@@ -82,6 +86,7 @@
   <main>
     <div class="container">
       <div class="info">
+        <?php if(isset($mensaje)) echo($mensaje); ?>
         <h1 style="color:white;">
           Inicio de sesion
         </h1>
@@ -97,7 +102,7 @@
         <input type="email" name="correo" placeholder="Correo" required autocomplete="off">
         <div>
           <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required autocomplete="off" style="width: 80%;"><button id="contrasena" class="contrasena" type="button" onclick="mostrarPassword()" style="width:20%;"><span class="fa fa-eye-slash icon"></span> </button>
-        </div>   
+        </div>
         <button type="submit" name="Aceptar">Aceptar</button>
       </form>
       <?php if (!empty($message)): ?>
@@ -124,5 +129,5 @@
       cambio.type = "password";
       $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
-  } 
+  }
 </script>

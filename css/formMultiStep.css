@@ -246,7 +246,7 @@ select.list-dt:focus {
     color:white;
     box-shadow: 7px 13px 37px #000;
 }
-  
+
 .formregister h4 {
     font-size: 22px;
     margin-bottom: 20px;
@@ -258,17 +258,17 @@ select.list-dt:focus {
     font-size: 18px;
     line-height: 40px;
 }
-  
+
 .formregister a {
     color: white;
     text-decoration: none;
 }
-  
+
 .formregister a:hover {
     color: white;
     text-decoration: underline;
 }
-  
+
 .formregister .botons {
     width: 100%;
     background: #1a1a1a;
@@ -305,7 +305,7 @@ select.list-dt:focus {
   .controls::placeholder {
     color: rgba(255, 255, 255, .8);
     font-weight: bold;
-    
+
   }
 
   #notify {
@@ -323,3 +323,11 @@ select.list-dt:focus {
   #notify.error {
     background-color: #DD2C00;
   }
+
+  .Mensajito{
+      color: black;
+      font-size: 12px;
+      display: none;
+    }
+
+    .validar:focus:invalid+ .Mensajito{display:block; color: red}

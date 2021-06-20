@@ -1,0 +1,46 @@
+.img-thumbnail{
+    max-width: 5rem !important;
+}
+
+td{
+    /* display: flex; */
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.fila-vendedor{
+    padding: 10px;
+    padding-left: 20%;
+    font-weight: bold;
+    font-size: 15pt;    
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    color: teal;
+}
+
+tr th{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 18pt;    
+}
+
+i.bi.bi-trash{
+    color: tomato;
+    font-size: 20pt;
+}
+
+input[type="number"]{
+    max-width: 100px;
+    text-align: center;
+}
+
+h1{
+    margin: auto;
+    text-align: center;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 30pt;
+    padding-top: 20vh;
+}
+
+button.btn-delete{
+    background: transparent;
+    border: 0;
+}

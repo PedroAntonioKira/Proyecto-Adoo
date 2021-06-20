@@ -28,8 +28,8 @@
     <script src="../js/buscar.js"></script>
 
     <!-- HEADER AND FOOTER -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 	 <!-- Carro -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -41,7 +41,7 @@
 
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/verDetalles.css">
   </head>
@@ -56,7 +56,7 @@
     }
     elseif($_SESSION['privilegio'] == 'Vendedor'){
       require '../assets/navs/headerVendedor.php';
-    }   
+    }
   ?>
   <main class="contenedor">
 		<div class="container details-product">
@@ -67,10 +67,10 @@
 						try{
 							$id_Producto = $_GET['id_producto'];
 
-							$consulta = "SELECT marca, fabricante, altoprod, anchoprod, bateriasinclu, tamaram, tamadiscoduro, sistemaoperativo, procesador, 
-              tamapantalla, resolucion, numeroprocesadores, tipodiscoduro, imagen1, imagen2, imagen3, color, descripcion.precio, 		
-                catalogodeproductos.vendedor_id, producto.nombre AS nombreProd, stock, avgcalificacion, info.nombre, info.apellidop, 
-                info.apellidom,	producto.calificacion
+							$consulta = "SELECT marca, fabricante, altoprod, anchoprod, bateriasinclu, tamaram, tamadiscoduro, sistemaoperativo, procesador,
+              tamapantalla, resolucion, numeroprocesadores, tipodiscoduro, imagen1, imagen2, imagen3, color, descripcion.precio,descripcion,
+                catalogodeproductos.vendedor_id, producto.nombre AS nombreProd, stock, avgcalificacion, info.nombre, info.apellidop,
+                info.apellidom,	producto.calificacion, vendedor.id AS id_vendedor
                 FROM descripcion
                 INNER JOIN producto ON producto.descripcion_id = descripcion.id
                 INNER JOIN catalogodeproductos ON catalogodeproductos.producto_id = producto.id
@@ -87,8 +87,10 @@
               $idv=$datos['vendedor_id'];
               $precio=($datos['precio']);
               $calificacion=($datos['calificacion']);
-				            $id=$id_Producto;
-              
+              $id=$id_Producto;
+
+              $id_vendedor = $datos["id_vendedor"];
+
 
 						}catch (Exception $e) {
 						    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
@@ -152,75 +154,120 @@
 						echo("<i class='bi bi-star'></i> ");
 						echo("<i class='bi bi-star'></i> ");
 						echo("<i class='bi bi-star'></i> ");
-						echo("</div>");          
+						echo("</div>");
           }
 				 ?>
-				 <!-- ESTRELLAS CALIFICACIÓN -->        
+				 <!-- ESTRELLAS CALIFICACIÓN -->
 				<h3>Price: $<?php echo($datos['precio']); ?> MXN</h3>
 
-	            <table class="table table-striped table-bordered">
-	        			<thead>
+        <table class="table table-striped table-bordered">
+          <thead>
 
-									<tr>
-										<th scope="col">Caracteristica</th>
-										<th scope="col">Descripción</th>
-									</tr>
-	        			</thead>
-								<tbody>
-    							<tr>
-    								<td>Marca</td>
-    								<td><?php echo($datos['marca']) ?></td>
-    							</tr>
-									<tr>
-    								<td>Fabricante</td>
-    								<td><?php echo($datos['fabricante']) ?></td>
-    							</tr>
-									<tr>
-    								<td>Alto del producto</td>
-    								<td><?php echo($datos['altoprod']) ?> cm</td>
-    							</tr>
-									<tr>
-    								<td>Ancho del producto</td>
-    								<td><?php echo($datos['anchoprod']) ?> cm</td>
-    							</tr>
-									<tr>
-    								<td>Batrias incluidas</td>
-    								<td><?php echo($datos['bateriasinclu']) ?></td>
-    							</tr>
-									<tr>
-    								<td>Tamaño de la RAM</td>
-    								<td><?php echo($datos['tamaram']) ?> Gb</td>
-    							</tr>
-									<tr>
-    								<td>Tamaño del disco duro</td>
-    								<td><?php echo($datos['tamadiscoduro']) ?> Gb</td>
-    							</tr>
-									<tr>
-    								<td>SO</td>
-    								<td><?php echo($datos['sistemaoperativo']) ?></td>
-    							</tr>
-									<tr>
-    								<td>Procesador</td>
-    								<td><?php echo($datos['procesador']) ?></td>
-    							</tr>
-									<tr>
-    								<td>Tamaño de la pantalla</td>
-    								<td><?php echo($datos['tamapantalla']) ?> pulgadas</td>
-    							</tr>
-									<tr>
-    								<td>Resolución</td>
-    								<td><?php echo($datos['resolucion']) ?></td>
-    							</tr>
-									<tr>
-    								<td>Numero de procesadores</td>
-    								<td><?php echo($datos['numeroprocesadores']) ?></td>
-    							</tr>
-									<tr>
-    								<td>Tipo de disco duro</td>
-    								<td><?php echo($datos['tipodiscoduro']) ?></td>
-    							</tr>
-								</tbody>
-	            </table>
+            <tr>
+              <th scope="col">Caracteristica</th>
+              <th scope="col">Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php if(isset($datos['marca'])){?>
+            <tr>
+              <td>Marca</td>
+              <td><?php echo($datos['marca']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['fabricante'])){?>
+            <tr>
+              <td>Fabricante</td>
+              <td><?php echo($datos['fabricante']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['altoprod'])){?>
+            <tr>
+              <td>Alto del producto</td>
+              <td><?php echo($datos['altoprod']) ?> cm</td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['anchoprod'])){?>
+            <tr>
+              <td>Ancho del producto</td>
+              <td><?php echo($datos['anchoprod']) ?> cm</td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['bateriasinclu'])){?>
+            <tr>
+              <td>Batrias incluidas</td>
+              <td><?php echo($datos['bateriasinclu']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['tamaram'])){?>
+            <tr>
+              <td>Tamaño de la RAM</td>
+              <td><?php echo($datos['tamaram']) ?> Gb</td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['tamadiscoduro'])){?>
+            <tr>
+              <td>Tamaño del disco duro</td>
+              <td><?php echo($datos['tamadiscoduro']) ?> Gb</td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['sistemaoperativo'])){?>
+            <tr>
+              <td>SO</td>
+              <td><?php echo($datos['sistemaoperativo']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['procesador'])){?>
+            <tr>
+              <td>Procesador</td>
+              <td><?php echo($datos['procesador']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['tamapantalla'])){?>
+            <tr>
+              <td>Tamaño de la pantalla</td>
+              <td><?php echo($datos['tamapantalla']) ?> pulgadas</td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['resolucion'])){?>
+            <tr>
+              <td>Resolución</td>
+              <td><?php echo($datos['resolucion']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['numeroprocesadores'])){?>
+            <tr>
+              <td>Numero de procesadores</td>
+              <td><?php echo($datos['numeroprocesadores']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['tipodiscoduro'])){?>
+            <tr>
+              <td>Tipo de disco duro</td>
+              <td><?php echo($datos['tipodiscoduro']) ?></td>
+            </tr>
+            <?php }else{} ?>
+
+            <?php if(isset($datos['descripcion'])){?>
+            <tr>
+              <td>Descripción</td>
+              <td><?php echo($datos['descripcion'])?></td>
+            </tr>
+            <?php }else{} ?>
+          </tbody>
+        </table>
 
 				<h5>Stock: <?php echo($datos['stock']) ?> Disponibles.</h5>
 				<h5>Sold By: <a href="#"><?php echo($datos['nombre']." ".$datos['apellidop']." ".$datos['apellidom']) ?></a></h5>
@@ -267,8 +314,8 @@
                     <?php
                     if($privilegio != NULL){
                     ?>
-                    <a type="button" class="btn btn-primary" title="Preguntar al vendedor"><i class="bi bi-chat-dots-fill"></i></a>
-                    <a href="#" data-name="<?php echo $nombre ?>" data-price="<?php echo $precio ?>" data-id="<?php echo $id ?>" data-idv="<?php echo $idv ?>" class="add-to-cart btn btn-success" title="Agregar al carrito"><i class="bi bi-cart-plus-fill"></i></a>
+                    <a href="mensajeVendedor.php?CatalogoId=<?php echo($id); ?>" type="button" class="btn btn-primary" title="Preguntar al vendedor"><i class="bi bi-chat-dots-fill"></i></a>
+                    <button onClick="cart.agregar(<?php echo $id ?>, '<?php echo $nombre ?>', <?php echo $id_vendedor ?>);" title="Añadir al carrito" class="btn btn-success" id="btn-cart-<?php echo $id ?>"><i class="bi bi-cart-plus-fill"></i></button>
                     <?php
                     }else{
                       ECHO "
@@ -279,11 +326,11 @@
                     ?>
                     <!-- <button type="button" class="btn btn-primary">Preguntar</button>
                     <button type="button" class="btn btn-success">Agregar al carrito</button>                 -->
-                </div>                
+                </div>
             <!-- BUTTONS END -->
             <?php
                 }
-            ?>            
+            ?>
             </div>
 	        </div>
 	    </div>
@@ -308,7 +355,7 @@
         </form>
         <button type="button" class="clear-cart btn btn-danger">Limpiar carrito</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-       
+
 
       </div>
     </div>
@@ -337,8 +384,8 @@ var shoppingCart = function () {
     this.name = name;
     this.count = count;
     this.idv=idv;
-    
-    
+
+
   }
 
   // Save cart
@@ -413,7 +460,7 @@ var shoppingCart = function () {
     saveCart();
   };
 
-  // Count cart 
+  // Count cart
   obj.totalCount = function () {
     var totalCount = 0;
     for (var item in cart) {
@@ -454,11 +501,11 @@ var shoppingCart = function () {
   	var flag=false;
 
   	for (var k = 0; i < carrito.length; i++) {
-  		
+
   		var item=carrito[k];
 
   		alert("primer item"+item.idv);
-	
+
 	  	var	slot=new Slot(item.idv);
 
 	  	alert(slot.iv);
@@ -493,7 +540,7 @@ var shoppingCart = function () {
 	  	pedidos.push(item);
 
 	  	if(flag)
-	  	{	
+	  	{
 	  		aux.push(slot);
 	  		slot.lista=aux;
 	  		divisor.push(slot);
@@ -510,7 +557,7 @@ var shoppingCart = function () {
   	alert(slot.lista[i].name);
     }
 
-  	return slot; 
+  	return slot;
 
   };*/
 
@@ -531,7 +578,7 @@ var shoppingCart = function () {
 
 // *****************************************
 // Triggers / Events
-// ***************************************** 
+// *****************************************
 // Add item
 $('.add-to-cart').click(function (event) {
   event.preventDefault();
@@ -557,7 +604,7 @@ function displayCart() {
 
   var data=  JSON.stringify(cartArray);
   var output = " <input type='hidden' value='"+data+"' name='carrito'> <tr>  <th>Nombre</th> <th>Precio</th> <th> Cantidad </th> <th> </th><th> Total </th> </tr>"
- 
+
   for (var i in cartArray) {
     output += "<tr>" +"<td>" + cartArray[i].name + "</td>" +
     "<td>(" + cartArray[i].price + ")</td>" +
@@ -616,5 +663,5 @@ displayCart();
 
 	<?php require '../assets/navs/footer.php'; ?>
 </body>
-  
+
 </html>

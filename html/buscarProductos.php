@@ -53,7 +53,7 @@
       <!-- <section class="products-list"> -->
       <div class="container products-cards">
 			<div class="row">      
-      <h1>Productos</h1>
+      <h1>Resultados</h1>
 
         <?php
           // require '../assets/connections/database.php';
@@ -91,34 +91,6 @@
             $estado = $datos['estado'];
             $vendedor_id = $datos['vendedor_id'];
 
-            /*echo "<div class='product-item' category= '$subcategoria'>";
-            echo "<img src='../img/imagenesProductos/$imagen1' style:'width:60px; height:30px;'>";
-            echo "<div class='Acceso'>";
-            echo "<p>$nombre</p>";
-            echo "<div class='botones'>";
-            echo "<button id='ver' type='button' name='Ver' onclick='redirecVer($id)' class='ver'>";
-            echo "<span class='fas fa-eye'></span>";
-            echo "</button>";
-            echo "<button id='carrito' type='button' name='carrito' onclick='redireCar($id)' class='carrito'>";
-            echo "<span class='fas fa-shopping-cart'></span>";
-            echo "</button>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";*/
-
-            // echo"<div class='card' style='width: 18rem;'>";
-            // echo"<img src='../img/imagenesProductos/$imagen1'";
-            // echo" class='card-img-top' alt='...''>";
-            // echo"<div class='card-body'>";
-            // echo"<h5 class='card-title'>$nombre</h5>";
-            // echo"<p class='card-text'>$$$</p>";
-            // echo"<div class='buttons'>";
-            // echo"<a href='#'' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>";
-            // echo"<a href='#' class='btn btn-success' onclick='redireCar($id)'><i class='bi bi-cart-plus'></i></a>";
-            // echo"</div>";
-            // echo"</div>";
-            // echo"</div>";
-
             ECHO "
 						<div class='card' style='width: 18rem;'>
 							<img src='../img/imagenesProductos/$imagen' class='card-img-top' alt='$nombre'>
@@ -128,10 +100,11 @@
 								<div class='buttons'>
                 ";
             if($privilegio == "Comprador"){
-              ECHO "
-									<a href='#' class='btn btn-primary' onclick='redirecVer($id)'><i class='bi bi-eye'></i></a>
-									<a href='#' class='btn btn-success' onclick='redireCar($id)'><i class='bi bi-cart-plus'></i></a>
-                  ";
+              ECHO '
+									<a href="#" class="btn btn-primary" onclick="redirecVer('.$id.')"><i class="bi bi-eye"></i></a>
+                  <button onClick="cart.agregar('.$id.', '."'". $nombre ."'".' , '.$vendedor_id.');" title="Añadir al carrito" class="btn btn-success" id="btn-cart-'.$id.'"><i class="bi bi-cart-plus"></i></button>
+                  ';
+                  // <a href="#" class="btn btn-success" onclick="redireCar('.$id.')"><i class="bi bi-cart-plus"></i></a>
             }
             elseif($privilegio == "Vendedor"){
               ECHO "
