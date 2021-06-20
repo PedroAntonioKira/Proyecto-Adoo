@@ -1,5 +1,5 @@
-.principal {
-	height: 695px;
+.principal { 
+	height: 610px;
 	background:white;
 }
 
@@ -45,9 +45,9 @@ body{
 	background-color: var(--bgcolor);
 	color: black;
 	position: absolute;
-	height: 65%;
-	left: 10;
-	top: 60;
+	height:60%;
+	left: 10px;
+	top: 65px;
 	border-radius: 10px;
 	border: solid;
 	border-color: var(--hovercolor);
@@ -77,14 +77,14 @@ body{
 
 #menuPerfil #header #menu-btn{
 	display: pointer;
-	padding: 10px;
+	padding: 11px;
 	width: var(--width-collapsed);
 	box-sizing: border-box;
 	border-radius: 9px;
 }
 
 #menuPerfil #header #menu-btn:hover{
-	background-color:rgb(0,117,128);
+	background-color: var(--hovercolor);
 }
 
 #menuPerfil #header #menu-btn .btn-hamburger{
@@ -131,7 +131,6 @@ body{
 
 #menuPerfil #menu-items .item{
 	width: var(--width);
-	
 }
 
 #menuPerfil #menu-items .item .icon{

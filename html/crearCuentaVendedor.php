@@ -3,7 +3,8 @@
   require '../assets/connections/database.php';
 
 	if(isset($_POST['Aceptar'])){
-		if(!empty($_POST['nombre']) && !empty($_POST['apellidop']) && !empty($_POST['apellidom']) && !empty($_POST['institucion']) && !empty($_POST['correo']) && !empty($_POST['contrasena'])){
+		if(!empty($_POST['nombre'])              && !empty($_POST['apellidop'])           && !empty($_POST['apellidom']) 
+		&& !empty($_POST['institucion'])         && !empty($_POST['correo'])              && !empty($_POST['contrasena'])){
 			$nombre = $_POST['nombre'];
 			$apellidop = $_POST['apellidop'];
 			$apellidom = $_POST['apellidom'];
@@ -17,6 +18,7 @@
 			$insertTarjeta = "INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`, `correo_usuario`) 
 				VALUES (NULL, '$numTarjeta', '$fechaExpiracion', '$codigoTarjetaSeguridad', '$correo')";
 			$con->query($insertTarjeta);			// Insertamos la tarjeta
+			
 			// = = = = = = = == = = = = = =
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
@@ -24,12 +26,52 @@
 			$hash = md5( rand(0,1000)); // Generate random 32 character hash and assign it to a local variable.
 			if($datos != NULL){
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
-			}else{
+			}
+			else{
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
 				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '$hash', 'SIN_VERIFICAR', '3')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
 				
-				
+
+				//Captura de puntos de entrega
+				if(!empty($_POST['lista0']) && !empty($_POST['list0'])   && !empty($_POST['EstacionReferencia1']) 
+				&& !empty($_POST['dia1'])   && !empty($_POST['hora1'])){
+					$trans1 = $_POST['lista0'];//Esta variable es la que capturara el tipo de transporte del punto 1
+					$lin_inst_1 = $_POST['list0'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 1
+					$est_ref_1= $_POST['EstacionReferencia1'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 1
+					$dia1 = $_POST['dia1'];//Esta variable es la que capturara el dia de entrega del punto 1
+					$hora1 = $_POST['hora1'];//Esta variable es la que capturara la hora de entrega del punto 1
+					$insertPunto1="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia1', '$hora1', '$trans1', '$lin_inst_1', '$est_ref_1')";
+					if(!$con->query($insertPunto1)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
+
+				if(!empty($_POST['lista1']) && !empty($_POST['list1'])   && !empty($_POST['EstacionReferencia2']) 
+				&& !empty($_POST['dia2'])   && !empty($_POST['hora2'])){
+					$trans2 = $_POST['lista1'];//Esta variable es la que capturara el tipo de transporte del punto 2
+					$lin_inst_2 = $_POST['list1'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 2
+					$est_ref_2= $_POST['EstacionReferencia2'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 2
+					$dia2 = $_POST['dia2'];//Esta variable es la que capturara el dia de entrega del punto 2
+					$hora2 = $_POST['hora2'];//Esta variable es la que capturara la hora de entrega del punto 2
+					$insertPunto2="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia2', '$hora2', '$trans2', '$lin_inst_2', '$est_ref_2')";
+					if(!$con->query($insertPunto2)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
+
+				if(!empty($_POST['lista2']) && !empty($_POST['list2'])   && !empty($_POST['EstacionReferencia3']) 
+				&& !empty($_POST['dia3'])   && !empty($_POST['hora3'])){
+					$trans3 = $_POST['lista2'];//Esta variable es la que capturara el tipo de transporte del punto 1
+					$lin_inst_3 = $_POST['list2'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 1
+					$est_ref_3= $_POST['EstacionReferencia3'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 1
+					$dia3 = $_POST['dia3'];//Esta variable es la que capturara el dia de entrega del punto 1
+					$hora3 = $_POST['hora3'];//Esta variable es la que capturara la hora de entrega del punto 1
+					$insertPunto3="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia3', '$hora3', '$trans3', '$lin_inst_3', '$est_ref_3')";
+					if(!$con->query($insertPunto3)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
 
 				if(!$con->query($info) || !$con->query($usuario)){
 					echo("Falló: (".$con->errno.") ". $con->error);
@@ -44,6 +86,9 @@
 				if(!$con->query($vendedor)){
 					echo("Falló: (" . $con->errno . ") " . $con->error);
 				}
+
+        
+				//print_r(aux2);
 
 				/*$msg = 'Te envie un correo, <br /> porfavor verifica con un click el link de activación que te enviamos a tu correo.';
 				$to      = $correo;   // Send email to our user
@@ -64,7 +109,7 @@
 				$headers = 'From:noreply@yourwebsite.com' . "\r\n"; // Set from headers
 				mail($to, $subject, $message, $headers); // Send our email*/
 
-				header('location: login2.php');
+				//header('location: login2.php');
 			}
 		}
 	}
@@ -153,12 +198,12 @@
 	                                    <h2 class="fs-title">Información de Cuenta</h2>
 	                                    <div id="caja0"></div>
 	                                    <button class="agregar" onclick="agregardir()" style="background-color:rgb(51, 122, 255); border-radius: 5px; color:white; width: 200px; right: 80px; font-family: 'calibri';"><i class="fas fa-plus"></i> Agregar punto de entrega</button>
-									<br><br>
-										<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
-										<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
-									</div>
-										<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
-										<button type="submit" name="Aceptar" class="btn btn-primary">Aceptar</button>
+																			<br><br>
+																			<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+																			<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
+																		</div>
+																		<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
+																		<button type="submit" name="Aceptar" class="btn btn-primary">Aceptar</button>
 		                            </fieldset>
 		                        </form>
 		                    </div>
@@ -199,9 +244,9 @@
 		                    "<br>"+
 		                    "<div id='select" + aux2 + "lista'></div>"+
 		                    "<br>"+
-		                    "<input type='text' name='EstacionReferencia' placeholder='Estacion o Referencia'>"+
-		                    "<input type='text' name='dia' placeholder='Dia' style='width:200px;'>"+
-		                    "<input type='time' name='hora' placeholder='Hora' style='width:200px; margin-left:10px ;' min='00:00' max='23:59'>"+
+		                    "<input type='text' name='EstacionReferencia"+ aux2 + "' placeholder='Estacion o Referencia'>"+
+		                    "<input type='text' name='dia"+ aux2 +"' placeholder='Dia' style='width:200px;'>"+
+		                    "<input type='time' name='hora"+ aux2 +"' placeholder='Hora' style='width:200px; margin-left:10px ;' min='00:00' max='23:59'>"+
 		                    "<div id='caja" + aux2 + "'></div>";
 		$(document).ready(function(){
 			$('#lista0').val(0);
