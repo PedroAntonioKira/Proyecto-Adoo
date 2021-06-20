@@ -2,29 +2,53 @@
   session_start();
   require '../assets/connections/database.php';
 
+  //print_r($_SESSION);
   if(isset($_SESSION['correo'])){
     $privilegio = $_SESSION['privilegio'];
+    // $actualizar=$_POST['actualizar'];
+    // print_r($actualizar);
   }
 
-    
 
   $nombre = $_SESSION['nombre'];
   $apellidop=$_SESSION['apellidop'];
   $apellidom=$_SESSION['apellidom'];
   $correo=$_SESSION['correo'];
   $contrasena=$_SESSION['contrasena'];
+  $id_vendedor=$_SESSION['id_comprador'];
 
-  if(isset($_POST['actualizar'])){
-  	$nombre1 = $_POST['nombre'];
-	  $apellidop1=$_POST['apellidop'];
-	  $apellidom1=$_POST['apellidom'];
-	  $correo1=$_POST['correo'];
-	  $contrasena1=$_POST['contrasena'];
-	 	$id_comprador=$_SESSION['id_vendedor'];
+  if(isset($_GET['actualizacion'])){
+  	$nombre1 = $_GET['nombre'];
+	  $apellidop1=$_GET['apellidoP'];
+	  $apellidom1=$_GET['apellidoM'];
+	  $correo1=$_GET['correo'];
+	  $contrasena1=$_GET['password'];
 
-	  $actualiza="UPDATE `info` SET `id` = '$id_vendedor', `nombre` = '$nombre1', `apellidop` = '$apellidoP', `apellidom` = '$apellidoM', `institucion` = '$nombre1' WHERE `info`.`id` = '$id_vendedor' ";
+	 	
+	 	$institucion=$_SESSION['institucion'];
 
-	  print_r($_SESSION);
+	 	$consulta_id="SELECT info_id FROM vendedor WHERE vendedor.id ='$id_vendedor'";
+	  $ejecutar = $con->query($consulta_id);
+		$aux= $ejecutar->fetch_array();
+		$id=$aux['info_id'];
+
+	  $act1="UPDATE `info` SET `nombre` = '$nombre1', `apellidop` = '$apellidop1', `apellidom` = '$apellidom1', `institucion` = '$institucion' WHERE `info`.`id` = '$id'";
+	  $act2="DELETE FROM `usuario` WHERE `usuario`.`correo` = '$correo'";
+	  $act3="INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo1', '$contrasena1', '', 'VERIFICADO', '3')";
+	  $act4="DELETE FROM `vendedor` WHERE `vendedor`.`id` = $id_vendedor";
+	  $act5= "INSERT INTO `vendedor` (`id`, `usuario_correo`, `info_id`) VALUES ($id_vendedor, '$correo1', '$id')";
+	  
+	  if(!$con->query($act1)||!$con->query($act2)||!$con->query($act3)||!$con->query($act4)||!$con->query($act5)){
+					echo("Falló: (".$con->errno.") ". $con->error);
+		}
+
+		$_SESSION['nombre']=$nombre1;
+	 	$_SESSION['apellidop']=$apellidop1;
+	 	$_SESSION['apellidom']=$apellidom1;
+	 	$_SESSION['correo']=$correo1;
+	 	$_SESSION['contrasena']=$contrasena1;
+		  
+	  
   }
     
 
@@ -72,23 +96,10 @@
 	  ?>
 
 	  <main class="contenedor">
-	  	<!--<div class="header" style="border-style:solid;width:20%; right:90%; background:white;">
-	  		<div id="title" class="fas fa-bars">
-						<span>Perfil Vendedor</span>
-						<div class="item">
-							<a href="#">
-								<div class="icon"><i class="fas fa-plus"></i></div>
-								<div class="title"><span>Agregar Producto</span></div>
-							</a>
-						</div>
-				</div>
-			</div>	
-	  	</div>-->
-
-		<div class="prin">
-			<div id="menuPerfil" class="menu-expanded">
+		<div class="principal">
+			<div id="menuPerfil" class="menu-collapsed">
 				<div id="header">
-					<div id="menu-btn">
+					<div id="menu-btn" style="width:45px;">
 						<div class="btn-hamburger"></div>
 						<div class="btn-hamburger"></div>
 						<div class="btn-hamburger"></div>
@@ -154,10 +165,10 @@
 					</div>	
 
 					<div class="item">
-						<a href="#">
+						<button id="configurar">
 							<div class="icon"><i class="fa fa-gear"></i> </div>
 							<div class="title"><span>Configurar Perfil</span></div>
-						</a>
+						</button>
 					</div>
 
 					<div class="item separador">
@@ -196,14 +207,15 @@
 				</div>
 			</div>
 
-			<div id="main-container">
-				<section class="">
+			<div id="contenedor" class="main_container_ocul">
+				<section class="configurar_datos_ocul" id="datos">
 				<h1>Editar Datos</h1>
 
-				<form action="" class="formulario" id="formulario">
+				<form action="" class="formulario" id="formulario" method="get">
 
 					<!-- Grupo Nombre -->
 					<div class="formulario__grupo" id="grupo__nombres">
+						<h3 style="color:#50A2C3; margin-left:30px;">Nombre</h3>
 						<label for="usuario" class="formulario__label"> Nombre(s) </label><label for="apellidoP" class="formulario__label"> Apellido Paterno </label><br>
 						
 						<input type="text" name="nombre" class="formulario__input" id="usuario" value="<?php echo $_SESSION['nombre'] ?>"><input type="text" name="apellidoP" class="formulario__input" id="apellidoP" value="<?php echo $_SESSION['apellidop'] ?>">
@@ -213,46 +225,60 @@
 					</div>
 
 					<div class="formulario__grupo" id="grupo__telefono">
-						
+						<br>
+						<h3 style="color:#50A2C3; margin-left:30px;">Datos</h3>
 						<label for="correo" class="formulario__label"> Correo </label><label for="password" class="formulario__label"> Contraseña </label><br>
-						<input type="text" name="correo" class="formulario__input" id="correo" placeholder="<?php echo $_SESSION['correo'] ?>">
-						<input type="password" name="password" class="formulario__input" id="password" value="<?php echo $_SESSION['contrasena'] ?>">
-					</div>
-
-					<!-- Grupo Contraseña -->
-					<div class="formulario__grupo" id="grupo__password">
-						
-						
-					</div>
+						<input type="text" name="correo" class="formulario__input" id="correo" value="<?php echo $_SESSION['correo'] ?>">
+		        <input type="password" id="contrasena" class="formulario_input_pass" name="contrasena" value="<?php echo $_SESSION['contrasena'] ?>" required autocomplete="off" ><button id="contrasena" class="formulario_input_eye" onclick="mostrarPassword()"><span class="fa fa-eye-slash icono"></span></button>
+		       </div>
 					<br>
 					<div class="formulario__grupo-btn-enviar">
-						<button type="submit" class="formulario__btn" name="actualizar"> Actualizar </button>
+						<button type="submit" class="formulario__btn2" name="actualizacion" id="actualizacion" value="actualizar"> Actualizar </button>
 					</div>
-
 				</form>
 			</section>
-			
-			<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
 			</div>
 			<div class="item separador">
 						
-			</div>	
+			</div>
 		
-			<script>
-				const btn=document.querySelector('#menu-btn');
-				const menu=document.querySelector('#menuPerfil');
-				btn.addEventListener('click', e =>{
-					menu.classList.toggle("menu-expanded");
-					menu.classList.toggle("menu-collapsed");
-
-					document,querySelector('body').classList.toggle('body-expanded');
-				});
-			</script>
 		</div>
-		</main>
+	</main>
 
-	  
 	  <?php require '../assets/navs/footer.php'; ?>
 	</body>
-  
 </html>
+<script>
+	const btn=document.querySelector('#menu-btn');
+	const menu=document.querySelector('#menuPerfil');
+	const contenedor=document.querySelector('#contenedor');
+	btn.addEventListener('click', e =>{
+	menu.classList.toggle("menu-collapsed");
+	menu.classList.toggle("menu-expanded");
+	contenedor.classList.toggle("main_container");
+	contenedor.classList.toggle("main_container_ocul");
+	
+	document,querySelector('body').classList.toggle('body-collapsed');
+	});
+</script>
+<script>
+  function mostrarPassword(){
+    var cambio = document.getElementById("contrasena");
+    if(cambio.type == "password"){
+      cambio.type = "text";
+      $('.icono').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+    }else{
+      cambio.type = "password";
+      $('.icono').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+    }
+  } 
+</script>
+
+<script>
+	const config=document.querySelector('#configurar');
+	const datos=document.querySelector('#datos');
+	config.addEventListener('click', e =>{
+	datos.classList.toggle("configurar_datos");
+	datos.classList.toggle("configurar_datos_ocul");
+	});
+</script>

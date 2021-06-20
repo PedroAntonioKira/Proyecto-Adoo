@@ -98,6 +98,7 @@ function renderVendor(nombre, id){
     buttonComprar.setAttribute("value", "Comprar todo");
     buttonComprar.setAttribute("class", "btn");
     buttonComprar.innerHTML = "Comprar todo";
+    buttonComprar.setAttribute("onClick","cart.listaProductos("+id+")");
 //  = = = = BOTON EJEMPLO = = =  =
     campo4 = document.createElement("td");
     campo4.appendChild(buttonComprar);
@@ -112,5 +113,4 @@ function renderVendor(nombre, id){
 
     tabla.appendChild(fila);
     tablaMadre.appendChild(tabla);
-
 }

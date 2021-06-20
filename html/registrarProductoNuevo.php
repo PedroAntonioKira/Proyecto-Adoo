@@ -22,7 +22,7 @@
 <body>
 
     <?php
-        require '../assets/navs/headerVendedorHtml.php';
+        require '../assets/navs/headerVendedor.php';
 	 ?>
     <div class="container">
         <div class="row">

@@ -45,6 +45,10 @@
       }
     }
   }
+
+  if(isset($_GET['alert'])){
+    $mensaje = "<div class='alert alert-success'>Te has registrado correctamente</div>";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +86,7 @@
   <main>
     <div class="container">
       <div class="info">
+        <?php if(isset($mensaje)) echo($mensaje); ?>
         <h1 style="color:white;">
           Inicio de sesion
         </h1>
@@ -97,7 +102,7 @@
         <input type="email" name="correo" placeholder="Correo" required autocomplete="off">
         <div>
           <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required autocomplete="off" style="width: 80%;"><button id="contrasena" class="contrasena" type="button" onclick="mostrarPassword()" style="width:20%;"><span class="fa fa-eye-slash icon"></span> </button>
-        </div>   
+        </div>
         <button type="submit" name="Aceptar">Aceptar</button>
       </form>
       <?php if (!empty($message)): ?>
@@ -124,5 +129,5 @@
       cambio.type = "password";
       $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
-  } 
+  }
 </script>

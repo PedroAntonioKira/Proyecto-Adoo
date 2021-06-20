@@ -13,7 +13,7 @@
 	$result=mysqli_query($conexion,$sql);
 
 	$cadena="<label>Lineas/Intitucion</label><br> 
-			<select id='lista2' name='lista2'>";
+			<select id='lista2' name='list2'>";
 
 	while ($ver=mysqli_fetch_row($result)) {
 		$cadena=$cadena.'<option value='.$ver[0].'>'.utf8_encode($ver[2]).'</option>';

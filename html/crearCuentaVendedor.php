@@ -16,7 +16,7 @@ use PHPMailer\PHPMailer\Exception;
 			$numTarjeta = $_POST['num_tarjeta'];
 			$fechaExpiracion = $_POST['fecha_expiracion'];
 			$codigoTarjetaSeguridad = $_POST['codigo'];
-			$insertTarjeta = "INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`, `correo_usuario`) 
+			$insertTarjeta = "INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`, `correo_usuario`)
 				VALUES (NULL, '$numTarjeta', '$fechaExpiracion', '$codigoTarjetaSeguridad', '$correo')";
 			$con->query($insertTarjeta);			// Insertamos la tarjeta
 			// = = = = = = = == = = = = = =
@@ -31,8 +31,46 @@ use PHPMailer\PHPMailer\Exception;
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
 				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '$hash', 'SIN_VERIFICAR', '3')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
-				
-			
+				//Captura de puntos de entrega
+				if(!empty($_POST['lista0']) && !empty($_POST['list0'])   && !empty($_POST['EstacionReferencia1']) 
+				&& !empty($_POST['dia1'])   && !empty($_POST['hora1'])){
+					$trans1 = $_POST['lista0'];//Esta variable es la que capturara el tipo de transporte del punto 1
+					$lin_inst_1 = $_POST['list0'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 1
+					$est_ref_1= $_POST['EstacionReferencia1'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 1
+					$dia1 = $_POST['dia1'];//Esta variable es la que capturara el dia de entrega del punto 1
+					$hora1 = $_POST['hora1'];//Esta variable es la que capturara la hora de entrega del punto 1
+					$insertPunto1="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia1', '$hora1', '$trans1', '$lin_inst_1', '$est_ref_1')";
+					if(!$con->query($insertPunto1)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
+
+				if(!empty($_POST['lista1']) && !empty($_POST['list1'])   && !empty($_POST['EstacionReferencia2']) 
+				&& !empty($_POST['dia2'])   && !empty($_POST['hora2'])){
+					$trans2 = $_POST['lista1'];//Esta variable es la que capturara el tipo de transporte del punto 2
+					$lin_inst_2 = $_POST['list1'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 2
+					$est_ref_2= $_POST['EstacionReferencia2'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 2
+					$dia2 = $_POST['dia2'];//Esta variable es la que capturara el dia de entrega del punto 2
+					$hora2 = $_POST['hora2'];//Esta variable es la que capturara la hora de entrega del punto 2
+					$insertPunto2="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia2', '$hora2', '$trans2', '$lin_inst_2', '$est_ref_2')";
+					if(!$con->query($insertPunto2)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
+
+				if(!empty($_POST['lista2']) && !empty($_POST['list2'])   && !empty($_POST['EstacionReferencia3']) 
+				&& !empty($_POST['dia3'])   && !empty($_POST['hora3'])){
+					$trans3 = $_POST['lista2'];//Esta variable es la que capturara el tipo de transporte del punto 1
+					$lin_inst_3 = $_POST['list2'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 1
+					$est_ref_3= $_POST['EstacionReferencia3'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 1
+					$dia3 = $_POST['dia3'];//Esta variable es la que capturara el dia de entrega del punto 1
+					$hora3 = $_POST['hora3'];//Esta variable es la que capturara la hora de entrega del punto 1
+					$insertPunto3="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia3', '$hora3', '$trans3', '$lin_inst_3', '$est_ref_3')";
+					if(!$con->query($insertPunto3)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
+
 				if(!$con->query($info) || !$con->query($usuario)){
 					echo("Falló: (".$con->errno.") ". $con->error);
 				}
@@ -51,7 +89,7 @@ use PHPMailer\PHPMailer\Exception;
 				require 'PHPMailer/PHPMailer.php';
 				require 'PHPMailer/SMTP.php';
 
-				
+
 				//Instantiation and passing `true` enables exceptions
 				$mail = new PHPMailer(true);
 
@@ -148,13 +186,26 @@ use PHPMailer\PHPMailer\Exception;
 					';
 
 					
+					$mail->Subject = 'Bienvenid@ a nuestra pagina';
+					$mail->Body    = '
+					<b>Siguenos en nuestras redes
+
+					Thanks for signing up!
+					Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+
+					------------------------
+					Username: '.$nombre.'
+					Password: '.$contrasena.'
+					http://localhost/Proyecto-Adoo/html/activarcorreo.php?correo='.$correo.'&hash='.$hash.'
+					------------------------
+					</b>';
 
 					$mail->send();
 					echo 'Mensaje fue enviado';
 				} catch (Exception $e) {
 					echo "Mensaje no fue enviado hay un error{$mail->ErrorInfo}";
 				}
-					header('location: login2.php');
+					header('location: login2.php?alert=1');
 				}
 		}
 	}
@@ -182,7 +233,6 @@ use PHPMailer\PHPMailer\Exception;
 
     <!-- <script src="../js/jquery-3.6.0.js"></script> -->
     <script src="../js/main.js"></script>
-    <link rel="stylesheet" href="../css/formMultiStep.css">
     <script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
 
@@ -212,17 +262,35 @@ use PHPMailer\PHPMailer\Exception;
 		                            <ul id="progressbar">
 		                                <li class="active" id="account"><strong>Información</strong></li>
 		                                <li id="payment"><strong>Datos Bancarios</strong></li>
-										<li id="personal"><strong>Cuenta</strong></li>
+										                <li id="personal"><strong>Cuenta</strong></li>
 		                            </ul>
 																<!-- fieldsets -->
 
 		                            <fieldset>
 		                                <div class="form-card">
 		                                    <h2 class="fs-title">Información De Usuario</h2>
-											<input type="text" name="nombre" placeholder="Nombre(s)" class="form-control" required autocomplete="off">
-											<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off">
-											<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off">
-											<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off">
+
+
+											<input type="text" name="nombre" placeholder="Nombre(s)" class="form-control validar" required autocomplete="off"
+                      pattern="^([a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40})$">
+                      <p class="Mensajito">El nombre debe tener entre 1 y 40 letras y no puede contener numeros ni simbolos extraños.<br>
+							                             Tampoco debe comenzar ni terminar con un espacio en blanco.</p>
+
+
+											<input type="text" name="apellidop" placeholder="Apellido Paterno" required autocomplete="off" class="validar"
+                      pattern="^([a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40})$">
+                      <p class="Mensajito">El apellido paterno debe tener entre 1 y 40 letras por palabra y no puede contener numeros ni simbolos extraños.<br>
+							                             Tampoco debe comenzar ni terminar con un espacio en blanco.</p>
+
+											<input type="text" name="apellidom" placeholder="Apellido Materno" required autocomplete="off" class="validar"
+                      pattern="^([a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40})$">
+                      <p class="Mensajito">El apellido materno debe tener entre 4 y 40 letras y no puede contener numeros ni simbolos extraños.<br>
+							                             Tampoco debe comenzar ni terminar con un espacio en blanco.</p>
+
+											<input type="text" name="institucion" placeholder="Institución de procedencia" required autocomplete="off" class="validar"
+                      pattern="^([a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40})$">
+                      <p class="Mensajito">La institución debe contener entre 1 y 40 letras por palabra y no puede contener numeros ni simbolos extraños.<br>
+							                             Tampoco debe comenzar ni terminar con un espacio en blanco.</p>
 		                                </div>
 										<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
 		                            </fieldset>
@@ -230,9 +298,21 @@ use PHPMailer\PHPMailer\Exception;
 																<fieldset>
 									<div class="form-card">
 										<h2 class="fs-title">Datos Bancarios</h2>
-										<input type="text" name="num_tarjeta" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
-										<input type="text" name="fecha_expiracion" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" pattern="\d\d/\d\d" style="width: 300px; margin-right:10px ;">
-										<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" pattern="^[0-9]{3,4}" style="width: 100px; ">
+										<input type="text" name="num_tarjeta" placeholder="Numero de tarjeta (xxxx xxxx xxxx xxxx)" required autocomplete="off" class="validar"
+                    pattern="^[0-9]{15,16}|(([0-9]{4}\s){3}[0-9]{3,4})$">
+                    <p class="Mensajito">El numero de trajeta debe tener entre 15 y 16 dijitos <br>
+                                         puede ser escrito de corrido o seprandolo por espacios <br>
+                                         XXXXXXXXXXXXXXXX O XXXX XXXX XXXX XXXX <br>
+                                         no puede comenzar ni terminar con un espacio en blanco</p>
+										<input type="text" name="fecha_expiracion" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" class="validar"
+                    pattern="\d\d/\d\d" style="width: 300px; margin-right:10px ;">
+                    <p class="Mensajito">La fecha de caducidad debe contener: <br>
+                                          dos digitos seguido de una diagonal seguido de dos dijitos <br>
+                                         dd/aa <br>
+                                         no puede iniciar ni terminar con espacios</p>
+										<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" class="validar"
+                    pattern="^[0-9]{3,4}" style="width: 100px; ">
+                    <p class="Mensajito">El numero de seguridad debe ser de entre 3 o 4 digitos unicamente <br></p>
 									</div>
 										<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
 										<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
@@ -244,9 +324,18 @@ use PHPMailer\PHPMailer\Exception;
 	                                    <div id="caja0"></div>
 	                                    <button class="agregar" onclick="agregardir()" style="background-color:rgb(51, 122, 255); border-radius: 5px; color:white; width: 200px; right: 80px; font-family: 'calibri';"><i class="fas fa-plus"></i> Agregar punto de entrega</button>
 									<br><br>
-										<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
-										<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
+										<input type="email" name="correo" placeholder="Correo Electronico" required autocomplete="off" class="validar"
+                    pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+                    <p class="Mensajito">El correo debe ser escrito con minusculas<br>
+                                        asegurate que sea tuyo, no debe poseer espacios</p>
+
+										<input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off" class="validar"
+                    pattern="^(?=.*?[A-ZÀ-ÿ])(?=.*?[a-zÀ-ÿ])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,16}$">
+                    <p class="Mensajito">La contraseña debe tener al entre 8 y 16 caracteres, <br>
+                                         al menos un dígito, al menos una minúscula, al menos una mayúscula.<br>
+                                         y al menos un caracter especial (#?!@$%^&*-.)</p>
 									</div>
+
 										<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
 										<button type="submit" name="Aceptar" class="btn btn-primary">Aceptar</button>
 		                            </fieldset>

@@ -37,6 +37,45 @@
 	margin-left: 30px;
 }
 
+.formulario_input_pass{
+	width: 37%;
+	background:rgb(0,117,128); 
+	border: 3px solid transparent;  
+	height: 40px;
+	line-height: 45px;
+	padding: 0px 0px 0px 10px; /* arriba, derecha, abajo, izquierda*/
+	transition: 0.3s ease all;	
+	color: white;
+	margin-left: 30px;
+	border border-radius: 0px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.formulario_input_eye{
+	background:rgb(0,117,128); 
+	border: 3px solid transparent;  
+	height: 40px;
+	line-height: 45px;
+	padding: 3px 0px 1px 10px; /* arriba, derecha, abajo, izquierda*/
+	transition: 0.3s ease all;	
+	color: white;
+	margin-left: 30px;
+	border border-radius: 0px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	width:6%; 
+	height: 39px; 
+	text-align: left; 
+	margin-left: 0px;
+
+}
+
+.formulario_input_pass::placeholder {
+	color: rgba(255, 255, 255, .9);
+	font-weight: bold;
+	text-align: center;
+}
 
 .formulario__input::placeholder {
 	color: rgba(255, 255, 255, .9);
@@ -48,6 +87,12 @@
 	border: 3px solid #fff;
 	outline: none; /*Quita Subrayado del navegador*/
 	box-shadow: 3px 0px 60px hsla(246.81, 100%, 63.922%, 0.4);
+}
+.formulario_input_pass:focus{
+	border: 3px solid #fff;
+	outline: none; /*Quita Subrayado del navegador*/
+	box-shadow: 3px 0px 60px hsla(246.81, 100%, 63.922%, 0.4);
+	width: 30%;
 }
 
 .formulario__input-error{
@@ -79,7 +124,7 @@
 .formulario__grupo-terminos,
 .formulario__mensaje,
 .formulario__grupo-btn-enviar{
-	grid-column: span 3;
+	grid-column: span 1;
 }
 
 
@@ -102,6 +147,8 @@
 .formulario__grupo-btn-enviar{
 	display: flex;
 	flex-direction: column;
+	width: 100px;
+	margin-left:45%;
 	align-items: center;
 	margin-bottom: 10px;
 }
@@ -117,6 +164,22 @@
 	border-radius: 5px;
 	cursor: pointer;
 	transition: 0.1s ease all;
+}
+.formulario__btn2{
+	height: 45px;
+	line-height: 45px;
+	width: 100px;
+	background: #50A2C3;
+	color: #fff;
+	font-weight: 900;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.1s ease all;
+}
+
+.formulario__btn2:hover{
+	box-shadow: 3px 0px 30px #B8C0C3; 
 }
 
 .formulario__btn:hover{
