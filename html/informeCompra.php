@@ -178,8 +178,8 @@
 							<div class="col-2 name">Subtotal</div>
 						</div>
 		<?php
-		// if($_GET['id']){ //Busca el id de la compra
-		// 	$id_compra = $_GET['id'];
+		 if($_GET['id']){ //Busca el id de la compra
+		 	$id_compra = $_GET['id'];
 			$select_productos = "SELECT descripcion.imagen1 AS imagen, producto.nombre, productos_comprados.cantidad, 
 				productos_comprados.subtotal FROM productos_comprados, producto, descripcion, compras WHERE (compras.id = $id_compra) 
 				AND (productos_comprados.id_compra = compras.id) AND (productos_comprados.id_producto = producto.id)
@@ -200,6 +200,7 @@
 				</div>			
 			";
 			}
+		}
 
 		?>						
 						<!-- <div class="text-center col-12 row">
@@ -225,22 +226,25 @@
 						<?php
 						echo "<div class='col-12 text'>$$total MXN</div>"
 						?>
-						<!-- <div class="col-12 text">$5000.00 MXN</div> -->
 					</div>
 					<div class="text-center col-6">
 						<div class="col-12 name">Estado de la compra</div>	
 						<?php
 						echo "<div class='col-12 text'>$estado_compra</div>"
 						?>
-						<!-- <div class="col-12 text">En proceso de entrega</div> -->
 					</div>
 				</div>
+
+			</div>
+			
+			<div class="botones_deretorno">
+					<a class="boton_personalizado1" href="verCarrito.php">Volver al carrito</a>
+					<a class="boton_personalizado2" href="index.php">Volver al index</a>	 
 			</div>
 
 		</div>
 	</div>
 
-	<!-- = = = = = = = = FOOTER = = = = = = = = -->
 	<footer class="row">
 			<div class="col col-4">
 				<a href="#">Vende tus productos</a>
@@ -268,7 +272,7 @@
 			</div>
 			<div class="col-3"></div>
 	</footer>
-	<!-- = = = = = = = = END = = = = = = = = -->
+	
 </body>
 
 </html>

@@ -59,7 +59,6 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-
                         <!-- PRODUCTOS SE RENDERIZAN AQUI  -->
             </tbody>
             </table>
