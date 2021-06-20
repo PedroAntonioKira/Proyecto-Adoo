@@ -195,13 +195,28 @@ class Carrito {
         return listaProductos;
     }
 
+     jsonProductos(id_vendedor){
+        var listaProductos = '';
+        var json = '';
+        this.vendedores.forEach(vendedor => {
+            if(vendedor.id == id_vendedor){
+                
+                json=JSON.stringify(vendedor.productos);
+            }
+            
+        });
+        console.log("json"+json);
+        return json
+    }
+
     mostrarProductos(){
         console.log("mostrarProductos: " + window.location.pathname);
+         console.log("amos"); 
         if(window.location.pathname == "/Proyecto-Adoo/html/" 
             || window.location.pathname == "/Proyecto-Adoo/html/buscarProductos.php"
             || window.location.pathname == "/Proyecto-Adoo/html/verDetalles.php" 
             || window.location.pathname == "/Proyecto-Adoo/html/index.php"){ // BUSQUEDAS E INDEX
-
+             console.log("k"); 
             this.vendedores.forEach(vendedor => {
                 // console.log("Vendedor");
                 vendedor.productos.forEach(producto => {
@@ -211,7 +226,8 @@ class Carrito {
                 });
             });
         }
-        else if(window.location.pathname == "/Proyecto-Adoo/html/verCarrito.php"){ // CARRITO
+        else if(window.location.pathname == "/Proyecto-Adoo/html/verCarrito.php"){
+         console.log("a");  // CARRITO
             if(this.vendedores.length != 0){
                 this.vendedores.forEach(vendedor => {
                     queryVendorSelectName(vendedor.id);

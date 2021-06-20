@@ -2,6 +2,7 @@ function renderProduct(producto, id_vendedor){
     console.log("Producto: " + producto.stock);
 
     var fila = document.createElement("tr");
+    
 
     // Boton eliminar
     borrar = document.createElement("th");
@@ -79,6 +80,11 @@ function cantidadCambiada(id, costo, stock){
 }
 
 function renderVendor(nombre, id){
+    carrojson=cart.jsonProductos(id);
+    console.log("carre"+carrojson);
+
+  
+
     tablaMadre = document.getElementById("tablaCarrito");
     tabla = document.createElement('tbody');
     tabla.setAttribute("id", "tbody-" + id);
@@ -94,11 +100,13 @@ function renderVendor(nombre, id){
     campo3.innerHTML = "Vendidos por: " + nombre; 
     fila.appendChild(campo3);
 //  = = = = BOTON EJEMPLO = = =  =
+  
     buttonComprar = document.createElement("button");
-    buttonComprar.setAttribute("value", "Comprar todo");
+    buttonComprar.setAttribute("value", carrojson);
     buttonComprar.setAttribute("class", "btn");
     buttonComprar.innerHTML = "Comprar todo";
-    buttonComprar.setAttribute("onClick","cart.listaProductos("+id+")");
+    buttonComprar.setAttribute("onClick","cart.jsonProductos("+id+")");
+    
 //  = = = = BOTON EJEMPLO = = =  =
     campo4 = document.createElement("td");
     campo4.appendChild(buttonComprar);
@@ -112,5 +120,7 @@ function renderVendor(nombre, id){
     // fila.appendChild(texto);
 
     tabla.appendChild(fila);
+    my_form.appendChild(tabla);
     tablaMadre.appendChild(tabla);
+
 }
