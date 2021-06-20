@@ -31,7 +31,45 @@ use PHPMailer\PHPMailer\Exception;
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
 				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '$hash', 'SIN_VERIFICAR', '3')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
+				//Captura de puntos de entrega
+				if(!empty($_POST['lista0']) && !empty($_POST['list0'])   && !empty($_POST['EstacionReferencia1']) 
+				&& !empty($_POST['dia1'])   && !empty($_POST['hora1'])){
+					$trans1 = $_POST['lista0'];//Esta variable es la que capturara el tipo de transporte del punto 1
+					$lin_inst_1 = $_POST['list0'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 1
+					$est_ref_1= $_POST['EstacionReferencia1'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 1
+					$dia1 = $_POST['dia1'];//Esta variable es la que capturara el dia de entrega del punto 1
+					$hora1 = $_POST['hora1'];//Esta variable es la que capturara la hora de entrega del punto 1
+					$insertPunto1="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia1', '$hora1', '$trans1', '$lin_inst_1', '$est_ref_1')";
+					if(!$con->query($insertPunto1)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
 
+				if(!empty($_POST['lista1']) && !empty($_POST['list1'])   && !empty($_POST['EstacionReferencia2']) 
+				&& !empty($_POST['dia2'])   && !empty($_POST['hora2'])){
+					$trans2 = $_POST['lista1'];//Esta variable es la que capturara el tipo de transporte del punto 2
+					$lin_inst_2 = $_POST['list1'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 2
+					$est_ref_2= $_POST['EstacionReferencia2'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 2
+					$dia2 = $_POST['dia2'];//Esta variable es la que capturara el dia de entrega del punto 2
+					$hora2 = $_POST['hora2'];//Esta variable es la que capturara la hora de entrega del punto 2
+					$insertPunto2="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia2', '$hora2', '$trans2', '$lin_inst_2', '$est_ref_2')";
+					if(!$con->query($insertPunto2)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
+
+				if(!empty($_POST['lista2']) && !empty($_POST['list2'])   && !empty($_POST['EstacionReferencia3']) 
+				&& !empty($_POST['dia3'])   && !empty($_POST['hora3'])){
+					$trans3 = $_POST['lista2'];//Esta variable es la que capturara el tipo de transporte del punto 1
+					$lin_inst_3 = $_POST['list2'];//Esta variable es la que capturara la linea o la institucion del IPN del punto 1
+					$est_ref_3= $_POST['EstacionReferencia3'];//Esta variable es la que capturara la estacion o la referencia del punto de entrega del punto 1
+					$dia3 = $_POST['dia3'];//Esta variable es la que capturara el dia de entrega del punto 1
+					$hora3 = $_POST['hora3'];//Esta variable es la que capturara la hora de entrega del punto 1
+					$insertPunto3="INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES (NULL, '$correo', '$dia3', '$hora3', '$trans3', '$lin_inst_3', '$est_ref_3')";
+					if(!$con->query($insertPunto3)){
+						echo("Falló: (" . $con->errno . ") " . $con->error);
+					}
+				}
 
 				if(!$con->query($info) || !$con->query($usuario)){
 					echo("Falló: (".$con->errno.") ". $con->error);
