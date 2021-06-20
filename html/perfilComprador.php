@@ -194,7 +194,7 @@
 		</div>
 
 		<div id="contenedor" class="main_container_ocul">
-			<section class="configurar_datos_ocul" id="datos">
+			<section class="configurar_datos" id="datos">
 				<h1>Editar Datos</h1>
 
 				<form action="" class="formulario" id="formulario" method="get">
@@ -266,11 +266,11 @@
   } 
 </script>
 
-<script>
+<!-- <script>
 	const config=document.querySelector('#configurar');
 	const datos=document.querySelector('#datos');
 	config.addEventListener('click', e =>{
 	datos.classList.toggle("configurar_datos_ocul");
 	datos.classList.toggle("configurar_datos");
 	});
-</script>
+</script> -->

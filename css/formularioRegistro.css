@@ -29,7 +29,7 @@
 	background:rgb(0,117,128); 
 	border: 3px solid transparent; 
 	border-radius: 5px; 
-	height: 40px;
+	height: auto;
 	line-height: 45px;
 	padding: 0px 0px 0px 10px; /* arriba, derecha, abajo, izquierda*/
 	transition: 0.3s ease all;	
@@ -37,11 +37,65 @@
 	margin-left: 30px;
 }
 
+.formulario__input1{
+	width: 95%;
+	background:rgb(0,117,128); 
+	border-radius: 5px; 
+	height:30px;
+	margin: 5px;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+}
+
+.formulario_input2{
+	background-color: #eee;
+	width: 45%;
+	border-radius: 15px; 
+	height:auto;
+	margin: 5px;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	outline: none;
+}
+
+.formulario_input2:focus{
+	border-bottom: solid;
+	border-color:white ;
+}
+
+
+.formulario_a{
+	color: #fff; 
+	text-decoration:none; 
+	padding: 5px 138px 5px 138px;
+	background: black; 
+}
+
+.formulario_a:hover{ 
+	color:#0000;
+	background: skyblue;
+}
+
+.formulario__input2{
+	height: 200px;
+	width: 95%;
+	font-size: 15px;
+	background:rgb(0,117,128);
+	border-radius: 5px; 
+	color: black;
+}
+
+.formulario__input2::placeholder{
+	color: white;
+}
+
 .formulario_input_pass{
 	width: 37%;
 	background:rgb(0,117,128); 
 	border: 3px solid transparent;  
-	height: 40px;
+	height: auto;
 	line-height: 45px;
 	padding: 0px 0px 0px 10px; /* arriba, derecha, abajo, izquierda*/
 	transition: 0.3s ease all;	
@@ -55,18 +109,17 @@
 .formulario_input_eye{
 	background:rgb(0,117,128); 
 	border: 3px solid transparent;  
-	height: 40px;
+	height: 30px;
 	line-height: 45px;
-	padding: 3px 0px 1px 10px; /* arriba, derecha, abajo, izquierda*/
+	/*padding: 0px 0px 20px 0px;  arriba, derecha, abajo, izquierda*/
 	transition: 0.3s ease all;	
 	color: white;
-	margin-left: 30px;
-	border border-radius: 0px;
+	/*border border-radius: 0px;*/
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
-	width:6%; 
-	height: 39px; 
-	text-align: left; 
+	width:7%; 
+	height: auto;
+	text-align: center; 
 	margin-left: 0px;
 
 }
@@ -92,8 +145,9 @@
 	border: 3px solid #fff;
 	outline: none; /*Quita Subrayado del navegador*/
 	box-shadow: 3px 0px 60px hsla(246.81, 100%, 63.922%, 0.4);
-	width: 30%;
+	width: 37%;
 }
+
 
 .formulario__input-error{
 	font-size: 14px;
@@ -166,17 +220,18 @@
 	transition: 0.1s ease all;
 }
 .formulario__btn2{
-	height: 45px;
+	height: 30px;
 	line-height: 45px;
 	width: 100px;
-	background: #50A2C3;
+	background: #005070;
 	color: #fff;
-	font-weight: 900;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: 0.1s ease all;
 }
+
+
 
 .formulario__btn2:hover{
 	box-shadow: 3px 0px 30px #B8C0C3; 

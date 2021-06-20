@@ -27,7 +27,6 @@ body{
 
 .main_container{
 	position: absolute;
-
 	left: calc(var(--width) + 25px);
 	top: 70px;
 	color: black;
@@ -46,8 +45,8 @@ body{
 	color: black;
 	position: absolute;
 	height: 65%;
-	left: 10;
-	top: 60;
+	left: 10px;
+	top: 60px;
 	border-radius: 10px;
 	border: solid;
 	border-color: var(--hovercolor);

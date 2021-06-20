@@ -5,6 +5,9 @@
 	if(isset($_SESSION['correo'])){
 		$privilegio = $_SESSION['privilegio'];
 	}
+
+	$nombre=$_SESSION['nombre'];
+	print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +18,7 @@
 
 		<!--Estilos del formulario-->
 		<link rel="stylesheet" href="../css/formMultiStep.css">
+		<link rel="stylesheet" href="../css/formularioRegistro.css">
 
 		<script src="../js/jquery-3.6.0.js"></script>
 		<script src="../js/main.js"></script>
@@ -26,39 +30,41 @@
 		<link rel="stylesheet" href="../css/navbar.css">
 	</head>
 <body>
-	<?php
-		if($_SESSION == NULL){
-			require '../assets/navs/headerBase.php';
-
-		}elseif($_SESSION['privilegio'] == 'Comprador'){
-			require '../assets/navs/headerComprador.php';
-
-		}elseif($_SESSION['privilegio'] == 'Vendedor'){
-			require '../assets/navs/headerVendedor.php';
-		}
-	?>
-
+<?php
+    if($_SESSION == NULL){
+        header('location:./login.php'); 
+        //require '../assets/navs/headerBase.php';
+    }
+    elseif($_SESSION['privilegio'] == 'Comprador'){
+        require '../assets/navs/headerComprador.php';
+    }
+?>
 	<main class="contenedor">
 		<div class="prin">
-			<div style="float:left;"; class="formregister">
-	      <h4>Datos del comprador o de quien recibe</h4>
-	      <input class="controls" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre">
-	      <input class="controls" type="text" name="apellidoPat" id="apellidoPat" placeholder="Ingrese su Apellido Paterno">
-				<input class="controls" type="text" name="apellidoMat" id="apellidoMat" placeholder="Ingrese su Apellido Materno">
-	      <input class="controls" type="tel" name="tel" id="tel" placeholder="Ingrese su teléfono">
-	      <textarea class="controls" name="comentarios" rows="5" cols="50" placeholder="Aqui introduzca el lugar y/o la referencias del punto de encuentro" ></textarea>
-	      <a class="controls" href="../index.php" style="color: #fff; text-decoration:none; padding: 5px 138px 5px 138px; color:#000:hover;">Cancelar</a>
+			<div style="float:left;" class="formregister">
+		    <h4>Datos del comprador o de quien recibe</h4>
+		    <input type="text" class="formulario__input1" value="<?php echo $_SESSION['nombre']?>">
+	    	<input type="text" class="formulario__input1" value="<?php echo $_SESSION['apellidop']?>">
+	    	<input type="text" class="formulario__input1" value="<?php echo $_SESSION['apellidom']?>">
+		    <br>
+		    <h5>Comentarios para la compra</h5>
+		    <textarea class="formulario__input2" name="comentarios" rows="4" cols="30" placeholder="Aqui introduzca el lugar y/o la referencias del punto de encuentro, o algun comentario"></textarea>
+		    <br>
+		    <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='index.php'" >Cancelar</button>
 	    </div>
 	         
 	    <div style="float:right;"; class="formregister">
 	     	<h4>Resumen del pedido</h4> 
-	     	<img src="../img/computadora-galeria01.jpeg" width="200" height="150">
+	     	<img src="../img/<<?php echo $img ?>" width="200" height="150">
 	      <h5>Nombre del producto</h5>
+	      <?php echo $nombre_producto ?>
 	      <h5>Cantidad</h5>
+	      <?php echo $nombre_producto ?>
 	      <h5>Precio</h5>
+	      <?php echo $precio ?>
 	      <h4>Total</h4>
-	      <a class="controls" href="pagartotal.html" style="color: #fff; text-decoration:none; padding: 5px 100px 5px 100px; color:#000:hover;">Realizar Compra</a>
-	    </div>
+	      <?php echo $Total?>
+	      <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='pagartotal.php'" >Pagar</button>
   	</div>
 	</main>
 	
