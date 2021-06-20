@@ -208,7 +208,7 @@
 			</div>
 
 			<div id="contenedor" class="main_container_ocul">
-				<section class="configurar_datos_ocul" id="datos">
+				<section class="configurar_datos" id="datos">
 				<h1>Editar Datos</h1>
 
 				<form action="" class="formulario" id="formulario" method="get">
@@ -229,7 +229,7 @@
 						<h3 style="color:#50A2C3; margin-left:30px;">Datos</h3>
 						<label for="correo" class="formulario__label"> Correo </label><label for="password" class="formulario__label"> Contraseña </label><br>
 						<input type="text" name="correo" class="formulario__input" id="correo" value="<?php echo $_SESSION['correo'] ?>">
-		        <input type="password" id="contrasena" class="formulario_input_pass" name="contrasena" value="<?php echo $_SESSION['contrasena'] ?>" required autocomplete="off" ><button id="contrasena" class="formulario_input_eye" onclick="mostrarPassword()"><span class="fa fa-eye-slash icono"></span></button>
+		        	<input type="password" id="contrasena" class="formulario_input_pass" name="contrasena" value="<?php echo $_SESSION['contrasena'] ?>" required autocomplete="off" ><button id="contrasena" class="formulario_input_eye" onclick="mostrarPassword()"><span class="fa fa-eye-slash" id="eye"></span></button>
 		       </div>
 					<br>
 					<div class="formulario__grupo-btn-enviar">
@@ -266,10 +266,10 @@
     var cambio = document.getElementById("contrasena");
     if(cambio.type == "password"){
       cambio.type = "text";
-      $('.icono').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      // $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
     }else{
       cambio.type = "password";
-      $('.icono').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      // $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
   } 
 </script>

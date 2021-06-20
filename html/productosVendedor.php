@@ -43,7 +43,6 @@
         elseif($_SESSION['privilegio'] == 'Vendedor'){
             require '../assets/navs/headerVendedor.php';
         }
-        // require '../assets/navs/headerVendedorHtml.php';
 	?>
 
     <!-- Modal -->

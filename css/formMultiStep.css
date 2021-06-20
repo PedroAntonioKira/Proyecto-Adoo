@@ -211,19 +211,26 @@ select.list-dt:focus {
 }
 
 .radio {
-    display: inline-block;
-    width: 204;
-    height: 104;
-    border-radius: 0;
-    background: lightblue;
+    position: relative;
+    margin-bottom: 25px;
+    /*width: px;
+    height: 104px;
     box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    cursor: pointer;
-    margin: 8px 2px
+    margin: 8px 2px;*/
 }
 
+.icono{
+    display: none;
+    color: #007580;
+}
+
+/*.radio input{
+    display: none;
+}*/
+
 .radio:hover {
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
+    
 }
 
 .radio.selected {
@@ -237,19 +244,29 @@ select.list-dt:focus {
 
 .formregister {
     width: 400px;
-    background: #007580;
+    border: solid;
+    border-color: #007580;
+    background: #ffff;
     padding: 25px;
     margin: 30px 80px;
     border-radius: 15px;
-
+    font-size: 40px;
     font-family: 'calibri';
-    color:white;
+    /*color:;*/
     box-shadow: 7px 13px 37px #000;
 }
 
 .formregister h4 {
-    font-size: 22px;
+    font-size: 30px;
     margin-bottom: 20px;
+    color: #007580;
+    font-weight: bold;
+
+}
+
+.formregister h5{
+    font-size: 30px;
+    color: #000000;
 }
 
 .formregister p {
@@ -281,6 +298,10 @@ select.list-dt:focus {
 
 .formregister textarea {
     resize:none;
+}
+
+.formregister label {
+    font-size: 30px;
 }
 
 .prin{

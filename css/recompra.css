@@ -1,18 +1,13 @@
 
 
   .formregister {
-	width: 400px;
-	background: #007580;
-	padding: 30px;
-	margin: 100px;
-
-	font-family: 'calibri';
-	color: blue;
-	box-shadow: 7px 13px 37px #000;
-
+	border: solid;
+	border-color:#007580;
+	border-radius: 5px;
+	
   }
   
-  /*.formregister h4 {
+  .formregister h4 {
 	font-size: 22px;
 	margin-bottom: 20px;
   }
