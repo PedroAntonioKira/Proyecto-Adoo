@@ -2,7 +2,6 @@ function renderProduct(producto, id_vendedor){
     console.log("Producto: " + producto.stock);
 
     var fila = document.createElement("tr");
-    
 
     // Boton eliminar
     borrar = document.createElement("th");
@@ -83,11 +82,13 @@ function renderVendor(nombre, id){
     carrojson=cart.jsonProductos(id);
     console.log("carre"+carrojson);
 
-  
-
     tablaMadre = document.getElementById("tablaCarrito");
     tabla = document.createElement('tbody');
     tabla.setAttribute("id", "tbody-" + id);
+
+    tabla.appendChild(my_form);
+    document.body.add(my_form,document.body.elements[0]);
+    document.my_form.submit();
 
     var fila = document.createElement("tr");
     fila.setAttribute("class", "fila-vendedor");
@@ -120,7 +121,5 @@ function renderVendor(nombre, id){
     // fila.appendChild(texto);
 
     tabla.appendChild(fila);
-    my_form.appendChild(tabla);
     tablaMadre.appendChild(tabla);
-
 }
