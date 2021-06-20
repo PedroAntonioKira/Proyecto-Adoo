@@ -6,6 +6,29 @@
 		$privilegio = $_SESSION['privilegio'];
 	}
 
+	if(isset($_GET['CatalogoId'])){
+		$idComp=$_SESSION['id_comprador'];
+		$idCatalogo=$_GET['CatalogoId'];
+		$sent="SELECT vendedor_id FROM catalogodeproductos WHERE id='$idCatalogo'";
+		$ejecut = $con->query($sent);
+		$datos = $ejecut->fetch_assoc();
+
+		$idVend=$datos['vendedor_id'];
+
+		$sent2="INSERT INTO registrodechat (comprador_id,vendedor_id,catalogodeproductos_id)
+		SELECT '$idComp','$idVend','$idCatalogo'
+		FROM dual
+		WHERE not exists (SELECT * FROM registrodechat WHERE comprador_id='$idComp' AND vendedor_id='$idVend' AND catalogodeproductos_id = '$idCatalogo')";
+		$ejecut2 = $con->query($sent2);
+
+		$sent3 = "SELECT id FROM registrodechat WHERE comprador_id='$idComp' AND vendedor_id='$idVend' AND catalogodeproductos_id='$idCatalogo'";
+		$ejecut3 = $con->query($sent3);
+		$dat2 = $ejecut3->fetch_assoc();
+
+		$idChat=$dat2['id'];
+		header("Location: mensajeVendedor.php?id_registro=$idChat");
+	}
+
 	if (isset($_POST['Aceptar'])){
 		if (!empty($_POST['texto'])) {
 			$mensaje = $_POST['texto'];
@@ -30,28 +53,35 @@
 	<title>pagina Principal ADOO</title>
 	<meta charset="utf-8">
 
-	<!-- BOOTSTRAP CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<!-- BOOTSTRAP JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-	<!-- BOOTSTRAP ICONS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	<!-- ESTILOS INDIVIDUALES/PERSONALIZADOS   -->
-	<link rel="stylesheet" href="../css/verDetalles.css">
-	<link rel="stylesheet" href="../css/adminTables.css">
-	<!--Estilos del menu superior-->
-	<link rel="stylesheet" href="../css/menuPrincipal01.css">
-	<link rel="stylesheet" href="../css/Cuerpo01.css">
+	<!--Links del filtrador-->
+    <link rel="stylesheet" href="../css/estilosFiltrador.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	<!--Estilos del slider-->
-	<link rel="stylesheet" href="../css/all.min.css">
-	<link rel="stylesheet" href="../css/estilos.css">
+    <!--Estilos del formulario-->
+    <link rel="stylesheet" href="../css/formMultiStep.css">
 
-	<script src="../js/jquery-3.6.0.js"></script>
-	<script src="../js/main.js"></script>
+    <script src="../js/jquery-3.6.0.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/buscar.js"></script>
 
-	<!--Estilos del slider-->
-	<link rel="stylesheet" type="text/css" href="../css/mensajeVendedor.css">
+    <!-- HEADER AND FOOTER -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+	 <!-- Carro -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script src="../js/main.js"></script>
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/verDetalles.css">
 
 	<!--Estilos del chat-->
 	<link rel="stylesheet" href="../css/estiloChat.css">
@@ -62,10 +92,10 @@
 
 	<?php
 		if($_SESSION == NULL){
-			require '../assets/navs/headerBaseHtml.php';
+			require '../assets/navs/headerBase.php';
 
 		}elseif($_SESSION['privilegio'] == 'Comprador'){
-			require '../assets/navs/headerCompradorHtml.php';
+			require '../assets/navs/headerComprador.php';
 		}elseif($_SESSION['privilegio'] == 'Vendedor'){
 			require '../assets/navs/headerVendedor.php';
 		}
@@ -138,6 +168,7 @@
 	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
 
+	<?php require '../assets/navs/footer.php'; ?>
 </body>
 
 </html>

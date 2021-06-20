@@ -179,16 +179,19 @@ class Carrito {
         span.innerHTML = conteo;
     }
 
-    listaProductos(){
+    listaProductos(id_vendedor){
         var listaProductos = '';
         this.vendedores.forEach(vendedor => {
-            vendedor.productos.forEach(producto => {
+            if(vendedor.id == id_vendedor){
+                vendedor.productos.forEach(producto => {
                 // console.log(producto.nombre);
                 listaProductos = listaProductos + producto.nombre + ','; 
-            });
+                });
+            }
+            
         });
         listaProductos = listaProductos.substring(0, listaProductos.length - 1);
-        // console.log(listaProductos);
+        console.log(listaProductos);
         return listaProductos;
     }
 
