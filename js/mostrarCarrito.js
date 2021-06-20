@@ -86,10 +86,6 @@ function renderVendor(nombre, id){
     tabla = document.createElement('tbody');
     tabla.setAttribute("id", "tbody-" + id);
 
-    tabla.appendChild(my_form);
-    document.body.add(my_form,document.body.elements[0]);
-    document.my_form.submit();
-
     var fila = document.createElement("tr");
     fila.setAttribute("class", "fila-vendedor");
     campo1 = document.createElement("td");
