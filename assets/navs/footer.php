@@ -30,4 +30,7 @@
 			<div class="col-3"></div>
 	</footer>
 	<!-- = = = = = = = = END = = = = = = = = -->
+
+	<!-- = = = = = = = = SCRIPTS GLOBALES = = = = = = = = -->
     <script src="../js/buscar.js"></script>    
+	<script src="../js/carrito.js"></script>

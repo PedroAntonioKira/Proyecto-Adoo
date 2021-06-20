@@ -70,7 +70,7 @@
 							$consulta = "SELECT marca, fabricante, altoprod, anchoprod, bateriasinclu, tamaram, tamadiscoduro, sistemaoperativo, procesador, 
               tamapantalla, resolucion, numeroprocesadores, tipodiscoduro, imagen1, imagen2, imagen3, color, descripcion.precio, 		
                 catalogodeproductos.vendedor_id, producto.nombre AS nombreProd, stock, avgcalificacion, info.nombre, info.apellidop, 
-                info.apellidom,	producto.calificacion
+                info.apellidom,	producto.calificacion, vendedor.id AS id_vendedor
                 FROM descripcion
                 INNER JOIN producto ON producto.descripcion_id = descripcion.id
                 INNER JOIN catalogodeproductos ON catalogodeproductos.producto_id = producto.id
@@ -87,7 +87,9 @@
               $idv=$datos['vendedor_id'];
               $precio=($datos['precio']);
               $calificacion=($datos['calificacion']);
-				            $id=$id_Producto;
+              $id=$id_Producto;
+
+              $id_vendedor = $datos["id_vendedor"];
               
 
 						}catch (Exception $e) {
@@ -268,7 +270,7 @@
                     if($privilegio != NULL){
                     ?>
                     <a type="button" class="btn btn-primary" title="Preguntar al vendedor"><i class="bi bi-chat-dots-fill"></i></a>
-                    <a href="#" data-name="<?php echo $nombre ?>" data-price="<?php echo $precio ?>" data-id="<?php echo $id ?>" data-idv="<?php echo $idv ?>" class="add-to-cart btn btn-success" title="Agregar al carrito"><i class="bi bi-cart-plus-fill"></i></a>
+                    <button onClick="cart.agregar(<?php echo $id ?>, '<?php echo $nombre ?>', <?php echo $id_vendedor ?>);" title="Añadir al carrito" class="btn btn-success" id="btn-cart-<?php echo $id ?>"><i class="bi bi-cart-plus-fill"></i></button>
                     <?php
                     }else{
                       ECHO "

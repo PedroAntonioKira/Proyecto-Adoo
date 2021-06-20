@@ -41,7 +41,8 @@
          
 			<li class="nav-item" data-toggle="modal" data-target="#cart">
 				<!-- <li class="nav-item d-flex justify-content-between align-items-start"> -->
-				<a class="nav-link active" aria-current="page" href="#"><i class="bi bi-cart4"></i> Carrito(<span class="total-count"></span>)</a> 
+				<a class="nav-link active" aria-current="page" href="./verCarrito.php" ><i class="bi bi-cart4"></i> Carrito [<span class="total-count" id="cart-count">0</span>]</a> 
+				<!-- onClick="verCarrito()" -->
 				<!-- <span class="badge bg-light rounded-pill" style="color:#000">14</span> -->
 			</li>        
 

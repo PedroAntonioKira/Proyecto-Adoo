@@ -97,8 +97,9 @@
 				// CONSULTA ANTERIOR 
 				// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
 				// FROM `producto`, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;
-				$selectNuevosProductos = "SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
-				FROM `producto`, descripcion WHERE (producto.descripcion_id = descripcion.id) 
+				$selectNuevosProductos = "SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1, catalogodeproductos.vendedor_id 
+				FROM `producto`, descripcion, catalogodeproductos WHERE (producto.descripcion_id = descripcion.id) 
+                AND (catalogodeproductos.producto_id = producto.id)
 				AND (producto.estado LIKE 'PUBLICADO') AND (producto.stock > 0) ORDER BY producto.id DESC";
 				$ejecutar = $con->query($selectNuevosProductos);
 
@@ -107,6 +108,7 @@
 					$nombre = $datos['nombre'];
 					$precio = $datos['precio'];
 					$imagen = $datos['imagen1'];
+					$id_vendedor = $datos['vendedor_id'];
 					$urlAgregarCarrito = '#';
 
 					if($_SESSION == NULL){
@@ -120,13 +122,13 @@
 								<h5 class='card-title'>$nombre</h5>
 								<p class='card-text'>$$precio MXN</p>
 								<div class='buttons'>
-								<a href='verDetalles.php?id_producto=$id' class='btn btn-primary'><i class='bi bi-eye'></i></a>								
+								<a href='verDetalles.php?id_producto=$id' title='Ver detalles del producto' class='btn btn-primary'><i class='bi bi-eye'></i></a>								
 						";
-
+						// onClick="cart.agregar($id, '."'". $nombre ."'".' , 5);"							
 						if($privilegio != 'Vendedor'){
-							ECHO "
-								<a href='$urlAgregarCarrito' class='btn btn-success'><i class='bi bi-cart-plus'></i></a>
-							";
+							ECHO '
+								<button onClick="cart.agregar('.$id.', '."'". $nombre ."'".' , '.$id_vendedor.');" title="Añadir al carrito" class="btn btn-success" id="btn-cart-'.$id.'"><i class="bi bi-cart-plus"></i></button>
+							';
 						}
 					ECHO "
 							</div>
@@ -147,7 +149,7 @@
 	</body>
 
 	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="../js/menuPrincipal01.js"></script>
+	<!-- <script type="text/javascript" src="../js/menuPrincipal01.js"></script> -->
 	<?php require '../assets/navs/footer.php'; ?>
 		
 	
