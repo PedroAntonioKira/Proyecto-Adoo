@@ -85,12 +85,14 @@
 					$hora_entrega = $datos['hora_entrega'];
 
 					$texto = $transporte.",".$linea_esc.",".$estacion.","."proximo ".$dia_entrega.",".$hora_entrega;
-					echo "<option value='".$texto."'>$texto</option>";
+					echo "<option value='".$texto."' class=".$dia_entrega.">$texto</option>";
 				}
 			?>
 			</select>
 			<label for="input-fecha" class="form-label" id="fecha">Fecha</label>
 			<input type="text" id="input-fecha" name="fechaEntrega" disabled>
+			<input type="hidden" id="input-fecha-final" name="input-fecha-final">
+
 			</div>
 
 			<h3>Resumen del pedido.</h3>

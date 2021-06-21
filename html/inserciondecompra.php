@@ -14,6 +14,8 @@ $idc=$_SESSION['id_comprador'];
 $carrito=$_POST["carrito"];
 $text=$_POST['PuntoEntrega'];
 $idv=$_POST["idv"];
+$fecha_entrega = $_POST["input-fecha-final"];
+
 
 $text=explode(",",$text);
 var_dump($text);
@@ -95,7 +97,8 @@ $jsoncarrito=json_decode($carrito);
 					$linea=$text[1];
 					$estacion=$text[2];
 
-					$insentrega = "INSERT into entregas_compras(id_compra,fecha_entrega,hora_entrega,Linea,Estacion) values('$idcompra','$fechaEnt','$horaEnt','$linea','$estacion')";
+					$insentrega = "INSERT into entregas_compras(id_compra,fecha_entrega,hora_entrega,Linea,Estacion) 
+						values('$idcompra','$fecha_entrega','$horaEnt','$linea','$estacion')"; // <-- Cambie esto
 					$ejecutar3 = $con->query($insentrega);
 
 					if($ejecutar3 === TRUE)

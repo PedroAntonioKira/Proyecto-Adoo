@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2021 a las 21:44:14
+-- Tiempo de generación: 22-06-2021 a las 01:10:01
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -87,9 +87,6 @@ INSERT INTO `catalogodeproductos` (`id`, `vendedor_id`, `producto_id`, `avgcalif
 (17, 5, 17, 10, 0.00),
 (18, 5, 18, 10, 0.00),
 (19, 5, 19, 10, 0.00);
-(45, 3, 45, 3, 13.50),
-(46, 3, 46, 5, 3.50),
-(47, 4, 47, 4, 10.50);
 
 -- --------------------------------------------------------
 
@@ -188,7 +185,13 @@ CREATE TABLE `compras` (
 
 INSERT INTO `compras` (`id`, `id_comprador`, `id_vendedor`, `total`, `estatus`, `fecha`) VALUES
 (1, 1, 3, 61998, 0, '2021-06-21 09:47:30'),
-(2, 1, 5, 46500, 0, '2021-06-21 13:39:27');
+(2, 1, 5, 46500, 0, '2021-06-21 13:39:27'),
+(3, 3, 5, 30500, 0, '2021-06-21 19:14:15'),
+(4, 3, 5, 30500, 0, '2021-06-21 19:15:12'),
+(5, 3, 5, 30500, 0, '2021-06-21 19:16:08'),
+(6, 3, 5, 30500, 0, '2021-06-21 19:16:53'),
+(7, 3, 5, 30500, 0, '2021-06-21 19:17:48'),
+(21, 1, 3, 43999, 0, '2021-06-21 21:39:39');
 
 -- --------------------------------------------------------
 
@@ -239,10 +242,8 @@ INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`,
 (16, 'XPG', 'CANCELAR', 1.00, 1.80, 'CANCELAR', 16, 16, 'Windows,Linux', 'Ninguno', 1.00, '0', 4, 'DDR4', 'RAMSpectrix01.jpg', 'RAMSpectrix02.jpg', 'RAMSpectrix03.jpg', '#00a4b3', 2500.00, NULL),
 (17, 'Samsung', 'CANCELAR', 5.97, 2.80, 'CANCELAR', 8, 256, 'Android 11 One UI 3.0', 'Exynos 2100 a 2,9GHz', 6.20, '1080x2400', 8, 'SSD', 'SamsungGalaxyS21_01.jpg', 'SamsungGalaxyS21_02.jpg', 'SamsungGalaxyS21_03.jpg', '#007580', 27000.00, NULL),
 (18, 'Western', 'CANCELAR', 3.14, 1.00, 'CANCELAR', 1, 1000, 'Windows,Linux', 'Ninguno', 1.00, '0', 1, 'SSD', 'SSDWestern01.jpg', 'SSDWestern02.jpg', 'SSDWestern03.jpg', '#000000', 3500.00, NULL),
-(19, 'Microsoft', 'CANCELAR', 1.10, 1.00, 'CANCELAR', 16, 1000, 'Microsoft Xbox', 'CPU Zen 2', 400.00, '8192 x 4320', 8, 'SSD', 'XboxSeriesX01.jpg', 'XboxSeriesX02.jpg', 'XboxSeriesX03.jpg', '#007580', 17000.00, NULL),
-(45, '1n4007', 'Micro Commercial Co', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'diodo1', 'diodo2', 'diodo3', 'negro', 35.00, 'Voltaje inverso pico: 1000v o 1KV Corriente de sobretensión máxima: 30A'),
-(46, '1N47', 'litlefuse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'zenner1', 'zenner2', 'zenner3', 'cafe', 3.50, '\r\nDiodo Zener de 5,6 Volts a 1/2 Watt, con tolerancia del 5%.'),
-(47, 'LM38', 'NXP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'operacional1', 'operacional2', 'operacional3', 'negro', 10.50, '\r\nAmplificador operacional MOSFET de 5,6 Volts a 1/2 Watt.');
+(19, 'Microsoft', 'CANCELAR', 1.10, 1.00, 'CANCELAR', 16, 1000, 'Microsoft Xbox', 'CPU Zen 2', 400.00, '8192 x 4320', 8, 'SSD', 'XboxSeriesX01.jpg', 'XboxSeriesX02.jpg', 'XboxSeriesX03.jpg', '#007580', 17000.00, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -268,7 +269,19 @@ INSERT INTO `entregas_compras` (`id`, `id_compra`, `fecha_entrega`, `hora_entreg
 (3, 1, '2021-06-21', '04:47:31', 'A', 'La paz'),
 (4, 2, '2021-06-21', '08:39:28', 'A', 'La paz'),
 (5, 2, '2021-06-21', '08:39:28', 'A', 'La paz'),
-(6, 2, '2021-06-21', '08:39:28', 'A', 'La paz');
+(6, 2, '2021-06-21', '08:39:28', 'A', 'La paz'),
+(7, 3, '2021-06-21', '14:14:15', 'A', 'La paz'),
+(8, 3, '2021-06-21', '14:14:15', 'A', 'La paz'),
+(9, 4, '2021-06-21', '14:15:12', 'A', 'La paz'),
+(10, 4, '2021-06-21', '14:15:12', 'A', 'La paz'),
+(11, 5, '2021-06-21', '14:16:09', 'A', 'La paz'),
+(12, 5, '2021-06-21', '14:16:09', 'A', 'La paz'),
+(13, 6, '2021-06-21', '14:16:53', 'A', 'La paz'),
+(14, 6, '2021-06-21', '14:16:53', 'A', 'La paz'),
+(15, 7, '2021-06-21', '14:17:48', 'A', 'La paz'),
+(16, 7, '2021-06-21', '14:17:48', 'A', 'La paz'),
+(25, 21, '0000-00-00', '06:30:00', 'Linea 2', 'Tasqueña'),
+(26, 21, '0000-00-00', '06:30:00', 'Linea 2', 'Tasqueña');
 
 -- --------------------------------------------------------
 
@@ -458,12 +471,9 @@ INSERT INTO `producto` (`id`, `nombre`, `stock`, `estado`, `calificacion`, `list
 (14, 'Laptop Acer Nitro 5 AN515-55-73EJ', 5, 'PUBLICADO', 5, 1, 14),
 (15, 'Monitor Asus Tuf Gaming', 12, 'PUBLICADO', 5, 1, 15),
 (16, 'Memoria RAM XPG SPECTRIX D60G', 31, 'PUBLICADO', 5, 1, 16),
-(17, 'Samsung Galaxy S21', 20, 'PUBLICADO', 5, 2, 17),
-(18, 'SSD Western Digital WD Black SN750 NVMe', 37, 'PUBLICADO', 5, 1, 18),
-(19, 'Xbox Series X', 12, 'PUBLICADO', 5, 1, 19),
-(45, 'Diodo rectificador', 10, 'PUBLICADO', 3, 16, 45),
-(46, 'Diodo zener', 23, 'PUBLICADO', 5, 16, 46),
-(47, 'Amplificador operacional', 35, 'PUBLICADO', 4, 19, 47);
+(17, 'Samsung Galaxy S21', 15, 'PUBLICADO', 5, 2, 17),
+(18, 'SSD Western Digital WD Black SN750 NVMe', 32, 'PUBLICADO', 5, 1, 18),
+(19, 'Xbox Series X', 12, 'PUBLICADO', 5, 1, 19);
 
 -- --------------------------------------------------------
 
@@ -489,7 +499,19 @@ INSERT INTO `productos_comprados` (`id`, `id_compra`, `id_producto`, `cantidad`,
 (3, 1, 6, 1, 22999),
 (4, 2, 17, 1, 27000),
 (5, 2, 16, 1, 2500),
-(6, 2, 19, 1, 17000);
+(6, 2, 19, 1, 17000),
+(7, 3, 17, 1, 27000),
+(8, 3, 18, 1, 3500),
+(9, 4, 17, 1, 27000),
+(10, 4, 18, 1, 3500),
+(11, 5, 17, 1, 27000),
+(12, 5, 18, 1, 3500),
+(13, 6, 17, 1, 27000),
+(14, 6, 18, 1, 3500),
+(15, 7, 17, 1, 27000),
+(16, 7, 18, 1, 3500),
+(33, 21, 6, 1, 22999),
+(34, 21, 5, 1, 21000);
 
 -- --------------------------------------------------------
 
@@ -513,7 +535,9 @@ CREATE TABLE `puntos_entrega_vendedor` (
 
 INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `hora_entrega`, `Transporte`, `linea_o_Institucion`, `estacion_o_referencia`) VALUES
 (2, 'omar_vendedor@prueba.com', 'Martes', '03:30 PM', 1, 5, 'Polítecnico'),
-(3, 'omar_vendedor@prueba.com', 'Jueves', '06:30 PM', 1, 2, 'Tasqueña');
+(3, 'omar_vendedor@prueba.com', 'Jueves', '06:30 PM', 1, 2, 'Tasqueña'),
+(4, 'eliel_vendedor@gmail.com', 'Viernes', '10:00 AM', 3, 22, 'Campos de Futbol Rapido'),
+(5, 'eliel_vendedor@gmail.com', 'Jueves', '12:00', 1, 6, 'En la taquilla de los boletos');
 
 -- --------------------------------------------------------
 
@@ -973,7 +997,7 @@ ALTER TABLE `comprador`
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `descripcion`
@@ -985,7 +1009,7 @@ ALTER TABLE `descripcion`
 -- AUTO_INCREMENT de la tabla `entregas_compras`
 --
 ALTER TABLE `entregas_compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `info`
@@ -1033,13 +1057,13 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `productos_comprados`
 --
 ALTER TABLE `productos_comprados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `puntos_entrega_vendedor`
 --
 ALTER TABLE `puntos_entrega_vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `punto_e`

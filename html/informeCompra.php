@@ -101,7 +101,7 @@
 					<div class="text-center col-6">
 						<div class="col-12 name">Punto de entrega</div>
 						<?php
-						echo "<div class='col-12 text'>CDMX,$linea_entrega, Estación $estacion_entrega, Torniquetes.</div>"
+						echo "<div class='col-12 text'>CDMX, $linea_entrega, Estación $estacion_entrega, Torniquetes.</div>"
 						?>
 						<!-- <div class="col-12 text">CDMX, Linea Amarilla, Estación Politecnico, Torniquetes.</div> -->
 					</div>

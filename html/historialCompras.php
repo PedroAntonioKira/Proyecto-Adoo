@@ -121,7 +121,8 @@
 													echo "<td>$estatus</td>";
 													echo "<td>$fecha</td>";
 													echo "<td>";
-													echo "<a href='informeCompra.php?id=$idComp' class='btn btn-primary' title='Ver mensaje'><i class='bi bi-eye'></i></a>";
+													echo "<a href='informeCompra.php?id=$idComp' class='btn btn-primary' title='Ver mensaje'><i class='bi bi-eye'></i></a>
+													<a href='devolucion.php?id=$idComp' class='btn btn-primary' title='Ver mensaje'><i class='bi bi-arrow-left-right'></i></a>";
 													echo "</td>";
 													echo "</tr>";
 												}
