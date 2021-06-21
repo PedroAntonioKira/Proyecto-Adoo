@@ -105,7 +105,7 @@
 			}
 
 			$select_entrega = "SELECT CONCAT(info.nombre, ' ', info.apellidop, ' ', info.apellidom) AS 'nombre_vendedor',
-			entregas_compras.fecha_entrega, DATE_FORMAT(entregas_compras.hora_entrega, '%h:%i %p') AS hora_entrega,
+			entregas_compras.fecha_entrega, DATE_FORMAT(entregas_compras.hora_entrega, '%h:%i %p') AS hora_entrega, entregas_compras.hora_entrega AS horitaEnt,
 			entregas_compras.linea, entregas_compras.estacion FROM compras, vendedor, info, entregas_compras
 			WHERE (compras.id = $id_compra) AND (compras.id_vendedor = vendedor.id) AND (vendedor.info_id = info.id) AND
             (entregas_compras.id_compra = compras.id);";
@@ -117,6 +117,7 @@
 				$hora_entrega = $datos['hora_entrega'];
 				$linea_entrega = $datos['linea'];
 				$estacion_entrega = $datos['estacion'];
+				$horaEntre=$datos['horitaEnt'];
 			}
 		}
 		?>
@@ -141,7 +142,7 @@
 					<div class="text-center col-6">
 						<div class="col-12 name">Punto de entrega</div>
 						<?php
-						echo "<div class='col-12 text'>CDMX, Linea $linea_entrega, Estación $estacion_entrega, Torniquetes.</div>"
+						echo "<div class='col-12 text'>CDMX,$linea_entrega, Estación $estacion_entrega, Torniquetes.</div>"
 						?>
 						<!-- <div class="col-12 text">CDMX, Linea Amarilla, Estación Politecnico, Torniquetes.</div> -->
 					</div>
@@ -150,7 +151,7 @@
 						<div class="col-6 name">Hora de Entrega</div>
 						<?php
 						echo "<div class='col-6 text'>$fecha_entrega</div>";
-						echo "<div class='col-6 text'>$hora_entrega</div>";
+						echo "<div class='col-6 text'>$horaEntre</div>";
 						?>
 					</div>
 

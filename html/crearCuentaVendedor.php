@@ -382,6 +382,7 @@ use PHPMailer\PHPMailer\Exception;
 		                    "<input type='text' name='dia' placeholder='Dia' style='width:200px;'>"+
 		                    "<input type='time' name='hora' placeholder='Hora' style='width:200px; margin-left:10px ;' min='00:00' max='23:59'>"+
 		                    "<div id='caja" + aux2 + "'></div>";
+
 		$(document).ready(function(){
 			$('#lista0').val(0);
 			recargarLista();
@@ -405,8 +406,8 @@ use PHPMailer\PHPMailer\Exception;
 			});
 		})
 		if (aux1<=1) {
-			aux1++;
-			aux2++;
+			// aux1++;
+			// aux2++;
 		}
 	}
 </script>

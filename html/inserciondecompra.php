@@ -1,4 +1,4 @@
-<?php 
+<?php
 	session_start();
 	require '../assets/connections/database.php';
 
@@ -8,23 +8,27 @@
 
 // agregar variables de Linea y estacion
 	// sustituirlas en linea 80
-	// no mover nada mas :) por favor 
+	// no mover nada mas :) por favor
 
 $idc=$_SESSION['id_comprador'];
 $carrito=$_POST["carrito"];
+$text=$_POST['PuntoEntrega'];
 $idv=$_POST["idv"];
+
+$text=explode(",",$text);
+var_dump($text);
 $jsoncarrito=json_decode($carrito);
 
 		require '../assets/connections/database.php';
 		$totalparcial=0;
-		$total=0;			
-		$bandera=false;	
-		$idcompra=0;	
+		$total=0;
+		$bandera=false;
+		$idcompra=0;
 		for ($i=0; $i < count($jsoncarrito) ; $i++){
 
 					$idprod=$jsoncarrito[$i]->id;
 					$cantidad=$jsoncarrito[$i]->cantidad;
-					
+
 
 		$consprecio = "SELECT descripcion.precio FROM catalogodeproductos inner join producto on producto.id=catalogodeproductos.producto_id inner JOIN descripcion on descripcion.id=producto.descripcion_id WHERE vendedor_id=$idv AND producto_id = $idprod";
 		$ejecutar = $con->query($consprecio);
@@ -58,7 +62,7 @@ $jsoncarrito=json_decode($carrito);
 
 					$idprod=$jsoncarrito[$i]->id;
 					$cantidad=$jsoncarrito[$i]->cantidad;
-					
+
 
 		$consprecio = "SELECT descripcion.precio,producto.stock FROM catalogodeproductos inner join producto on producto.id=catalogodeproductos.producto_id inner JOIN descripcion on descripcion.id=producto.descripcion_id WHERE vendedor_id=$idv AND producto_id = $idprod";
 		$ejecutar = $con->query($consprecio);
@@ -70,7 +74,7 @@ $jsoncarrito=json_decode($carrito);
 				$stock=$datos['stock'];
 				$stocktotal=$stock-$cantidad;
 				$totalparcial=$precio*$cantidad;
-				
+
 				$insprod = "INSERT into productos_comprados(id_compra,id_producto,cantidad,subtotal) values('$idcompra','$idprod',
 				'$cantidad',
 				'$totalparcial')";
@@ -85,10 +89,15 @@ $jsoncarrito=json_decode($carrito);
 
 					$hoy=date("Y-M-d");
 					$tiempo=date("H:m:s");
-				
-					$insentrega = "INSERT into entregas_compras(id_compra,fecha_entrega,hora_entrega,Linea,Estacion) values($idcompra,NOW(),NOW(),'A','La paz')";
+
+					$fechaEnt=$text[3];
+					$horaEnt=$text[4];
+					$linea=$text[1];
+					$estacion=$text[2];
+
+					$insentrega = "INSERT into entregas_compras(id_compra,fecha_entrega,hora_entrega,Linea,Estacion) values('$idcompra','$fechaEnt','$horaEnt','$linea','$estacion')";
 					$ejecutar3 = $con->query($insentrega);
-			   
+
 					if($ejecutar3 === TRUE)
 					{
 						$bandera=true;
@@ -102,13 +111,13 @@ $jsoncarrito=json_decode($carrito);
 
 
 			}
-			
+
 
 		}
 	}
 	IF($bandera===true)
-	{  
-		header('Location: /Proyecto-Adoo/html/informeCompra.php?id='.$idcompra);
+	{
+	header('Location: /Proyecto-Adoo/html/informeCompra.php?id='.$idcompra);
 
 	}
 

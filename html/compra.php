@@ -7,7 +7,7 @@
 	}
 
 	$nombre=$_SESSION['nombre'];
-	
+
 	$cantidad=$_COOKIE['cantidad'];
 	$carrito=$_COOKIE['carrito'];
 	$id=$_COOKIE['vendedor'];
@@ -33,9 +33,9 @@
 		<!-- <script src="../js/main.js"></script> -->
 
 		<!-- HEADER AND FOOTER -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>    
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 		<link rel="stylesheet" href="../css/navbar.css">
 		<link rel="stylesheet" href="../css/compra.css">
 		<script src="../js/compra.js"></script>
@@ -43,14 +43,14 @@
 <body>
 <?php
     if($_SESSION == NULL){
-        header('location:./login.php'); 
+        header('location:./login.php');
         //require '../assets/navs/headerBase.php';
     }
     elseif($_SESSION['privilegio'] == 'Comprador'){
         require '../assets/navs/headerComprador.php';
     }
 	else{
-		header('location:./index.php'); 
+		header('location:./index.php');
 	}
 ?>
 
@@ -60,19 +60,23 @@
 			<h3>Comprado por</h3>
 			<h4><?php echo $_SESSION['nombre']?> <?php echo $_SESSION['apellidop']?> <?php echo $_SESSION['apellidom']?></h4>
 			<h3>Entrega</h3>
-			<div class="input-group mb-3">
-			<label for="select-date" class="form-label">Lugar</label>
-				<select class="form-select" aria-label="Default select example" id="select-date">
-					<option value='-1' selected>Seleccione un punto de entrega</option>
 
+			<form action="inserciondecompra.php" method="post">
+			<div class="input-group mb-3">
+
+
+			<label for="select-date" class="form-label">Lugar</label>
+
+				<select class="form-select" aria-label="Default select example" id="select-date" name="PuntoEntrega">
+					<option value="-1" selected disabled>Selecciona el punto de entrega</option>
 			<?php
-				$entrega_vendedor = "SELECT puntos_entrega_vendedor.id, tipotrans.transporte, punto_e.linea_esc, puntos_entrega_vendedor.estacion_o_referencia, puntos_entrega_vendedor.dia_entrega, puntos_entrega_vendedor.hora_entrega 
-				FROM puntos_entrega_vendedor, vendedor, tipotrans, punto_e WHERE (vendedor.id = $id) AND (vendedor.usuario_correo = puntos_entrega_vendedor.correo_vendedor) 
+				$entrega_vendedor = "SELECT puntos_entrega_vendedor.id, tipotrans.transporte, punto_e.linea_esc, puntos_entrega_vendedor.estacion_o_referencia, puntos_entrega_vendedor.dia_entrega, puntos_entrega_vendedor.hora_entrega
+				FROM puntos_entrega_vendedor, vendedor, tipotrans, punto_e WHERE (vendedor.id = $id) AND (vendedor.usuario_correo = puntos_entrega_vendedor.correo_vendedor)
 				AND (tipotrans.id = puntos_entrega_vendedor.Transporte) AND (puntos_entrega_vendedor.linea_o_Institucion = punto_e.id)";
-				
+
 				// $ejec = $con->query($entrega_vendedor);
 				$ejecutar = $con->query($entrega_vendedor);
-		
+
 				while($datos = $ejecutar->fetch_assoc()){
 					$transporte = $datos['transporte'];
 					$linea_esc = $datos['linea_esc'];
@@ -80,13 +84,13 @@
 					$dia_entrega = $datos['dia_entrega'];
 					$hora_entrega = $datos['hora_entrega'];
 
-					$texto = $transporte. ", " .$linea_esc. ", " .$estacion. ", proximo " .$dia_entrega. " ". $hora_entrega;
-					echo "<option value='".$dia_entrega."'>$texto</option>";
+					$texto = $transporte.",".$linea_esc.",".$estacion.","."proximo ".$dia_entrega.",".$hora_entrega;
+					echo "<option value='".$texto."'>$texto</option>";
 				}
-			?>		
+			?>
 			</select>
 			<label for="input-fecha" class="form-label" id="fecha">Fecha</label>
-			<input type="text" id="input-fecha" disabled>
+			<input type="text" id="input-fecha" name="fechaEntrega" disabled>
 			</div>
 
 			<h3>Resumen del pedido.</h3>
@@ -101,26 +105,26 @@
 	  <th scope="col">Subtotal</th>
     </tr>
   </thead>
-  <tbody>			
-  <?php 
-		
-		// CONSULTA ANTERIOR 
-		// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
-		// FROM producto, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;					
+  <tbody>
+  <?php
+
+		// CONSULTA ANTERIOR
+		// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1
+		// FROM producto, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;
 		for ($i=0; $i < count($jsoncan) ; $i++){
 
 			$idprod=$jsoncan[$i]->id;
 
 		$comprobar = "SELECT imagen1,descripcion.precio,vendedor_id FROM catalogodeproductos inner join producto on producto.id=catalogodeproductos.producto_id inner JOIN descripcion on descripcion.id=producto.descripcion_id WHERE vendedor_id=$id AND producto_id = $idprod";
 		$ejecutar = $con->query($comprobar);
-	
+
 		if($datos = $ejecutar->fetch_assoc())
-		{ 					
+		{
 			//echo "fetch ".$idprod."<br>dato  ".$datos['vendedor_id'];
 
-			for ($j=0; $j < count($jsoncar) ; $j++) { 
+			for ($j=0; $j < count($jsoncar) ; $j++) {
 				// code...
-							
+
 				if($idprod==$jsoncar[$j]->id)
 				{
 					//echo "entre".$idprod;
@@ -138,12 +142,12 @@
       <td><p><?php echo $jsoncan[$i]->cantidad; ?></p></td>
       <td><p>$<?php echo $datos['precio']*$jsoncan[$i]->cantidad; ?> MXN</p></td>
     </tr>
-			
-			 <?php 	} } } } ?> 
+
+			 <?php 	} } } } ?>
 
 	</tbody>
 </table>
-<!-- 
+<!--
 		</div>
 	</div>
 
@@ -160,29 +164,29 @@
 		    <br>
 		    <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='index.php'" >Cancelar</button>
 	    </div>
-	         
-	    <div style="float:right;"; class="formregister">
-	     	<h4>Resumen del pedido</h4> 
 
-	     	<?php 
-		
-				// CONSULTA ANTERIOR 
-				// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
-				// FROM producto, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;					
+	    <div style="float:right;"; class="formregister">
+	     	<h4>Resumen del pedido</h4>
+
+	     	<?php
+
+				// CONSULTA ANTERIOR
+				// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1
+				// FROM producto, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;
 				for ($i=0; $i < count($jsoncan) ; $i++){
 
 					$idprod=$jsoncan[$i]->id;
 
 				$comprobar = "SELECT imagen1,descripcion.precio,vendedor_id FROM catalogodeproductos inner join producto on producto.id=catalogodeproductos.producto_id inner JOIN descripcion on descripcion.id=producto.descripcion_id WHERE vendedor_id=$id AND producto_id = $idprod";
 				$ejecutar = $con->query($comprobar);
-			
+
 				if($datos = $ejecutar->fetch_assoc())
-				{ 					
+				{
 					//echo "fetch ".$idprod."<br>dato  ".$datos['vendedor_id'];
 
-					for ($j=0; $j < count($jsoncar) ; $j++) { 
+					for ($j=0; $j < count($jsoncar) ; $j++) {
 						// code...
-									
+
 						if($idprod==$jsoncar[$j]->id)
 						{
 							//echo "entre".$idprod;
@@ -201,18 +205,19 @@
 	      <FONT SIZE=3>Total: &nbsp </FONT>
 	      <FONT SIZE=1><?php echo $datos['precio']*$jsoncan[$i]->cantidad; ?> </FONT><br> <?php 	} } } } ?> -->
 
-	      	<form action="inserciondecompra.php" method="post">
-				<input type="hidden" name="carrito" value='<?php echo $carro ?>'>
-				<input type="hidden" name="idv" value='<?php echo $id ?>'>
-				<button type="submit" class="controls btn btn-success">Pagar</button>
-			</form>
+
+					<input type="hidden" name="carrito" value='<?php echo $carro ?>'>
+					<input type="hidden" name="idv" value='<?php echo $id ?>'>
+					<button type="submit" class="controls btn btn-success">Pagar</button>
+				</form>
+
   		</div>
 	</div>
-	
+
 	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
   <!-- <script type="text/javascript" src="../js/menuPrincipal01.js"></script> -->
 
   <?php require '../assets/navs/footer.php'; ?>
 </body>
-	
+
 </html>
