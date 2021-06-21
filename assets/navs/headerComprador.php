@@ -55,7 +55,7 @@
 					<li><a class="dropdown-item" href="perfilComprador.php"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
 					<li><a class="dropdown-item" href="conversaciones.php"><i class="bi bi-chat-dots"></i> Conversaciones</a></li>
-					<li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Mis compras</a></li>
+					<li><a class="dropdown-item" href="historialCompras.php"><i class="bi bi-cash-coin"></i> Mis compras</a></li>
 				</ul>
 			</li>
 

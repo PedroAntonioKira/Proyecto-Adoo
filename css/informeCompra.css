@@ -120,7 +120,7 @@
     text-decoration: none;
     padding: 20px;
     margin-bottom: 15%;
-    margin-left: 26%;
+    margin-left: 7%;
     font-weight: 600;
     font-size: 20px;
     color: #ffffff;
@@ -140,6 +140,18 @@
     border-radius: 6px;
     border: 2px solid #080808;
 }
+
+.boton_personalizado3{
+    text-decoration: none;
+    padding: 20px;
+    margin-left: 29%;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #348ab4;
+    border-radius: 6px;
+    border: 2px solid #080808;
+}
 .boton_personalizado1:hover{
     color: #1a89c0;
     background-color: #ffffff;
@@ -148,6 +160,7 @@
     color: #1a89c0;
     background-color: #ffffff;
 }
-
-
-
+.boton_personalizado3:hover{
+    color: #1a89c0;
+    background-color: #ffffff;
+}
