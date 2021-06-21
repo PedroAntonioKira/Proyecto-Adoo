@@ -18,7 +18,8 @@ $jsoncarrito=json_decode($carrito);
 		require '../assets/connections/database.php';
 		$totalparcial=0;
 		$total=0;			
-		$bandera=false;		
+		$bandera=false;	
+		$idcompra=0;	
 		for ($i=0; $i < count($jsoncarrito) ; $i++){
 
 					$idprod=$jsoncarrito[$i]->id;
@@ -97,8 +98,9 @@ $jsoncarrito=json_decode($carrito);
 		}
 	}
 	IF($bandera===true)
-	{
-		echo "tu pago ha sido realizado, la entrega de tu paquete sera $hoy a las $tiempo";
+	{  
+		header('Location: /Proyecto-Adoo/html/informeCompra.php?id='.$idcompra);
+
 	}
 
 
