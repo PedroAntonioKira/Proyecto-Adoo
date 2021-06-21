@@ -6,9 +6,17 @@
 		$privilegio = $_SESSION['privilegio'];
 	}
 
+
+
 $idComp = $_GET['id'];
 //	INSERT INTO `registrodechat` (`id`, `comprador_id`, `vendedor_id`, `catalogodeproductos_id`) VALUES (NULL, '1', '1', '1')
 //	INSERT INTO `chat` (`id`, `idregistroDeChat`, `fecha`, `mensaje`, `correoEnvia`) VALUES (NULL, '1', current_timestamp(), 'Hola', 'joss.alberto.r.m@gmail.com')
+if(isset($_POST['Aceptar'])){
+  $consulta="UPDATE compras SET estatus = 'En proceso de devolucion' WHERE compras.id = '$idComp' ";
+  $ejecutar = $con->query($consulta);
+
+  header('location: index.php');
+}
 ?>
 
 
@@ -118,10 +126,12 @@ $idComp = $_GET['id'];
                       </div>
 
                       <br>
-                        <h3>Descriva el problema</h3>
+                        <h3>Describa el problema</h3>
                         <textarea name="comentario" rows="8" cols="80" placeholder="Escriba el por que de su devolución" class="form-textarea">
 
                         </textarea>
+                        <br><br>
+                        <input type="submit" name="Aceptar" value="Aceptar" class="btn btn-success">
                   			<!-- <label for="input-fecha" class="form-label" id="fecha">Fecha</label>
                   			<input type="text" id="input-fecha" name="fechaEntrega" disabled>
                   			</div>
