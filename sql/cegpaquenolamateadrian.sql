@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2021 a las 07:39:54
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 21-06-2021 a las 09:36:40
+-- Versión del servidor: 5.7.31
+-- Versión de PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,10 +27,13 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `administrador`
 --
 
-CREATE TABLE `administrador` (
-  `id` int(11) NOT NULL,
-  `usuario_correo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `administrador`;
+CREATE TABLE IF NOT EXISTS `administrador` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_correo` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_administrador_usuario1_idx` (`usuario_correo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -45,11 +48,15 @@ INSERT INTO `administrador` (`id`, `usuario_correo`) VALUES
 -- Estructura de tabla para la tabla `aprobacionproductos`
 --
 
-CREATE TABLE `aprobacionproductos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `aprobacionproductos`;
+CREATE TABLE IF NOT EXISTS `aprobacionproductos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `aprobacion` tinyint(4) NOT NULL,
   `administrador_id` int(11) NOT NULL,
-  `catalogodeproductos_id` int(11) NOT NULL
+  `catalogodeproductos_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_aprobacionproductos_administrador1_idx` (`administrador_id`),
+  KEY `fk_aprobacionproductos_catalogodeproductos1_idx` (`catalogodeproductos_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -58,13 +65,17 @@ CREATE TABLE `aprobacionproductos` (
 -- Estructura de tabla para la tabla `catalogodeproductos`
 --
 
-CREATE TABLE `catalogodeproductos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `catalogodeproductos`;
+CREATE TABLE IF NOT EXISTS `catalogodeproductos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `vendedor_id` int(11) NOT NULL,
   `producto_id` int(11) NOT NULL,
   `avgcalificacion` int(11) DEFAULT NULL,
-  `precio` double(9,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `precio` double(9,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_catalogodeproductos_vendedor1_idx` (`vendedor_id`),
+  KEY `fk_catalogodeproductos_producto1_idx` (`producto_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `catalogodeproductos`
@@ -82,14 +93,8 @@ INSERT INTO `catalogodeproductos` (`id`, `vendedor_id`, `producto_id`, `avgcalif
 (9, 4, 9, 10, 0.00),
 (10, 4, 10, 10, 0.00),
 (11, 4, 11, 10, 0.00),
-(12, 5, 12, 10, 0.00),
-(13, 5, 13, 10, 0.00),
-(14, 5, 14, 10, 0.00),
-(15, 5, 15, 10, 0.00),
-(16, 5, 16, 10, 0.00),
-(17, 5, 17, 10, 0.00),
-(18, 5, 18, 10, 0.00),
-(19, 5, 19, 10, 0.00);
+(20, 7, 20, 3, 13.50),
+(21, 7, 21, 5, 3.50);
 
 -- --------------------------------------------------------
 
@@ -97,10 +102,12 @@ INSERT INTO `catalogodeproductos` (`id`, `vendedor_id`, `producto_id`, `avgcalif
 -- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
-  `categoria` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -119,13 +126,17 @@ INSERT INTO `categorias` (`id`, `categoria`) VALUES
 -- Estructura de tabla para la tabla `chat`
 --
 
-CREATE TABLE `chat` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE IF NOT EXISTS `chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idregistroDeChat` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `mensaje` varchar(300) DEFAULT NULL,
-  `correoEnvia` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `correoEnvia` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idregistroDeChat` (`idregistroDeChat`),
+  KEY `correoEnvia` (`correoEnvia`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `chat`
@@ -138,7 +149,9 @@ INSERT INTO `chat` (`id`, `idregistroDeChat`, `fecha`, `mensaje`, `correoEnvia`)
 (4, 1, '2021-06-07 16:04:15', 'De ser posible lo mas rápido que pueda', 'joss.alberto.r.m@gmail.com'),
 (5, 1, '2021-06-07 17:12:11', 'Por favor', 'joss.alberto.r.m@gmail.com'),
 (6, 1, '2021-06-07 17:12:36', 'Hola', 'joss.alberto.r.m@gmail.com'),
-(7, 1, '2021-06-07 17:17:00', 'Disculpe', 'joss.alberto.r.m@gmail.com');
+(7, 1, '2021-06-07 17:17:00', 'Disculpe', 'joss.alberto.r.m@gmail.com'),
+(8, 2, '2021-06-21 09:22:52', 'hola', 'prueba@prueba.com'),
+(9, 2, '2021-06-21 09:22:59', 'como tas', 'prueba@prueba.com');
 
 -- --------------------------------------------------------
 
@@ -146,11 +159,15 @@ INSERT INTO `chat` (`id`, `idregistroDeChat`, `fecha`, `mensaje`, `correoEnvia`)
 -- Estructura de tabla para la tabla `comprador`
 --
 
-CREATE TABLE `comprador` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `comprador`;
+CREATE TABLE IF NOT EXISTS `comprador` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_correo` varchar(50) NOT NULL,
-  `info_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `info_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_comprador_info1_idx` (`info_id`),
+  KEY `fk_comprador_usuario1` (`usuario_correo`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `comprador`
@@ -169,14 +186,37 @@ INSERT INTO `comprador` (`id`, `usuario_correo`, `info_id`) VALUES
 -- Estructura de tabla para la tabla `compras`
 --
 
-CREATE TABLE `compras` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `compras`;
+CREATE TABLE IF NOT EXISTS `compras` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_comprador` int(11) NOT NULL,
   `id_vendedor` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
-  `estatus` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `total` double NOT NULL,
+  `estatus` varchar(40) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id_vendedor` (`id_vendedor`),
+  KEY `id_comprador` (`id_comprador`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`id`, `id_comprador`, `id_vendedor`, `total`, `estatus`, `fecha`) VALUES
+(34, 2, 3, 24998, 'En proceso de entrega', '2021-06-21 09:05:44'),
+(35, 2, 3, 24998, 'En proceso de entrega', '2021-06-21 09:06:38'),
+(36, 2, 3, 24998, 'En proceso de entrega', '2021-06-21 09:06:40'),
+(37, 2, 3, 24998, 'En proceso de entrega', '2021-06-21 09:08:27'),
+(38, 2, 3, 24998, 'En proceso de entrega', '2021-06-21 09:08:28'),
+(39, 2, 3, 43999, 'En proceso de entrega', '2021-06-21 09:13:18'),
+(40, 2, 3, 43999, 'En proceso de entrega', '2021-06-21 09:16:47'),
+(41, 2, 3, 43999, 'En proceso de entrega', '2021-06-21 09:18:13'),
+(42, 2, 7, 35, 'En proceso de entrega', '2021-06-21 09:26:23'),
+(43, 2, 7, 35, 'En proceso de entrega', '2021-06-21 09:29:05'),
+(44, 2, 7, 35, 'En proceso de entrega', '2021-06-21 09:29:13'),
+(45, 2, 7, 35, 'En proceso de entrega', '2021-06-21 09:29:43'),
+(46, 2, 7, 35, 'En proceso de entrega', '2021-06-21 09:30:31');
 
 -- --------------------------------------------------------
 
@@ -184,8 +224,9 @@ CREATE TABLE `compras` (
 -- Estructura de tabla para la tabla `descripcion`
 --
 
-CREATE TABLE `descripcion` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `descripcion`;
+CREATE TABLE IF NOT EXISTS `descripcion` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `marca` varchar(45) DEFAULT NULL,
   `fabricante` varchar(45) DEFAULT NULL,
   `altoprod` float(9,2) DEFAULT NULL,
@@ -204,8 +245,9 @@ CREATE TABLE `descripcion` (
   `imagen3` varchar(60) NOT NULL,
   `color` varchar(45) DEFAULT NULL,
   `precio` float(9,2) NOT NULL,
-  `descripcion` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `descripcion` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `descripcion`
@@ -230,7 +272,9 @@ INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`,
 (16, 'XPG', 'CANCELAR', 1.00, 1.80, 'CANCELAR', 16, 16, 'Windows,Linux', 'Ninguno', 1.00, '0', 4, 'DDR4', 'RAMSpectrix01.jpg', 'RAMSpectrix02.jpg', 'RAMSpectrix03.jpg', '#00a4b3', 2500.00, ''),
 (17, 'Samsung', 'CANCELAR', 5.97, 2.80, 'CANCELAR', 8, 256, 'Android 11 One UI 3.0', 'Exynos 2100 a 2,9GHz', 6.20, '1080x2400', 8, 'SSD', 'SamsungGalaxyS21_01.jpg', 'SamsungGalaxyS21_02.jpg', 'SamsungGalaxyS21_03.jpg', '#007580', 27000.00, ''),
 (18, 'Western', 'CANCELAR', 3.14, 1.00, 'CANCELAR', 1, 1000, 'Windows,Linux', 'Ninguno', 1.00, '0', 1, 'SSD', 'SSDWestern01.jpg', 'SSDWestern02.jpg', 'SSDWestern03.jpg', '#000000', 3500.00, ''),
-(19, 'Microsoft', 'CANCELAR', 1.10, 1.00, 'CANCELAR', 16, 1000, 'Microsoft Xbox', 'CPU Zen 2', 400.00, '8192 x 4320', 8, 'SSD', 'XboxSeriesX01.jpg', 'XboxSeriesX02.jpg', 'XboxSeriesX03.jpg', '#007580', 17000.00, '');
+(19, 'Microsoft', 'CANCELAR', 1.10, 1.00, 'CANCELAR', 16, 1000, 'Microsoft Xbox', 'CPU Zen 2', 400.00, '8192 x 4320', 8, 'SSD', 'XboxSeriesX01.jpg', 'XboxSeriesX02.jpg', 'XboxSeriesX03.jpg', '#007580', 17000.00, ''),
+(20, '1n4007', 'Micro Commercial Co', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'diodo1', 'diodo2', 'diodo3', 'negro', 35.00, 'Voltaje inverso pico: 1000v o 1KV Corriente de sobretensión máxima: 30A'),
+(21, '1N47', 'litlefuse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'zenner1', 'zenner2', 'zenner3', 'cafe', 3.50, '\r\nDiodo Zener de 5,6 Volts a 1/2 Watt, con tolerancia del 5%.');
 
 -- --------------------------------------------------------
 
@@ -238,14 +282,38 @@ INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`,
 -- Estructura de tabla para la tabla `entregas_compras`
 --
 
-CREATE TABLE `entregas_compras` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `entregas_compras`;
+CREATE TABLE IF NOT EXISTS `entregas_compras` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_compra` int(11) NOT NULL,
   `fecha_entrega` date NOT NULL,
   `hora_entrega` time NOT NULL,
   `Linea` varchar(50) NOT NULL,
-  `Estacion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Estacion` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_vendedor` (`id_compra`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `entregas_compras`
+--
+
+INSERT INTO `entregas_compras` (`id`, `id_compra`, `fecha_entrega`, `hora_entrega`, `Linea`, `Estacion`) VALUES
+(11, 37, '2021-06-21', '04:08:27', 'A', 'La paz'),
+(12, 37, '2021-06-21', '04:08:27', 'A', 'La paz'),
+(13, 38, '2021-06-21', '04:08:28', 'A', 'La paz'),
+(14, 38, '2021-06-21', '04:08:28', 'A', 'La paz'),
+(15, 39, '2021-06-21', '04:13:18', 'A', 'La paz'),
+(16, 39, '2021-06-21', '04:13:19', 'A', 'La paz'),
+(17, 40, '2021-06-21', '04:16:47', 'A', 'La paz'),
+(18, 40, '2021-06-21', '04:16:47', 'A', 'La paz'),
+(19, 41, '2021-06-21', '04:18:13', 'A', 'La paz'),
+(20, 41, '2021-06-21', '04:18:13', 'A', 'La paz'),
+(21, 42, '2021-06-21', '04:26:24', 'A', 'La paz'),
+(22, 43, '2021-06-21', '04:29:06', 'A', 'La paz'),
+(23, 44, '2021-06-21', '04:29:13', 'A', 'La paz'),
+(24, 45, '2021-06-21', '04:29:43', 'A', 'La paz'),
+(25, 46, '2021-06-21', '04:30:31', 'A', 'La paz');
 
 -- --------------------------------------------------------
 
@@ -253,13 +321,15 @@ CREATE TABLE `entregas_compras` (
 -- Estructura de tabla para la tabla `info`
 --
 
-CREATE TABLE `info` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `info`;
+CREATE TABLE IF NOT EXISTS `info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `apellidop` varchar(45) NOT NULL,
   `apellidom` varchar(45) NOT NULL,
-  `institucion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `institucion` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `info`
@@ -273,7 +343,8 @@ INSERT INTO `info` (`id`, `nombre`, `apellidop`, `apellidom`, `institucion`) VAL
 (5, 'Eliel', 'Guerra', 'Garcia', 'ESCOM'),
 (6, 'Josue', 'Guerra ', 'Garcia', 'ESCOM'),
 (7, 'Adrian', 'Castañeda', 'Lopez', 'ESCOM'),
-(8, 'Prueba', 'de', 'Tarjeta', 'ESCOM');
+(8, 'Prueba', 'de', 'Tarjeta', 'ESCOM'),
+(9, 'Luis Francisco', 'Sosa', 'Xiqui', 'Escom');
 
 -- --------------------------------------------------------
 
@@ -281,11 +352,15 @@ INSERT INTO `info` (`id`, `nombre`, `apellidop`, `apellidom`, `institucion`) VAL
 -- Estructura de tabla para la tabla `infobancaria`
 --
 
-CREATE TABLE `infobancaria` (
-  `idinfobancaria` int(11) NOT NULL,
+DROP TABLE IF EXISTS `infobancaria`;
+CREATE TABLE IF NOT EXISTS `infobancaria` (
+  `idinfobancaria` int(11) NOT NULL AUTO_INCREMENT,
   `info_id` int(11) NOT NULL,
-  `infotarjeta_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `infotarjeta_id` int(11) NOT NULL,
+  PRIMARY KEY (`idinfobancaria`),
+  KEY `fk_infobancaria_info1_idx` (`info_id`),
+  KEY `fk_infobancaria_infotarjeta1_idx` (`infotarjeta_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `infobancaria`
@@ -300,13 +375,15 @@ INSERT INTO `infobancaria` (`idinfobancaria`, `info_id`, `infotarjeta_id`) VALUE
 -- Estructura de tabla para la tabla `infotarjeta`
 --
 
-CREATE TABLE `infotarjeta` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `infotarjeta`;
+CREATE TABLE IF NOT EXISTS `infotarjeta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `num` varchar(30) NOT NULL,
   `exp` varchar(10) NOT NULL,
   `codigo` varchar(4) NOT NULL,
-  `correo_usuario` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `correo_usuario` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `infotarjeta`
@@ -322,11 +399,15 @@ INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`, `correo_usuario`) VALUE
 -- Estructura de tabla para la tabla `listacategorias`
 --
 
-CREATE TABLE `listacategorias` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `listacategorias`;
+CREATE TABLE IF NOT EXISTS `listacategorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `subcategoria_id` int(11) NOT NULL,
-  `categorias_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `categorias_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_listacategorias_subcategoria1_idx` (`subcategoria_id`),
+  KEY `fk_listacategorias_categorias1_idx` (`categorias_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `listacategorias`
@@ -372,9 +453,11 @@ INSERT INTO `listacategorias` (`id`, `subcategoria_id`, `categorias_id`) VALUES
 -- Estructura de tabla para la tabla `metododepago`
 --
 
-CREATE TABLE `metododepago` (
-  `idmetododepago` int(11) NOT NULL,
-  `metodo` varchar(45) NOT NULL
+DROP TABLE IF EXISTS `metododepago`;
+CREATE TABLE IF NOT EXISTS `metododepago` (
+  `idmetododepago` int(11) NOT NULL AUTO_INCREMENT,
+  `metodo` varchar(45) NOT NULL,
+  PRIMARY KEY (`idmetododepago`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -383,10 +466,12 @@ CREATE TABLE `metododepago` (
 -- Estructura de tabla para la tabla `privilegios`
 --
 
-CREATE TABLE `privilegios` (
-  `id` int(11) NOT NULL,
-  `privilegio` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `privilegios`;
+CREATE TABLE IF NOT EXISTS `privilegios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `privilegio` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `privilegios`
@@ -403,15 +488,19 @@ INSERT INTO `privilegios` (`id`, `privilegio`) VALUES
 -- Estructura de tabla para la tabla `producto`
 --
 
-CREATE TABLE `producto` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `producto`;
+CREATE TABLE IF NOT EXISTS `producto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   `stock` int(11) NOT NULL,
   `estado` varchar(45) DEFAULT NULL,
   `calificacion` int(11) DEFAULT NULL,
   `listacategorias_id` int(11) NOT NULL,
-  `descripcion_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `descripcion_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_producto_listacategorias1_idx` (`listacategorias_id`),
+  KEY `fk_producto_descripcion1_idx` (`descripcion_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `producto`
@@ -436,7 +525,9 @@ INSERT INTO `producto` (`id`, `nombre`, `stock`, `estado`, `calificacion`, `list
 (16, 'Memoria RAM XPG SPECTRIX D60G', 32, 'ESPERA', 5, 1, 16),
 (17, 'Samsung Galaxy S21', 21, 'ESPERA', 5, 2, 17),
 (18, 'SSD Western Digital WD Black SN750 NVMe', 37, 'ESPERA', 5, 1, 18),
-(19, 'Xbox Series X', 13, 'ESPERA', 5, 1, 19);
+(19, 'Xbox Series X', 13, 'ESPERA', 5, 1, 19),
+(20, 'Diodo rectificador', 10, 'PUBLICADO', 3, 16, 20),
+(21, 'Diodo zener', 40, 'PUBLICADO', 5, 16, 21);
 
 -- --------------------------------------------------------
 
@@ -444,13 +535,44 @@ INSERT INTO `producto` (`id`, `nombre`, `stock`, `estado`, `calificacion`, `list
 -- Estructura de tabla para la tabla `productos_comprados`
 --
 
-CREATE TABLE `productos_comprados` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `productos_comprados`;
+CREATE TABLE IF NOT EXISTS `productos_comprados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_compra` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `subtotal` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `subtotal` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_compra` (`id_compra`),
+  KEY `id_producto` (`id_producto`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `productos_comprados`
+--
+
+INSERT INTO `productos_comprados` (`id`, `id_compra`, `id_producto`, `cantidad`, `subtotal`) VALUES
+(45, 34, 8, 1, 6999),
+(46, 34, 4, 1, 17999),
+(47, 35, 8, 1, 6999),
+(48, 35, 4, 1, 17999),
+(49, 36, 8, 1, 6999),
+(50, 36, 4, 1, 17999),
+(51, 37, 8, 1, 6999),
+(52, 37, 4, 1, 17999),
+(53, 38, 8, 1, 6999),
+(54, 38, 4, 1, 17999),
+(55, 39, 5, 1, 21000),
+(56, 39, 6, 1, 22999),
+(57, 40, 6, 1, 22999),
+(58, 40, 5, 1, 21000),
+(59, 41, 6, 1, 22999),
+(60, 41, 5, 1, 21000),
+(61, 42, 20, 1, 35),
+(62, 43, 20, 1, 35),
+(63, 44, 20, 1, 35),
+(64, 45, 20, 1, 35),
+(65, 46, 20, 1, 35);
 
 -- --------------------------------------------------------
 
@@ -458,11 +580,13 @@ CREATE TABLE `productos_comprados` (
 -- Estructura de tabla para la tabla `punto_e`
 --
 
-CREATE TABLE `punto_e` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `punto_e`;
+CREATE TABLE IF NOT EXISTS `punto_e` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_tipotrans` int(11) DEFAULT NULL,
-  `linea_esc` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `linea_esc` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `punto_e`
@@ -504,12 +628,17 @@ INSERT INTO `punto_e` (`id`, `id_tipotrans`, `linea_esc`) VALUES
 -- Estructura de tabla para la tabla `registrodechat`
 --
 
-CREATE TABLE `registrodechat` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `registrodechat`;
+CREATE TABLE IF NOT EXISTS `registrodechat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `comprador_id` int(11) NOT NULL,
   `vendedor_id` int(11) NOT NULL,
-  `catalogodeproductos_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `catalogodeproductos_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_registrodechat_comprador1_idx` (`comprador_id`),
+  KEY `fk_registrodechat_vendedor1_idx` (`vendedor_id`),
+  KEY `fk_registrodechat_catalogodeproductos1_idx` (`catalogodeproductos_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `registrodechat`
@@ -517,7 +646,8 @@ CREATE TABLE `registrodechat` (
 
 INSERT INTO `registrodechat` (`id`, `comprador_id`, `vendedor_id`, `catalogodeproductos_id`) VALUES
 (1, 1, 1, 1),
-(2, 2, 1, 1);
+(2, 2, 1, 1),
+(3, 2, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -525,14 +655,20 @@ INSERT INTO `registrodechat` (`id`, `comprador_id`, `vendedor_id`, `catalogodepr
 -- Estructura de tabla para la tabla `registrodecompra`
 --
 
-CREATE TABLE `registrodecompra` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `registrodecompra`;
+CREATE TABLE IF NOT EXISTS `registrodecompra` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `comprador_id` int(11) NOT NULL,
   `catalogodeproductos_id` int(11) NOT NULL,
   `metododepago_idmetododepago` int(11) NOT NULL,
   `total` float(9,2) NOT NULL,
   `calificacion` int(11) DEFAULT NULL,
-  `status_id` int(11) NOT NULL
+  `status_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_registrodecompra_metododepago1_idx` (`metododepago_idmetododepago`),
+  KEY `fk_registrodecompra_comprador1_idx` (`comprador_id`),
+  KEY `fk_registrodecompra_catalogodeproductos1_idx` (`catalogodeproductos_id`),
+  KEY `fk_registrodecompra_status1_idx` (`status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -541,9 +677,11 @@ CREATE TABLE `registrodecompra` (
 -- Estructura de tabla para la tabla `status`
 --
 
-CREATE TABLE `status` (
+DROP TABLE IF EXISTS `status`;
+CREATE TABLE IF NOT EXISTS `status` (
   `id` int(11) NOT NULL,
-  `status` varchar(45) NOT NULL
+  `status` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -552,10 +690,12 @@ CREATE TABLE `status` (
 -- Estructura de tabla para la tabla `subcategoria`
 --
 
-CREATE TABLE `subcategoria` (
-  `id` int(11) NOT NULL,
-  `subcategoria` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `subcategoria`;
+CREATE TABLE IF NOT EXISTS `subcategoria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subcategoria` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `subcategoria`
@@ -600,12 +740,15 @@ INSERT INTO `subcategoria` (`id`, `subcategoria`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
   `correo` varchar(50) NOT NULL,
   `contrasena` varchar(45) NOT NULL,
   `hash` varchar(32) NOT NULL,
   `estatus` varchar(30) NOT NULL,
-  `privilegios_id` int(11) NOT NULL
+  `privilegios_id` int(11) NOT NULL,
+  PRIMARY KEY (`correo`),
+  KEY `fk_usuario_privilegios1_idx` (`privilegios_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -618,11 +761,12 @@ INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_i
 ('adrian@vendedor.ipn.com', '12345', '', 'VERIFICADO', 3),
 ('eliel_comprador@prueba.com', 'prueba', '', 'VERIFICADO', 2),
 ('eliel_vendedor@prueba.com', 'prueba', '', 'VERIFICADO', 3),
+('franciscov@gmail.com', 'vendedor', '1002', 'VERIFICADO', 3),
 ('joss.alberto.r.m@gmail.com', 'Contraseña', '', 'VERIFICADO', 2),
 ('omar.fi.wwr@gmail.com', '1234', '285e19f20beded7d215102b49d5c09a0', 'SIN_VERIFICAR', 3),
 ('omar_comprador@prueba.com', 'prueba', '', 'VERIFICADO', 2),
 ('omar_vendedor@prueba.com', 'prueba', '', 'VERIFICADO', 3),
-('prueba@prueba.com', 'Contraseña', '', 'VERIFICADO', 2),
+('prueba@prueba.com', 'Contra', '', 'VERIFICADO', 2),
 ('rodrigo@rodrigo.com', 'Contraseña', '', 'VERIFICADO', 3);
 
 -- --------------------------------------------------------
@@ -631,11 +775,15 @@ INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_i
 -- Estructura de tabla para la tabla `vendedor`
 --
 
-CREATE TABLE `vendedor` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `vendedor`;
+CREATE TABLE IF NOT EXISTS `vendedor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_correo` varchar(50) NOT NULL,
-  `info_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `info_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_vendedor_usuario1_idx` (`usuario_correo`),
+  KEY `fk_vendedor_info1_idx` (`info_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `vendedor`
@@ -646,321 +794,8 @@ INSERT INTO `vendedor` (`id`, `usuario_correo`, `info_id`) VALUES
 (3, 'omar_vendedor@prueba.com', 4),
 (4, 'eliel_vendedor@prueba.com', 5),
 (5, 'adrian@vendedor.ipn.com', 7),
-(6, 'omar.fi.wwr@gmail.com', 8);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `administrador`
---
-ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_administrador_usuario1_idx` (`usuario_correo`);
-
---
--- Indices de la tabla `aprobacionproductos`
---
-ALTER TABLE `aprobacionproductos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_aprobacionproductos_administrador1_idx` (`administrador_id`),
-  ADD KEY `fk_aprobacionproductos_catalogodeproductos1_idx` (`catalogodeproductos_id`);
-
---
--- Indices de la tabla `catalogodeproductos`
---
-ALTER TABLE `catalogodeproductos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_catalogodeproductos_vendedor1_idx` (`vendedor_id`),
-  ADD KEY `fk_catalogodeproductos_producto1_idx` (`producto_id`);
-
---
--- Indices de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `chat`
---
-ALTER TABLE `chat`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idregistroDeChat` (`idregistroDeChat`),
-  ADD KEY `correoEnvia` (`correoEnvia`);
-
---
--- Indices de la tabla `comprador`
---
-ALTER TABLE `comprador`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_comprador_info1_idx` (`info_id`),
-  ADD KEY `fk_comprador_usuario1` (`usuario_correo`);
-
---
--- Indices de la tabla `compras`
---
-ALTER TABLE `compras`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_vendedor` (`id_vendedor`),
-  ADD KEY `id_comprador` (`id_comprador`);
-
---
--- Indices de la tabla `descripcion`
---
-ALTER TABLE `descripcion`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `entregas_compras`
---
-ALTER TABLE `entregas_compras`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_compra` (`id_compra`);
-
---
--- Indices de la tabla `info`
---
-ALTER TABLE `info`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `infobancaria`
---
-ALTER TABLE `infobancaria`
-  ADD PRIMARY KEY (`idinfobancaria`),
-  ADD KEY `fk_infobancaria_info1_idx` (`info_id`),
-  ADD KEY `fk_infobancaria_infotarjeta1_idx` (`infotarjeta_id`);
-
---
--- Indices de la tabla `infotarjeta`
---
-ALTER TABLE `infotarjeta`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `listacategorias`
---
-ALTER TABLE `listacategorias`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_listacategorias_subcategoria1_idx` (`subcategoria_id`),
-  ADD KEY `fk_listacategorias_categorias1_idx` (`categorias_id`);
-
---
--- Indices de la tabla `metododepago`
---
-ALTER TABLE `metododepago`
-  ADD PRIMARY KEY (`idmetododepago`);
-
---
--- Indices de la tabla `privilegios`
---
-ALTER TABLE `privilegios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_producto_listacategorias1_idx` (`listacategorias_id`),
-  ADD KEY `fk_producto_descripcion1_idx` (`descripcion_id`);
-
---
--- Indices de la tabla `productos_comprados`
---
-ALTER TABLE `productos_comprados`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_compra` (`id_compra`),
-  ADD KEY `id_producto` (`id_producto`);
-
---
--- Indices de la tabla `punto_e`
---
-ALTER TABLE `punto_e`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `registrodechat`
---
-ALTER TABLE `registrodechat`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_registrodechat_comprador1_idx` (`comprador_id`),
-  ADD KEY `fk_registrodechat_vendedor1_idx` (`vendedor_id`),
-  ADD KEY `fk_registrodechat_catalogodeproductos1_idx` (`catalogodeproductos_id`);
-
---
--- Indices de la tabla `registrodecompra`
---
-ALTER TABLE `registrodecompra`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_registrodecompra_metododepago1_idx` (`metododepago_idmetododepago`),
-  ADD KEY `fk_registrodecompra_comprador1_idx` (`comprador_id`),
-  ADD KEY `fk_registrodecompra_catalogodeproductos1_idx` (`catalogodeproductos_id`),
-  ADD KEY `fk_registrodecompra_status1_idx` (`status_id`);
-
---
--- Indices de la tabla `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `subcategoria`
---
-ALTER TABLE `subcategoria`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`correo`),
-  ADD KEY `fk_usuario_privilegios1_idx` (`privilegios_id`);
-
---
--- Indices de la tabla `vendedor`
---
-ALTER TABLE `vendedor`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_vendedor_usuario1_idx` (`usuario_correo`),
-  ADD KEY `fk_vendedor_info1_idx` (`info_id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `administrador`
---
-ALTER TABLE `administrador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `aprobacionproductos`
---
-ALTER TABLE `aprobacionproductos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `catalogodeproductos`
---
-ALTER TABLE `catalogodeproductos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `chat`
---
-ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `comprador`
---
-ALTER TABLE `comprador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `compras`
---
-ALTER TABLE `compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `descripcion`
---
-ALTER TABLE `descripcion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT de la tabla `entregas_compras`
---
-ALTER TABLE `entregas_compras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `info`
---
-ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `infobancaria`
---
-ALTER TABLE `infobancaria`
-  MODIFY `idinfobancaria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `infotarjeta`
---
-ALTER TABLE `infotarjeta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `listacategorias`
---
-ALTER TABLE `listacategorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT de la tabla `metododepago`
---
-ALTER TABLE `metododepago`
-  MODIFY `idmetododepago` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `privilegios`
---
-ALTER TABLE `privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `producto`
---
-ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT de la tabla `productos_comprados`
---
-ALTER TABLE `productos_comprados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `punto_e`
---
-ALTER TABLE `punto_e`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT de la tabla `registrodechat`
---
-ALTER TABLE `registrodechat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `registrodecompra`
---
-ALTER TABLE `registrodecompra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `subcategoria`
---
-ALTER TABLE `subcategoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT de la tabla `vendedor`
---
-ALTER TABLE `vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+(6, 'omar.fi.wwr@gmail.com', 8),
+(7, 'franciscov@gmail.com', 9);
 
 --
 -- Restricciones para tablas volcadas

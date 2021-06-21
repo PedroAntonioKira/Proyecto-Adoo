@@ -10,21 +10,16 @@ console.log("Soy carrito");
          __/ |                               __/ |        
         |___/                               |___/         
     
-____________________________________
-/ Si necesitas ayuda, contáctame en \
-\ https://parzibyte.me               /
- ------------------------------------
+______________________________________________
+/ Ya pasenos profa, solo quiero porder dormir.\
+\  *Un burrito blanco en final del parcial*   /
+ ---------------------------------------------
         \   ^__^
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
                 ||     ||
-Creado por Parzibyte (https://parzibyte.me).
-------------------------------------------------------------------------------------------------
-Si el código es útil para ti, puedes agradecerme siguiéndome: https://parzibyte.me/blog/sigueme/
-Y compartiendo mi blog con tus amigos
-También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0CkGB6AFUoBg?sub_confirmation=1
-------------------------------------------------------------------------------------------------
+
 */
 class Carrito {
     constructor(correo) {
@@ -121,6 +116,15 @@ class Carrito {
         }
     }
 
+    quitarVendedor(id_vendedor){
+        const indiceVendedor = this.vendedores.findIndex(vendedor => vendedor.id === id_vendedor);
+        if (indiceVendedor != -1) {
+            this.vendedores.splice(indiceVendedor, 1);
+        }
+        this.guardar();
+        window.location.reload(); 
+    }
+
     quitarProductoDesdeCarrito(id_prod, nombreProd, id_vend) {
         const indiceVendedor = this.vendedores.findIndex(vendedor => vendedor.id === id_vend);
         if (indiceVendedor != -1) {
@@ -195,13 +199,28 @@ class Carrito {
         return listaProductos;
     }
 
+     jsonProductos(id_vendedor){
+        var listaProductos = '';
+        var json = '';
+        this.vendedores.forEach(vendedor => {
+            if(vendedor.id == id_vendedor){
+                
+                json=JSON.stringify(vendedor.productos);
+            }
+            
+        });
+        console.log("json"+json);
+        return json
+    }
+
     mostrarProductos(){
         console.log("mostrarProductos: " + window.location.pathname);
+         console.log("amos"); 
         if(window.location.pathname == "/Proyecto-Adoo/html/" 
             || window.location.pathname == "/Proyecto-Adoo/html/buscarProductos.php"
             || window.location.pathname == "/Proyecto-Adoo/html/verDetalles.php" 
             || window.location.pathname == "/Proyecto-Adoo/html/index.php"){ // BUSQUEDAS E INDEX
-
+             console.log("k"); 
             this.vendedores.forEach(vendedor => {
                 // console.log("Vendedor");
                 vendedor.productos.forEach(producto => {
@@ -211,7 +230,8 @@ class Carrito {
                 });
             });
         }
-        else if(window.location.pathname == "/Proyecto-Adoo/html/verCarrito.php"){ // CARRITO
+        else if(window.location.pathname == "/Proyecto-Adoo/html/verCarrito.php"){
+         console.log("a");  // CARRITO
             if(this.vendedores.length != 0){
                 this.vendedores.forEach(vendedor => {
                     queryVendorSelectName(vendedor.id);

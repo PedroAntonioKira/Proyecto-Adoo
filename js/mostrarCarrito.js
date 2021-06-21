@@ -1,6 +1,10 @@
 function renderProduct(producto, id_vendedor){
     console.log("Producto: " + producto.stock);
 
+          var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "compra.php");
+
     var fila = document.createElement("tr");
 
     // Boton eliminar
@@ -32,16 +36,40 @@ function renderProduct(producto, id_vendedor){
     fila.appendChild(precio);
     // Cantidad
     var cantidad = document.createElement("td");
-    inputCantidad = document.createElement("input");
-    inputCantidad.setAttribute("id", "cantidad-" + producto.id);
-    inputCantidad.setAttribute("type", "number");
-    inputCantidad.setAttribute("min", "1");
-    inputCantidad.setAttribute("max", producto.stock);
-    inputCantidad.setAttribute("pattern", "^[0-9]+");
-    inputCantidad.setAttribute("class", "form-control");
-    inputCantidad.setAttribute("value", "1");
-    inputCantidad.setAttribute("onChange", "cantidadCambiada(" + producto.id + ", " + producto.precio + ", " + producto.stock + ")");
-    cantidad.appendChild(inputCantidad);
+    if(producto.stock < 1 || producto.estado != "PUBLICADO"){
+        cantidad.setAttribute("class", "cart-error-product");
+
+        texto = document.createElement("h4");
+        texto.innerHTML("Producto no disponible");
+
+        cantidad.appendChild(texto);
+
+        inputCantidad = document.createElement("input");
+        inputCantidad.setAttribute("id", "cantidad-" + producto.id);
+        inputCantidad.setAttribute("type", "number");
+        inputCantidad.setAttribute("min", "1");
+        inputCantidad.setAttribute("max", producto.stock);
+        inputCantidad.setAttribute("pattern", "^[0-9]+");
+        inputCantidad.setAttribute("class", "form-control");
+        inputCantidad.setAttribute("value", "0");
+        inputCantidad.setAttribute("name","array[]");
+        inputCantidad.setAttribute("disabled", "true");
+        inputCantidad.setAttribute("onChange", "cantidadCambiada(" + producto.id + ", " + producto.precio + ", " + producto.stock + ")");
+        cantidad.appendChild(inputCantidad);
+    }
+    else{
+        inputCantidad = document.createElement("input");
+        inputCantidad.setAttribute("id", "cantidad-" + producto.id);
+        inputCantidad.setAttribute("type", "number");
+        inputCantidad.setAttribute("min", "1");
+        inputCantidad.setAttribute("max", producto.stock);
+        inputCantidad.setAttribute("pattern", "^[0-9]+");
+        inputCantidad.setAttribute("class", "form-control");
+        inputCantidad.setAttribute("value", "1");
+        inputCantidad.setAttribute("name","array[]");
+        inputCantidad.setAttribute("onChange", "cantidadCambiada(" + producto.id + ", " + producto.precio + ", " + producto.stock + ")");
+        cantidad.appendChild(inputCantidad);
+    }
     fila.appendChild(cantidad);
     // Subtotal
     var subtotal = document.createElement("td");
@@ -49,9 +77,12 @@ function renderProduct(producto, id_vendedor){
     subtotal.innerHTML = "$" + producto.precio + " MXN";
     fila.appendChild(subtotal);
 
+
+
     console.log('tbody-' + id_vendedor);
     tabla = document.getElementById('tbody-' + id_vendedor);
     tabla.appendChild(fila);
+
 }
 
 function cantidadCambiada(id, costo, stock){
@@ -59,13 +90,34 @@ function cantidadCambiada(id, costo, stock){
 
     cantidad = document.getElementById("cantidad-" + id);
     cant = parseFloat(cantidad.value);
-    if(cant > stock){
+    if((cant > stock) && (cant % 1 == 0)){
         cantidad.value = stock;
         cant = stock;
+        noti = document.getElementById("notify-1");
+        noti.setAttribute("class", "alert alert-warning alert-dismissible fade show notify-diplay-true");
     }
     if((cant < 1 && stock > 0) || (cant % 1 != 0)){
-        cantidad.value = "1";
-        cant = stock;
+        if(cant % 1 != 0 || cant == 0){
+            noti = document.getElementById("notify-2");
+            text_noti = document.getElementById("noti-text-change");
+            if(cant == 0){
+                text_noti.innerHTML = "No puede ingresar cero piezas del producto.";    
+            }
+            else{
+                text_noti.innerHTML = "No puede ingresar una cantidad de productos decimal.";
+            }
+            cantidad.value = "1";
+            cant = stock;
+        }
+        else{
+            cantidad.value = "1";
+            cant = stock;
+            noti = document.getElementById("notify-2");
+            text_noti = document.getElementById("noti-text-change");
+            text_noti.innerHTML = "No puede ingresar números negativos.";
+        }
+
+        noti.setAttribute("class", "alert alert-warning alert-dismissible fade show notify-diplay-true");
     }
     else{
         subtotal = document.getElementById("subtotal-" + id);
@@ -79,6 +131,10 @@ function cantidadCambiada(id, costo, stock){
 }
 
 function renderVendor(nombre, id){
+    carrojson=cart.jsonProductos(id);
+
+
+
     tablaMadre = document.getElementById("tablaCarrito");
     tabla = document.createElement('tbody');
     tabla.setAttribute("id", "tbody-" + id);
@@ -93,24 +149,75 @@ function renderVendor(nombre, id){
     campo3 = document.createElement("td");
     campo3.innerHTML = "Vendidos por: " + nombre; 
     fila.appendChild(campo3);
-//  = = = = BOTON EJEMPLO = = =  =
+//  = = = = BOTON REALIZAR COMPRA = = =  =
+  
     buttonComprar = document.createElement("button");
-    buttonComprar.setAttribute("value", "Comprar todo");
-    buttonComprar.setAttribute("class", "btn");
-    buttonComprar.innerHTML = "Comprar todo";
-    buttonComprar.setAttribute("onClick","cart.listaProductos("+id+")");
-//  = = = = BOTON EJEMPLO = = =  =
+    buttonComprar.setAttribute("id",id);
+    buttonComprar.setAttribute("value", carrojson);
+    buttonComprar.setAttribute("class", "btn btn-success");
+    buttonComprar.setAttribute("name","enviar");
+    buttonComprar.innerHTML = "Comprar productos";
+    buttonComprar.setAttribute("onClick"," Mandardatos(this.value,this.id)");
+    
+//  = = = = BOTON BORRAR VENDEDOR = = =  =
+    buttonBorrar = document.createElement("button");
+    buttonBorrar.setAttribute("class", "btn btn-warning");
+    buttonBorrar.innerHTML = "Borrar productos";
+    buttonBorrar.setAttribute("onClick","cart.quitarVendedor(" + id + ")");
+   //  = = = = = = = = = = = = = = =  = 
     campo4 = document.createElement("td");
     campo4.appendChild(buttonComprar);
     fila.appendChild(campo4);
+
     campo5 = document.createElement("td");
-    fila.appendChild(campo5);    
+    campo5.appendChild(buttonBorrar);
+    fila.appendChild(campo5);   
+
     campo6 = document.createElement("td");
     fila.appendChild(campo6); 
-    // texto = document.createElement("h4");
-    // fila.innerHTML = "Vendidos por: " + nombre;  
-    // fila.appendChild(texto);
 
     tabla.appendChild(fila);
     tablaMadre.appendChild(tabla);
+}
+
+
+function Mandardatos(value, ide){
+
+ var aux = [];
+
+ var elements = {};
+ 
+ var cantidad = document.getElementsByName('array[]');
+
+  for (var i = 0; i < cantidad.length ; i++) {
+                        //subtotal-1
+      textToParse = cantidad[i].id.split("-");
+      elements['id'] = textToParse[1];        
+      elements['cantidad']= cantidad[i].value;
+      aux.push(elements);
+      elements={};
+  
+  }
+
+createCookie('carrito', value);
+
+createCookie('cantidad', JSON.stringify(aux));
+
+createCookie('vendedor', ide);
+
+ window.location.href = "compra.php";
+
+}
+
+var createCookie = function(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
 }

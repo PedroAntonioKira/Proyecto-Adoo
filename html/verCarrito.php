@@ -29,6 +29,14 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
 		<link rel="stylesheet" href="../css/navbar.css">
 		<link rel="stylesheet" href="../css/productos-propuesta.css">
+		<link rel="stylesheet" href="../css/cardProducts.css">
+
+		  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="../js/main.js"></script>
+
 	</head>
 	<body>
 		<?php
@@ -43,10 +51,21 @@
 			}else{
 				require '../assets/navs/headerBase.php';
 			}
-			// echo $_SESSION['privilegio'];
 		?>
     <div class="container">
         <div class="row" id="contenedor-row">
+
+			<div id="messages-noti"></div>
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" id="notify-1">
+				<strong>¡No hay stock suficiente! </strong><br>
+				Actualmente no existe esa cantidad de productos en stock.
+			</div>
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" id="notify-2">
+				<strong>¡Cantidad incorrecta!</strong><br> 
+				<div id="noti-text-change"></div>
+				La cantidad ya fue corregida por el sistema.
+			</div>
+
             <table class="table" id="tablaCarrito">
             <thead>
                 <tr>
@@ -59,7 +78,6 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-
                         <!-- PRODUCTOS SE RENDERIZAN AQUI  -->
             </tbody>
             </table>

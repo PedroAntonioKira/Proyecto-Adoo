@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
   require '../assets/connections/database.php';
 
 	if(isset($_POST['Aceptar'])){
@@ -9,16 +11,18 @@
 			$institucion = $_POST['institucion'];
 			$correo = $_POST['correo'];
 			$contrasena = $_POST['contrasena'];
-// comentario de prueba
+
+			// comentario de prueba
 			$records = "SELECT * FROM usuario WHERE usuario.correo = '$correo'";
 			$ejecutar = $con->query($records);
 			$datos = $ejecutar->fetch_assoc();
+			$hash = md5( rand(0,1000)); // Generate random 32 character hash and assign it to a local variable.
 
 			if($datos != NULL){
 				echo("<script type='text/javascript'>alert('Ese correo ya está en uso'); </script>");
 			}else{
 				$info = "INSERT INTO info (nombre,apellidop,apellidom,institucion) VALUES ('$nombre', '$apellidop', '$apellidom', '$institucion')";
-				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '', 'VERIFICADO1', '2')";
+				$usuario = "INSERT INTO `usuario` (`correo`, `contrasena`, `hash`, `estatus`, `privilegios_id`) VALUES ('$correo', '$contrasena', '$hash', 'SIN_VERIFICAR', '2')";
 				$vinculo = "SELECT id FROM info WHERE info.nombre = '$nombre' AND info.apellidop = '$apellidop' AND info.apellidom = '$apellidom' AND info.institucion = '$institucion'";
 
 
@@ -36,7 +40,117 @@
 				if(!$con->query($comprador)){
 					echo("Falló: (" . $con->errno . ") " . $con->error);
 				}
-				header('location: login2.php');
+				
+
+				require 'PHPMailer/Exception.php';
+				require 'PHPMailer/PHPMailer.php';
+				require 'PHPMailer/SMTP.php';
+
+				
+				//Instantiation and passing `true` enables exceptions
+				$mail = new PHPMailer(true);
+
+				try {
+					//Server settings
+					$mail->SMTPDebug = 0;                      //Enable verbose debug output
+					$mail->isSMTP();                                            //Send using SMTP
+					$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+					$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+					$mail->Username   = 'electroguysescomadoo@gmail.com';                     //SMTP username
+					$mail->Password   = 'idaliaadoo';                               //SMTP password
+					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+					$mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+ 
+					//Recipients
+					$mail->setFrom('electroguysescomadoo@gmail.com', 'ELECTROGUYS');
+					$mail->addAddress($correo,$nombre);     //Add a recipient
+
+					//Content
+					$mail->isHTML(true);                                  //Set email format to HTML
+					$mail->Subject = 'Verificacion de Correo';
+					$mail->Body    = ' 
+					
+					
+<body style="margin:0;padding:0;">
+	<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
+		<tr>
+			<td align="center" style="padding:0;">
+				<table role="presentation" style="width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;">
+					<tr>
+						<td align="center" style="padding:40px 0 30px 0;background:#70bbd9;">
+							<img src="../img/logo.png" alt="" width="600"/>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:36px 30px 42px 30px;">
+							<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+								<tr>
+									<td style="padding:0 0 36px 0;color:#153643;">
+										<h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">Verificando Cuenta</h1>
+										<p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+										<b style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+										Hola '.$nombre.' gracias por realizar el registro para ser comprador</b>
+
+										<p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+										Solo necesitamos verificar su dirección de correo electrónico antes de que pueda acceder.</p>
+
+										<p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+										Verifique su dirección de correo electrónico haciendo click en el siguiente enlace:
+											http://localhost/Proyecto-Adoo/html/activarcorreo.php?correo='.$correo.'&hash='.$hash.'
+										</p>
+											
+										<p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+										Te recordamos tus credenciales</p>
+										<p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">Username: '.$nombre.' </p>
+										<p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">Password: '.$contrasena.'</p>
+										<p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">¡Gracias! te da el equipo de CEG</p>
+
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding:30px;background:#ee4c50;">
+							<table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
+								<tr>
+									<td style="padding:0;width:50%;" align="left">
+										<p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
+											&reg; Someone, Somewhere 2021<br/><a href="http://www.example.com" style="color:#ffffff;text-decoration:underline;">Unsubscribe</a>
+										</p>
+									</td>
+									<td style="padding:0;width:50%;" align="right">
+										<table role="presentation" style="border-collapse:collapse;border:0;border-spacing:0;">
+											<tr>
+												<td style="padding:0 0 0 10px;width:38px;">
+													<a href="http://www.twitter.com/" style="color:#ffffff;"><img src="https://assets.codepen.io/210284/tw_1.png" alt="Twitter" width="38" style="height:auto;display:block;border:0;" /></a>
+												</td>
+												<td style="padding:0 0 0 10px;width:38px;">
+													<a href="http://www.facebook.com/" style="color:#ffffff;"><img src="https://assets.codepen.io/210284/fb_1.png" alt="Facebook" width="38" style="height:auto;display:block;border:0;" /></a>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>			
+					';
+
+					$mail->send();
+					echo 'Mensaje fue enviado';
+				} catch (Exception $e) {
+					echo "Mensaje no fue enviado hay un error{$mail->ErrorInfo}";
+				}
+					header('location: login2.php');
+
+
+
 			}
 		}
 	}
