@@ -8,7 +8,7 @@
 
 // agregar variables de Linea y estacion
 	// sustituirlas en linea 80
-	// no mover nada mas :)
+	// no mover nada mas :) por favor 
 
 $idc=$_SESSION['id_comprador'];
 $carrito=$_POST["carrito"];
@@ -60,23 +60,32 @@ $jsoncarrito=json_decode($carrito);
 					$cantidad=$jsoncarrito[$i]->cantidad;
 					
 
-		$consprecio = "SELECT descripcion.precio FROM catalogodeproductos inner join producto on producto.id=catalogodeproductos.producto_id inner JOIN descripcion on descripcion.id=producto.descripcion_id WHERE vendedor_id=$idv AND producto_id = $idprod";
+		$consprecio = "SELECT descripcion.precio,producto.stock FROM catalogodeproductos inner join producto on producto.id=catalogodeproductos.producto_id inner JOIN descripcion on descripcion.id=producto.descripcion_id WHERE vendedor_id=$idv AND producto_id = $idprod";
 		$ejecutar = $con->query($consprecio);
 
 			if($datos = $ejecutar->fetch_assoc())
 			{
 
 				$precio=$datos['precio'];
+				$stock=$datos['stock'];
+				$stocktotal=$stock-$cantidad;
 				$totalparcial=$precio*$cantidad;
 				
 				$insprod = "INSERT into productos_comprados(id_compra,id_producto,cantidad,subtotal) values('$idcompra','$idprod',
 				'$cantidad',
 				'$totalparcial')";
 				$ejecutar2 = $con->query($insprod);
-			   
 
 				if($ejecutar2 === TRUE)
 				{
+
+					$updateprod="UPDATE producto SET stock=$stocktotal where id=$idprod";
+					$ejecutar2 = $con->query($updateprod);
+
+					$insprod = "INSERT into productos_comprados(id_compra,id_producto,cantidad,subtotal) values('$idcompra','$idprod',
+					'$cantidad',
+					'$totalparcial')";
+					$ejecutar2 = $con->query($insprod);
 					$hoy=date("Y-M-d");
 					$tiempo=date("H:m:s");
 				
