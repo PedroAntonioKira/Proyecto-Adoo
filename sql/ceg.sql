@@ -87,6 +87,9 @@ INSERT INTO `catalogodeproductos` (`id`, `vendedor_id`, `producto_id`, `avgcalif
 (17, 5, 17, 10, 0.00),
 (18, 5, 18, 10, 0.00),
 (19, 5, 19, 10, 0.00);
+(45, 3, 45, 3, 13.50),
+(46, 3, 46, 5, 3.50),
+(47, 4, 47, 4, 10.50);
 
 -- --------------------------------------------------------
 
@@ -236,8 +239,10 @@ INSERT INTO `descripcion` (`id`, `marca`, `fabricante`, `altoprod`, `anchoprod`,
 (16, 'XPG', 'CANCELAR', 1.00, 1.80, 'CANCELAR', 16, 16, 'Windows,Linux', 'Ninguno', 1.00, '0', 4, 'DDR4', 'RAMSpectrix01.jpg', 'RAMSpectrix02.jpg', 'RAMSpectrix03.jpg', '#00a4b3', 2500.00, NULL),
 (17, 'Samsung', 'CANCELAR', 5.97, 2.80, 'CANCELAR', 8, 256, 'Android 11 One UI 3.0', 'Exynos 2100 a 2,9GHz', 6.20, '1080x2400', 8, 'SSD', 'SamsungGalaxyS21_01.jpg', 'SamsungGalaxyS21_02.jpg', 'SamsungGalaxyS21_03.jpg', '#007580', 27000.00, NULL),
 (18, 'Western', 'CANCELAR', 3.14, 1.00, 'CANCELAR', 1, 1000, 'Windows,Linux', 'Ninguno', 1.00, '0', 1, 'SSD', 'SSDWestern01.jpg', 'SSDWestern02.jpg', 'SSDWestern03.jpg', '#000000', 3500.00, NULL),
-(19, 'Microsoft', 'CANCELAR', 1.10, 1.00, 'CANCELAR', 16, 1000, 'Microsoft Xbox', 'CPU Zen 2', 400.00, '8192 x 4320', 8, 'SSD', 'XboxSeriesX01.jpg', 'XboxSeriesX02.jpg', 'XboxSeriesX03.jpg', '#007580', 17000.00, NULL);
-
+(19, 'Microsoft', 'CANCELAR', 1.10, 1.00, 'CANCELAR', 16, 1000, 'Microsoft Xbox', 'CPU Zen 2', 400.00, '8192 x 4320', 8, 'SSD', 'XboxSeriesX01.jpg', 'XboxSeriesX02.jpg', 'XboxSeriesX03.jpg', '#007580', 17000.00, NULL),
+(45, '1n4007', 'Micro Commercial Co', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'diodo1', 'diodo2', 'diodo3', 'negro', 35.00, 'Voltaje inverso pico: 1000v o 1KV Corriente de sobretensión máxima: 30A'),
+(46, '1N47', 'litlefuse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'zenner1', 'zenner2', 'zenner3', 'cafe', 3.50, '\r\nDiodo Zener de 5,6 Volts a 1/2 Watt, con tolerancia del 5%.'),
+(47, 'LM38', 'NXP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'operacional1', 'operacional2', 'operacional3', 'negro', 10.50, '\r\nAmplificador operacional MOSFET de 5,6 Volts a 1/2 Watt.');
 -- --------------------------------------------------------
 
 --
@@ -455,7 +460,10 @@ INSERT INTO `producto` (`id`, `nombre`, `stock`, `estado`, `calificacion`, `list
 (16, 'Memoria RAM XPG SPECTRIX D60G', 31, 'PUBLICADO', 5, 1, 16),
 (17, 'Samsung Galaxy S21', 20, 'PUBLICADO', 5, 2, 17),
 (18, 'SSD Western Digital WD Black SN750 NVMe', 37, 'PUBLICADO', 5, 1, 18),
-(19, 'Xbox Series X', 12, 'PUBLICADO', 5, 1, 19);
+(19, 'Xbox Series X', 12, 'PUBLICADO', 5, 1, 19),
+(45, 'Diodo rectificador', 10, 'PUBLICADO', 3, 16, 45),
+(46, 'Diodo zener', 23, 'PUBLICADO', 5, 16, 46),
+(47, 'Amplificador operacional', 35, 'PUBLICADO', 4, 19, 47);
 
 -- --------------------------------------------------------
 

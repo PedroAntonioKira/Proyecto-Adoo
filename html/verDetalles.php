@@ -186,14 +186,14 @@
             <?php if(isset($datos['altoprod'])){?>
             <tr>
               <td>Alto del producto</td>
-              <td><?php echo($datos['altoprod']) ?> cm</td>
+              <td><?php echo($datos['altoprod']) ?> Pulgadas</td>
             </tr>
             <?php }else{} ?>
 
             <?php if(isset($datos['anchoprod'])){?>
             <tr>
               <td>Ancho del producto</td>
-              <td><?php echo($datos['anchoprod']) ?> cm</td>
+              <td><?php echo($datos['anchoprod']) ?> Pulgadas</td>
             </tr>
             <?php }else{} ?>
 
