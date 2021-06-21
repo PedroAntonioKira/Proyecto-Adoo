@@ -353,3 +353,15 @@ select.list-dt:focus {
     }
 
     .validar:focus:invalid+ .Mensajito{display:block; color: red}
+
+    .formulario__btn2{
+        height: 40px;
+        line-height: 45px;
+        width: 100px;
+        background: #005070;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.1s ease all;
+    }

@@ -83,12 +83,20 @@
                         <th scope="col">Vendedor</th>
                         <th scope="col">Total</th>
                         <th scope="col">Estatus</th>
-												<th scope="col">Fecha</th>
-												<th scope="col">Acciones</th>
+						<th scope="col">Fecha</th>
+						<th scope="col">Acciones</th>
                       </tr>
                     </thead>
 
                     <tbody>
+					<tr>
+						<td>1</td>
+						<td>Marco Lg</td>
+						<td>1</td>
+						<td>Entregado</td>
+						<td>21/06/2021</td>
+						<td><button class="formulario__btn2" name="devolver" id="devolver" value="devolver">Devolver</button></td>
+					</tr>
 											<?php
 												$idComp = $_SESSION['id_comprador'];
 												$consulta = "SELECT compras.id,CONCAT(info.nombre,' ',info.apellidop,' ',info.apellidom) as nombreVendedor,
