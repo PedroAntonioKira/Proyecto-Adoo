@@ -233,6 +233,8 @@ body{
 .configurar_datos{
 	border: solid rgb(0,117,128);;
 	border-radius: 15px;
+	height: 600px;
+	width: 800px;
 
 }
 
@@ -240,4 +242,59 @@ body{
 	display:none;
 	border: transparent;
 
+}
+
+a#agregar{
+	background-color:rgb(51, 122, 255); 
+	border-radius: 5px; 
+	color:white; 
+	width: 200px; 
+	right: 80px; 
+	font-family: 'calibri';"
+	margin-left: 50px;
+	height: 30px;
+	display: block;
+	text-decoration: none;
+}
+
+a#agregar_ocul{
+	display: none;
+}
+
+button#guardar_metodo{
+	background-color:rgb(51, 122, 255); 
+	border-radius: 5px; 
+	color:white; 
+	width: 200px; 
+	right: 80px; 
+	font-family: 'calibri';"
+
+}
+
+.formulario_input{
+	background-color:#007580;
+	width: 220px;
+	height: 30px;
+	margin-left: 35px;
+	border-radius: 10px;
+	color: white;
+	padding-left: 20px;
+	margin-bottom: 20px;
+}
+
+.formulario_input::placeholder{
+	color: white;
+	
+}
+
+.mensajerr{
+	color: black;
+	font-size: 12px;
+	display: none;
+}
+
+
+.validacion:focus:invalid+.mensajerr{
+	display: block;
+	color: red;
 }

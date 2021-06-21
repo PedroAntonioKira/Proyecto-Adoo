@@ -21,7 +21,7 @@
 	  $apellidop1=$_GET['apellidoP'];
 	  $apellidom1=$_GET['apellidoM'];
 	  $correo1=$_GET['correo'];
-	  $contrasena1=$_GET['password'];
+	  $contrasena1=$_GET['contrasena'];
 
 	 	
 	 	$institucion=$_SESSION['institucion'];
@@ -47,7 +47,7 @@
 	 	$_SESSION['correo']=$correo1;
 	 	$_SESSION['contrasena']=$contrasena1;
 		  
-	  //print_r($_SESSION);
+	  //print_r($_GET);
   }
     
 
@@ -131,6 +131,18 @@
 
 				<div class="item separador">
 					
+				</div>
+
+				<div class="item">
+					<a id="configurar" href="metodospago.php">
+						<div class="icon"><i class="far fa-money-bill-alt"></i></div>
+						<div class="title"><span>Metodos de pago</span></div>
+					</a>
+				</div>
+
+
+				<div class="item separador">
+					
 				</div>	
 
 				<div class="item">
@@ -197,7 +209,7 @@
 			<section class="configurar_datos" id="datos">
 				<h1>Editar Datos</h1>
 
-				<form action="" class="formulario" id="formulario" method="get">
+				<form action="" class="formulario" id="formulario" method="post">
 
 					<!-- Grupo Nombre -->
 					<div class="formulario__grupo" id="grupo__nombres">
@@ -215,7 +227,7 @@
 						<h3 style="color:#50A2C3; margin-left:30px;">Datos</h3>
 						<label for="correo" class="formulario__label"> Correo </label><label for="password" class="formulario__label"> Contraseña </label><br>
 						<input type="text" name="correo" class="formulario__input" id="correo" value="<?php echo $_SESSION['correo'] ?>">
-		        <input type="password" id="contrasena" class="formulario_input_pass" name="contrasena" value="<?php echo $_SESSION['contrasena'] ?>" required autocomplete="off" ><button id="contrasena" class="formulario_input_eye" onclick="mostrarPassword()"><span class="fa fa-eye-slash icono"></span></button>
+		        <input type="password" id="contrasena" class="formulario_input_pass" name="contrasena" value="<?php echo $_SESSION['contrasena'] ?>" required autocomplete="off" ><button id="contrasena" class="formulario_input_eye" onclick="mostrarPassword()" value="icon"><span class="fa fa-eye-slash icon"></span></button>
 		       </div>
 
 					
@@ -258,10 +270,10 @@
     var cambio = document.getElementById("contrasena");
     if(cambio.type == "password"){
       cambio.type = "text";
-      $('.icono').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
     }else{
       cambio.type = "password";
-      $('.icono').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
   } 
 </script>
