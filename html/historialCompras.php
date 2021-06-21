@@ -75,7 +75,7 @@
 	<main class="contenedor">
 		<div class="container details-product">
 	        <div class="row justify-content-md-center">
-                <h1>Conversaciones</h1>
+                <h1>Historial de Compras</h1>
                 <table class="table table-dark table-striped">
                     <thead>
                       <tr>

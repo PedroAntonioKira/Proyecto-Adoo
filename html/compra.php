@@ -103,14 +103,14 @@
 				 ?>
 
 	     	<img src="../img/imagenesProductos/<?php echo $datos['imagen1'] ?>" width="100" height="100"><br>
-	      <FONT SIZE=3>Nombre del producto:&nbsp</FONT>
-	      <FONT SIZE=1><?php echo $jsoncar[$j]->nombre; ?></FONT><br>
-	      <FONT SIZE=3>Cantidad: &nbsp</FONT>
-	      <FONT SIZE=1><?php echo $jsoncar[$j]->cantidad; ?></FONT><br>
-	      <FONT SIZE=3>Precio: &nbsp</FONT>
-	      <FONT SIZE=1><?php echo $datos['precio']; ?></FONT><br>
-	      <FONT SIZE=3>Total: &nbsp </FONT>
-	      <FONT SIZE=1><?php echo $datos['precio']*$jsoncan[$i]->cantidad; ?> </FONT><br> <?php 	} } } } ?>
+	      <FONT SIZE=4>Nombre del producto:&nbsp</FONT>
+	      <FONT SIZE=3><?php echo $jsoncar[$j]->nombre; ?></FONT><br>
+	      <FONT SIZE=4>Cantidad: &nbsp</FONT>
+	      <FONT SIZE=3><?php echo $jsoncar[$j]->cantidad; ?></FONT><br>
+	      <FONT SIZE=4>Precio: &nbsp</FONT>
+	      <FONT SIZE=3><?php echo $datos['precio']; ?></FONT><br>
+	      <FONT SIZE=4>Total: &nbsp </FONT>
+	      <FONT SIZE=3><?php echo $datos['precio']*$jsoncan[$i]->cantidad; ?> </FONT><br> <?php 	} } } } ?>
 	      <form action="inserciondecompra.php" method="post">
 	      	<input type="hidden" name="carrito" value='<?php echo $carro ?>'>
 	      	<input type="hidden" name="idv" value='<?php echo $id ?>'>
