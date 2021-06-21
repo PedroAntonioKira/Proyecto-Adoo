@@ -56,13 +56,13 @@ use PHPMailer\PHPMailer\Exception;
 					$mail->isSMTP();                                            //Send using SMTP
 					$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
 					$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-					$mail->Username   = 'electroguysescom@gmail.com';                     //SMTP username
+					$mail->Username   = 'electroguysescomadoo@gmail.com';                     //SMTP username
 					$mail->Password   = 'idaliaadoo';                               //SMTP password
 					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
 					$mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
  
 					//Recipients
-					$mail->setFrom('electroguysescom@gmail.com', 'ELECTROGUYS');
+					$mail->setFrom('electroguysescomadoo@gmail.com', 'ELECTROGUYS');
 					$mail->addAddress($correo,$nombre);     //Add a recipient
 
 					//Content
