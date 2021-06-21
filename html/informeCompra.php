@@ -1,3 +1,15 @@
+<?php
+  session_start();
+  require '../assets/connections/database.php';
+
+  if(isset($_SESSION['correo'])){
+    $privilegio = $_SESSION['privilegio'];
+  }
+  else{
+	$privilegio = NULL;
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,73 +28,20 @@
 
 </head>
 <body>
-	<!-- = = = = = = = =  NAV-MENU = = = = = = = = -->
-	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-green-ceg">
-		<div class="container-fluid">
-		  <a class="navbar-brand" href="#">
-			  <img src="../img/ceg.png" alt="logo-CEG"> CEG
-		  </a>
-		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			<ul class="navbar-nav">
-			  <li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house"></i> Home</a>
-			  </li>
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="bi bi-shop"></i> Categorias
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				  <li><a class="dropdown-item" href="#">Action</a></li>
-				  <li><a class="dropdown-item" href="#">Another action</a></li>
-				  <li><a class="dropdown-item" href="#">Something else here</a></li>
-				</ul>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#"><i class="bi bi-cart"></i> Carrito</a>
-			  </li>
+  <!-- Nav -->
+  <?php
+      if($_SESSION == NULL){
+        require '../assets/navs/headerBaseIndex.php';
 
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="bi bi-tags"></i> Mis Productos
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				  <li><a class="dropdown-item" href="#"><i class="bi bi-list-ol"></i> Administrar productos</a></li>
-				  <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle"></i> Publicar nuevo Producto</a></li>
-				  <li><a class="dropdown-item" href="#"><i class="bi bi-wallet2"></i> Ventas</a></li>
-				</ul>
-			  </li>
-
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<i class="bi bi-person-fill"></i> Cuenta
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-				  <li><a class="dropdown-item" href="#"><i class="bi bi-door-open"></i> Cerrar sesion</a></li>
-				  <li><a class="dropdown-item" href="#"><i class="bi bi-file-person"></i> Mi cuenta</a></li>
-				  <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i> Datos bancarios</a></li>
-				</ul>
-			  </li>
-
-			</ul>
-		  </div>
-		</div>
-	  </nav> -->
-	<!-- = = = = = = = = END = = = = = = = = -->
-	<?php
-	// if($_SESSION == NULL){
-	// 	header('location:./login.php');
-	// 	// require '../assets/navs/headerBase.php';
-
-	// }elseif($_SESSION['privilegio'] == 'Comprador'){
-	// 	require '../assets/navs/headerComprador.php';
-
-	// }elseif($_SESSION['privilegio'] == 'Vendedor'){
-	// 	require '../assets/navs/headerVendedor.php';
-	// }
-	?>
+      }elseif($_SESSION['privilegio'] == 'Comprador'){
+        require '../assets/navs/headerComprador.php';
+      }elseif($_SESSION['privilegio'] == 'Vendedor'){
+        require '../assets/navs/headerVendedorIndex.php';
+      }else{
+        require '../assets/navs/headerBaseIndex.php';
+      }
+      // echo $_SESSION['privilegio'];
+    ?>
 
 	<div class="container details-product">
 		<div class="row justify-content-md-center">
@@ -235,45 +194,24 @@
 						?>
 					</div>
 				</div>
-
+				<div class="row btns">
+					<div class="col"><a class="btn btn-return" href="verCarrito.php">Volver al carrito</a></div>
+					<div class="col"><a class="btn btn-return" href="index.php">Ir al inicio</a></div>
+					<div class="col"><a class="btn btn-return" href="historialCompras.php">Ver mis compras</a></div>
+				</div>
+													
 			</div>
 
-			<div class="botones_deretorno">
+			<!-- <div class="botones_deretorno">
 					<a class="boton_personalizado1" href="verCarrito.php">Volver al carrito</a>
 					<a class="boton_personalizado2" href="index.php">Volver al index</a>
 					<a class="boton_personalizado3" href="historialCompras.php">Historial</a>
-			</div>
+			</div> -->
 
 		</div>
 	</div>
 
-	<footer class="row">
-			<div class="col col-4">
-				<a href="#">Vende tus productos</a>
-			</div>
-			<div class="col col-4">
-				<a href="#">Términos y condiciones</a>
-			</div>
-			<div class="col col-4">
-				<a href="#">Cómo cuidamos tu privacidad</a>
-			</div>
-
-			<div class="col-3"></div>
-			<div class="col col-6">
-				<p>
-					Av. Luis Enrique Erro S/N, Unidad Profesional Adolfo López Mateos, Zacatenco, Delegación Gustavo A. Madero, C.P. 07738, Ciudad de México
-				</p>
-			</div>
-			<div class="col-3"></div>
-
-			<div class="col-3"></div>
-			<div class="col col-6">
-				<p>
-					© 2021 Compu Electro Guys
-				</p>
-			</div>
-			<div class="col-3"></div>
-	</footer>
+	<?php require '../assets/navs/footer.php'; ?>
 
 </body>
 

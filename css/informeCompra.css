@@ -12,7 +12,7 @@
 .ticket-header{
     width: 100%;
     text-align: center;
-    background: #021e20;
+    background: #007580;
     color: azure;
     border-radius: 10px 10px 0 0;
 }
@@ -163,4 +163,15 @@
 .boton_personalizado3:hover{
     color: #1a89c0;
     background-color: #ffffff;
+}
+
+.row.btns{
+    margin-bottom: 10px;
+}
+.row.btns .col{
+    text-align: center;
+}
+
+.btn-return:hover{
+    color: teal;
 }
