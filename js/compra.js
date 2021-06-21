@@ -2,7 +2,11 @@ console.log ("Soy compra");
 
 $(document).ready(function(){
     $('#select-date').on('change', function(){
-        valor = document.getElementById('select-date').value;
+        contenido = document.getElementById('select-date').value;
+        proximoDia = contenido.split(',');
+        cortar = proximoDia[3].split(' ');
+        valor = cortar[1];
+        console.log(valor);
         valor =  valor.toLowerCase();
         if(valor == "-1"){
             console.log("error");
@@ -40,7 +44,9 @@ $(document).ready(function(){
             fecha = obtnerProximoDia(valor);
     
             inputFecha = document.getElementById("input-fecha");
+            inputFechaFinal = document.getElementById("input-fecha-final");
             inputFecha.value = fecha;
+            inputFechaFinal.value = fecha;
         }
 
     });
@@ -53,7 +59,7 @@ function obtnerProximoDia(dia_buscado){
     // if(){
         hoy = new Date(hoy.getTime() + DIA_EN_MILISEGUNDOS);
     }
-    fecha = hoy.getDate() + '/' + hoy.getMonth() + '/' + hoy.getFullYear();
+    fecha = hoy.getFullYear() + '-' + hoy.getMonth() + '-' + hoy.getDate();
     // console.log("Fecha encontrada: " + hoy.getDate() + '/' + hoy.getMonth() + '/' + hoy.getFullYear()); 
     return fecha;
 }
