@@ -7,7 +7,7 @@
 	}
 
 	$nombre=$_SESSION['nombre'];
-	print_r($_SESSION);
+	//print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,30 +42,31 @@
 	<main class="contenedor">
 		<div class="prin">
 			<div style="float:left;" class="formregister">
-		    <h4>Datos del comprador o de quien recibe</h4>
-		    <input type="text" class="formulario__input1" value="<?php echo $_SESSION['nombre']?>">
-	    	<input type="text" class="formulario__input1" value="<?php echo $_SESSION['apellidop']?>">
-	    	<input type="text" class="formulario__input1" value="<?php echo $_SESSION['apellidom']?>">
-		    <br>
-		    <h5>Comentarios para la compra</h5>
-		    <textarea class="formulario__input2" name="comentarios" rows="4" cols="30" placeholder="Aqui introduzca el lugar y/o la referencias del punto de encuentro, o algun comentario"></textarea>
-		    <br>
-		    <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='index.php'" >Cancelar</button>
-	    </div>
+			    <h4>Datos del comprador o de quien recibe</h4>
+			    <input type="text" class="formulario__input1" value="<?php echo "Nombre"//$_SESSION['nombre']?>">
+		    	<input type="text" class="formulario__input1" value="<?php echo "ApellidoP"//$_SESSION['apellidop']?>">
+		    	<input type="text" class="formulario__input1" value="<?php echo "ApellidoM"//$_SESSION['apellidom']?>">
+			    <br>
+			    <h5 style="color:#007580;">Comentarios para la compra</h5>
+			    <textarea class="formulario__input2" name="comentarios" rows="4" cols="30" placeholder="Aqui introduzca el lugar y/o la referencias del punto de encuentro, o algun comentario"></textarea>
+			    <br>
+			    <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='index.php'" >Cancelar</button>
+	    	</div>
 	         
-	    <div style="float:right;"; class="formregister">
-	     	<h4>Resumen del pedido</h4> 
-	     	<img src="../img/<<?php echo $img ?>" width="200" height="150">
-	      <h5>Nombre del producto</h5>
-	      <?php echo $nombre_producto ?>
-	      <h5>Cantidad</h5>
-	      <?php echo $nombre_producto ?>
-	      <h5>Precio</h5>
-	      <?php echo $precio ?>
-	      <h4>Total</h4>
-	      <?php echo $Total?>
-	      <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='pagartotal.php'" >Pagar</button>
-  	</div>
+		    <div style="float:right;"; class="formregister">
+		    	<h4>Resumen del pedido</h4> 
+		     	<img src="../img/<?php echo "compu_prueba.png"//$img ?>" width="200" height="150">
+				<h5 >Nombre del producto</h5>
+				<?php echo "Nombre del producto"//$nombre_producto ?>
+				<h5>Cantidad</h5>
+				<?php echo "Cant"//$nombre_producto ?>
+				<h5>Precio</h5>
+				<?php echo "$$$"//$precio ?>
+				<h4>Total</h4>
+				<?php echo "<p>$$$</p>"//$Total?>
+				<button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='pagartotal.php'" >Pagar</button>
+	  		</div>
+	  	</div>
 	</main>
 	
 	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>

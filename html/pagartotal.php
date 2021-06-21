@@ -51,62 +51,97 @@
     }
 ?>
 	<main class="contenedor">
-		<div id=prin>
+		<div class="prin">
+			<div style="float:left;" class="formregister">
+			    <!-- <h4>Datos del comprador o de quien recibe</h4>
+			    <input type="text" class="formulario__input1" value="<?php echo "Nombre"//$_SESSION['nombre']?>">
+		    	<input type="text" class="formulario__input1" value="<?php echo "ApellidoP"//$_SESSION['apellidop']?>">
+		    	<input type="text" class="formulario__input1" value="<?php echo "ApellidoM"//$_SESSION['apellidom']?>">
+			    <br>
+			    <h5 style="color:#007580;">Comentarios para la compra</h5>
+			    <textarea class="formulario__input2" name="comentarios" rows="4" cols="30" placeholder="Aqui introduzca el lugar y/o la referencias del punto de encuentro, o algun comentario"></textarea>
+			    <br>
+			    <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='index.php'" >Cancelar</button> -->
+			    <!-- <form action="" class="" style="margin-left: 30px; border-radius: 20px;"> -->
+			    	<h5 style="color:#007580">Metodos de pago</h5>
+			    	
+				 		<?php
+				 		$id_comprador=$_SESSION['id_comprador'];
 
-			<div class="" style="border: solid; width:600px; height: 600px; border-radius:25px; border-color:#007580; margin:30px;">
-        <form action="" class="" style="margin-left: 50px;">
-          <h4>Metodos de pago</h4>
-	        <div class="radio">
-		      	<input type="radio" id="Debito" name="metodoPago" value="debito" class="icono">
-		  			<label for="Debito"><i class="fas fa-circle" style="margin-right: 10px; color:#007580; size:3px;"></i>Tarjeta de debito</label><br>
-		  			<br>
-		  			<div class="debito">
-				  		<input class="formulario_input2" type="text" name="TitularD" id="Titular" placeholder="Titular de la Tarjeta">
-				  		<input class="formulario_input2" type="text" name="instBancariaD" id="instBancaria" placeholder="Institución Bancaria">
-				      <input class="formulario_input2" type="text" name="numTarjetaD" id="numTarjeta" placeholder="Numero de Tarjeta">
+				 			$aux1="SELECT infotarjeta.id,infotarjeta.num,infotarjeta.exp FROM infotarjeta INNER JOIN infobancaria ON infobancaria.infotarjeta_id=infotarjeta.id INNER JOIN info ON infobancaria.info_id=info.id INNER JOIN comprador ON comprador.info_id=info.id WHERE comprador.id=$id_comprador";
+				 			$ejecutar= $con->query($aux1);
+				 			echo "<select class='form-control'>";
+							while($resul= $ejecutar->fetch_assoc()){
+								
+								if ($resul!=NULL) {
+									$id_tar=$resul['id'];
+									$num_tar=$resul['num'];
+									$exp_tar=$resul['exp'];
+									
+									
+									echo"<option value='$id_tar'>Tarjeta: $num_tar</option>";	
+
+									}
+									
+							}
+							echo "</select>";
+
+				 		 ?>
+			    	<div class="radio">
+			    		<br>
+			    		<input type="radio" id="Debito" name="metodoPago" value="debito" class="icono">
+						<label for="Debito"><i class="fas fa-circle" style="margin-right: 10px; color:#007580; size:3px;"></i>Tarjeta de debito</label><br>
+						<br>
+						<div class="debito">
+					  		<input class="formulario_input2" type="text" name="TitularD" id="Titular" placeholder="Titular de la Tarjeta">
+					  		<input class="formulario_input2" type="text" name="instBancariaD" id="instBancaria" placeholder="Institución Bancaria">
+					      	<input class="formulario_input2" type="text" name="numTarjetaD" id="numTarjeta" placeholder="Numero de Tarjeta">
 							<input class="formulario_input2" type="text" name="fechaExpiracionD" id="fechaExpiracion" placeholder="Fecha de expiracion">
-				      <input class="formulario_input2" type="tel" name="CVV" id="CVVD" placeholder="CVV">
-		  			</div>
+					      	<input class="formulario_input2" type="tel" name="CVV" id="CVVD" placeholder="CVV">
+						</div>
 
-		  			<input type="radio" id="Credito" name="metodoPago" value="credito" class="icono">
-		  			<label for="Credito"><i class="fas fa-circle" style="margin-right: 10px; color:#007580; size:3px;"></i>Tarjeta de credito</label><br>
-		  			<br>
-		  			<div class="credito">
-				  		<input class="formulario_input2" type="text" name="TitularC" id="Titular" placeholder="Titular de la Tarjeta">
-				  		<input class="formulario__input" type="text" name="instBancariaC" id="instBancaria" placeholder="Institución Bancaria">
-				      <input class="formulario_input2" type="text" name="numTarjetaC" id="numTarjeta" placeholder="Numero de Tarjeta">
-							<input class="formulario__input" type="text" name="fechaExpiracionC" id="fechaExpiracion" placeholder="Fecha de expiracion">
-				      <input class="formulario_input2" type="tel" name="CVV" id="CVVC" placeholder="CVV">
-		  			</div>
-		  			
-		  			<input type="radio" id="DepTransf" name="metodoPago" value="DepositoTransferencia" class="icono">
-		  			<label for="DepTransf"><i class="fas fa-circle" style="margin-right: 10px; color:#007580; size:3px;"></i>Deposito o transferencia</label><br>
-			  		<br>
-			  		<div class="efectivo">
-			  			<label id="efectivo" name="efectivo"  >
-				  			<h1 style="color:#1F618D;">Compu Electro Guys</h1>
-				  			<h2>CLABE INTERBANCARIA:
-				  			<br>XXXXXXXXXXXXXX</h2>
-				  			<h2>CUENTA BANCARIA:<br>XXXX-XXXX-XXXXX-XXXX</h2>
-				  			<br>
-				  		</label>
-	  				</div>
-	  			</div>
-  				<a class="formulario__input" href="compra.php" style="color: #fff; text-decoration:none; padding: 5px 138px 5px 138px; color:#000:hover;">Cancelar</a>
-      	</form>
-    	</div>
-         
-	    <div class="" style="border: solid; width:600px; height: 600px; border-radius:25px; border-color:#007580; margin-top:100px float:left; margin-left: 900px;">
-	      <h4>Resumen del pedido</h4> 
-	      <img src="../img/computadora-galeria01.jpeg" width="200" height="150">
-	      <h4>Nombre del producto</h4>
-	      <h4>Cantidad</h4>
-	      <h4>Precio</h4>
-	      <h3>Total</h3>
-	      <br>
-	      <a class="controls" href="compraexitosa.html" style="color: #fff; text-decoration:none; padding: 5px 120px 5px 120px; color:#000:hover;">Realizar Pago</a>
-	    </div>
-  	</div>
+						<input type="radio" id="Credito" name="metodoPago" value="credito" class="icono">
+						<label for="Credito"><i class="fas fa-circle" style="margin-right: 10px; color:#007580; size:3px;"></i>Tarjeta de credito</label><br>
+						<br>
+						<div class="credito">
+					  		<input class="formulario_input2" type="text" name="TitularC" id="Titular" placeholder="Titular de la Tarjeta">
+					  		<input class="formulario_input2" type="text" name="instBancariaC" id="instBancaria" placeholder="Institución Bancaria">
+					      	<input class="formulario_input2" type="text" name="numTarjetaC" id="numTarjeta" placeholder="Numero de Tarjeta">
+							<input class="formulario_input2" type="text" name="fechaExpiracionC" id="fechaExpiracion" placeholder="Fecha de expiracion">
+					      	<input class="formulario_input2" type="tel" name="CVV" id="CVVC" placeholder="CVV">
+						</div>
+						
+						<input type="radio" id="DepTransf" name="metodoPago" value="DepositoTransferencia" class="icono">
+						<label for="DepTransf"><i class="fas fa-circle" style="margin-right: 10px; color:#007580; size:3px;"></i>Deposito o transferencia</label><br>
+			  			<br>
+			  			<div class="efectivo">
+				  			<label id="efectivo" name="efectivo"  >
+					  			<h1 style="color:rgb(0 117 128);">Compu Electro Guys</h1>
+					  			<h2>CLABE INTERBANCARIA:
+					  			<br>XXXXXXXXXXXXXX</h2>
+					  			<h2>CUENTA BANCARIA:<br>XXXX-XXXX-XXXXX-XXXX</h2>
+					  			<br>
+					  		</label>
+						</div>
+					</div>
+					<a class="formulario__input" id="cancelar" href="compra.php" style="color: #fff; text-decoration:none; padding: 5px 50px 5px 50px; margin-left: 60px;">Cancelar</a>
+			  	<!-- </form> -->
+	    	</div>
+	         
+		    <div style="float:right;"; class="formregister">
+		    	<h4>Resumen del pedido</h4> 
+		     	<img src="../img/<?php echo "compu_prueba.png"//$img ?>" width="200" height="150">
+				<h5 >Nombre del producto</h5>
+				<?php echo "Nombre del producto"//$nombre_producto ?>
+				<h5>Cantidad</h5>
+				<?php echo "Cant"//$nombre_producto ?>
+				<h5>Precio</h5>
+				<?php echo "$$$"//$precio ?>
+				<h4>Total</h4>
+				<?php echo "<p>$$$</p>"//$Total?>
+				<button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='pagartotal.php'" >Pagar</button>
+	  		</div>
+	  	</div>
 	</main>
 	
 	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>

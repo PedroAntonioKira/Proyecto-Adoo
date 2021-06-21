@@ -16,19 +16,12 @@
       if(($datos != NULL) && ($datos['contrasena']==$contrasena)){
         if($datos['estatus'] == 'VERIFICADO'){
           $correo = $datos['correo'];
-
-          $sentencia = "SELECT info.nombre, info.apellidop, info.apellidom, info.institucion, vendedor.id, usuario.correo,
-              usuario.contrasena, usuario.actividad, privilegios.privilegio FROM info INNER JOIN vendedor
-              ON vendedor.info_id = info.id INNER JOIN usuario ON vendedor.usuario_correo = usuario.correo
-              INNER JOIN privilegios ON usuario.privilegios_id = privilegios.id WHERE vendedor.usuario_correo = '$correo'";
-          // Query para comprador
-          // SELECT info.nombre, info.apellidop, info.apellidom, info.institucion, comprador.id, usuario.correo,
-          // usuario.contrasena, usuario.actividad, privilegios.privilegio
-          // FROM info INNER JOIN comprador
-          // ON comprador.info_id = info.id
-          // INNER JOIN usuario ON comprador.usuario_correo = usuario.correo
-          // INNER JOIN privilegios ON usuario.privilegios_id = privilegios.id WHERE comprador.usuario_correo = 'joss.alberto.r.m@gmail.com'
-
+          if($datos['privilegios_id'] == '2'){
+            $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,comprador.id,usuario.correo,usuario.contrasena,usuario.estatus,privilegios.privilegio FROM info INNER JOIN comprador ON comprador.info_id = info.id INNER JOIN usuario ON comprador.usuario_correo = usuario.correo INNER JOIN privilegios ON privilegios.id = usuario.privilegios_id WHERE usuario.correo = '$correo'";
+          }
+          else{
+            $sentencia = "SELECT info.nombre,info.apellidop,info.apellidom,info.institucion,vendedor.id,usuario.correo,usuario.contrasena,usuario.estatus,privilegios.privilegio FROM info INNER JOIN vendedor ON vendedor.info_id = info.id INNER JOIN usuario ON vendedor.usuario_correo = usuario.correo INNER JOIN privilegios ON privilegios.id = usuario.privilegios_id WHERE usuario.correo = '$correo'";
+          }
           $columnas = $con->query($sentencia);
           $obtenido = $columnas->fetch_assoc();
 
@@ -36,23 +29,28 @@
           $_SESSION['apellidop']=$obtenido['apellidop'];
           $_SESSION['apellidom']=$obtenido['apellidom'];
           $_SESSION['institucion']=$obtenido['institucion'];
-          $_SESSION['id_vendedor']=$obtenido['id'];
+          $_SESSION['id_comprador']=$obtenido['id'];
           $_SESSION['correo']=$obtenido['correo'];
           $_SESSION['contrasena']=$obtenido['contrasena'];
-          $_SESSION['estatus']=$obtenido['actividad'];
+          $_SESSION['estatus']=$obtenido['estatus'];
           $_SESSION['privilegio']=$obtenido['privilegio'];
 
           header('location: index.php');
 
         }else{
-          $message = "<p style='color:#FF0000'>Tu estatus es inactivo<p/>";
+          $message = "<p style='color:#FF0000'>Tu estatus es inactivo porfavor confirma tu correo<p/>";
         }
       }else{
         $message = "<p style='color:#FF0000'>No hay coincidencia en la base de datos<p/>";
       }
     }
   }
+
+  if(isset($_GET['alert'])){
+    $mensaje = "<div class='alert alert-success'>Te has registrado correctamente</div>";
+  }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -61,17 +59,19 @@
     <meta charset="utf-8">
 
 
+    <!-- bootstrap
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"> -->
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="../css/productos.css">
     <script src="../js/productos.js"></script>
     <script src="../js/scriptp.js"></script>
 
     <!-- ESTILOS INDIVIDUALES/PERSONALIZADOS   -->
     <link rel="stylesheet" href="../css/login.css">
 
-
-    <!-- <script src="../js/jquery-3.6.0.js"></script> -->
+    <script src="../js/jquery-3.6.0.js"></script>
     <script src="../js/main.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -80,24 +80,29 @@
     <link rel="stylesheet" href="../css/navbar.css">
 
 </head>
-  <body>
+<body>
 
-  <?php require '../assets/navs/headerBase.php'; ?>
+    <?php require '../assets/navs/headerBase.php'; ?>
   <main>
     <div class="container">
       <div class="info">
+        <?php if(isset($mensaje)) echo($mensaje); ?>
         <h1 style="color:white;">
           Inicio de sesion
         </h1>
       </div>
     </div>
+
     <div class="form">
       <div class="thumbnail">
         <img src="../img/logo.png" />
       </div>
-      <form class="login-form" action="login.php" method="post">
+
+      <form class="login-form" action="login2.php" method="post">
         <input type="email" name="correo" placeholder="Correo" required autocomplete="off">
-        <input type="password" name="contrasena" placeholder="Contraseña" required autocomplete="off">
+        <div>
+          <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required autocomplete="off" style="width: 80%;"><button id="contrasena" class="contrasena" type="button" onclick="mostrarPassword()" style="width:20%;"><span class="fa fa-eye-slash icon"></span> </button>
+        </div>
         <button type="submit" name="Aceptar">Aceptar</button>
       </form>
       <?php if (!empty($message)): ?>
@@ -105,7 +110,24 @@
       <?php endif; ?>
         <br>
         <p>¿No tienes cuenta aun? <a href="tipoDeCuenta.php"> <br>Crea Una Cuenta ahora</a></p>
-    </main>
-	  <?php require '../assets/navs/footer.php'; ?>
-  </body>
+      </main>
+
+      <?php require '../assets/navs/footer.php'; ?>
+
+      <script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="../js/menuPrincipal01.js"></script>
+</body>
 </html>
+
+<script>
+  function mostrarPassword(){
+    var cambio = document.getElementById("contrasena");
+    if(cambio.type == "password"){
+      cambio.type = "text";
+      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+    }else{
+      cambio.type = "password";
+      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+    }
+  }
+</script>
