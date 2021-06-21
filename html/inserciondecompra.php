@@ -82,10 +82,7 @@ $jsoncarrito=json_decode($carrito);
 					$updateprod="UPDATE producto SET stock=$stocktotal where id=$idprod";
 					$ejecutar2 = $con->query($updateprod);
 
-					$insprod = "INSERT into productos_comprados(id_compra,id_producto,cantidad,subtotal) values('$idcompra','$idprod',
-					'$cantidad',
-					'$totalparcial')";
-					$ejecutar2 = $con->query($insprod);
+
 					$hoy=date("Y-M-d");
 					$tiempo=date("H:m:s");
 				
@@ -95,6 +92,9 @@ $jsoncarrito=json_decode($carrito);
 					if($ejecutar3 === TRUE)
 					{
 						$bandera=true;
+						setcookie("cantidad", "", time() - 3600);
+						setcookie("carrito", "", time() - 3600);
+						setcookie("vendedor", "", time() - 3600);
 					}
 
 
