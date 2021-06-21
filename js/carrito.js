@@ -325,6 +325,7 @@ function queryVendorSelectName(id){
         type: 'POST',
         data: { data: id },
         success: function(respuesta) {
+            // console.log(respuesta);
             resultado = JSON.parse(respuesta);
             renderVendor(resultado.nombre, id);
         },
@@ -367,7 +368,10 @@ function renderProduct(producto, id_vendedor){
     fila.appendChild(imagenContainer);
     // Producto
     var nombre = document.createElement("td");
-    nombre.innerHTML = producto.nombre;
+    var nombreLink = document.createElement("a");
+    nombreLink.setAttribute("href", "./verDetalles.php?id_producto=" + producto.id);
+    nombreLink.innerHTML = producto.nombre;
+    nombre.appendChild(nombreLink);
     fila.appendChild(nombre);
     // Precio 
     var precio = document.createElement("td");
