@@ -84,10 +84,9 @@
         </div>
     </div>
 </body>
-
+	<?php require '../assets/navs/footer.php'; ?>
 	<script src="https://kit.fontawesome.com/3c67aef2c2.js" crossorigin="anonymous"></script>
     <script src="../js/mostrarCarrito.js"></script>
-	<?php require '../assets/navs/footer.php'; ?>
 		
 	
 </html>
