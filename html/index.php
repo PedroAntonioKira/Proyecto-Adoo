@@ -125,10 +125,15 @@
 								<a href='verDetalles.php?id_producto=$id' title='Ver detalles del producto' class='btn btn-primary'><i class='bi bi-eye'></i></a>								
 						";
 						// onClick="cart.agregar($id, '."'". $nombre ."'".' , 5);"							
-						if($privilegio != 'Vendedor'){
+						if($privilegio == 'Comprador'){
 							ECHO '
 								<button onClick="cart.agregar('.$id.', '."'". $nombre ."'".' , '.$id_vendedor.');" title="Añadir al carrito" class="btn btn-success" id="btn-cart-'.$id.'"><i class="bi bi-cart-plus"></i></button>
 							';
+						}
+						else if($privilegio == NULL){
+							ECHO '
+							<a href="./login2.php" title="Añadir al carrito" class="btn btn-success" id="btn-cart-'.$id.'"><i class="bi bi-cart-plus"></i></a>
+						';	
 						}
 					ECHO "
 							</div>
