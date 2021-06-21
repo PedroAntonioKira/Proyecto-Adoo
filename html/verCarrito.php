@@ -58,7 +58,8 @@
 			<div id="messages-noti"></div>
 			<div class="alert alert-warning alert-dismissible fade show" role="alert" id="notify-1">
 				<strong>¡No hay stock suficiente! </strong><br>
-				Actualmente no existe esa cantidad de productos en stock.
+				Actualmente no existe esa cantidad de productos en stock.<br>
+				El sistema ya ingresó la cantidad máxima en stock.
 			</div>
 			<div class="alert alert-warning alert-dismissible fade show" role="alert" id="notify-2">
 				<strong>¡Cantidad incorrecta!</strong><br> 
