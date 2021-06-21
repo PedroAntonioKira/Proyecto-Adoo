@@ -66,7 +66,7 @@
 	     	<h4>Resumen del pedido</h4> 
 
 	     	<?php 
-				require '../assets/connections/database.php';
+		
 				// CONSULTA ANTERIOR 
 				// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
 				// FROM `producto`, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;
@@ -111,8 +111,9 @@
 	      <FONT SIZE=1><?php echo $datos['precio']; ?></FONT><br>
 	      <FONT SIZE=3>Total: &nbsp </FONT>
 	      <FONT SIZE=1><?php echo $datos['precio']*$jsoncan[$i]->cantidad; ?> </FONT><br> <?php 	} } } } ?>
-	      <form action="ticket.php" method="post">
+	      <form action="inserciondecompra.php" method="post">
 	      	<input type="hidden" name="carrito" value='<?php echo $carro ?>'>
+	      	<input type="hidden" name="idv" value='<?php echo $id ?>'>
 	      	      <button type="submit" class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" >Pagar</button></form>
   	</div>
 	</main>
