@@ -272,7 +272,7 @@ button#guardar_metodo{
 }
 
 .formulario_input{
-	background-color:#007580;
+	background-color:transparent;
 	width: 220px;
 	height: 30px;
 	margin-left: 35px;
@@ -280,10 +280,17 @@ button#guardar_metodo{
 	color: white;
 	padding-left: 20px;
 	margin-bottom: 20px;
+	border: solid 1px #000;
+	outline: none;
+	color: #000;
+}
+
+.formulario_input.{
+	
 }
 
 .formulario_input::placeholder{
-	color: white;
+	color: black;
 	
 }
 

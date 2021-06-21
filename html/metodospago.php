@@ -39,8 +39,8 @@
 
 			$ejecutar3 = $con->query($consulta);
 			$aux1= $ejecutar3->fetch_assoc();
-			// print_r($ejecutar3);
-			// print_r($aux1);
+			print_r($ejecutar3);
+			print_r($aux1);
 			$id_tarjeta=$aux1['id'];
 			$guardar2="INSERT INTO `infobancaria` (`idinfobancaria`, `info_id`, `infotarjeta_id`, `tipo_tarjeta`) VALUES (NULL, '$id', '$id_tarjeta', '$tipo1')";
 
@@ -239,16 +239,23 @@
 					<label style='size:25px; margin-left:60px; color:#2980B9; text-align: center;'><h2>Metodo de pago 1</h2></label><br>
 		      <label style='size:15px; margin-left:60px;color:#2C3E50 ;'>Nombre del titular</label><br>
 		      <input required type='text' name='Nombre1' class='formulario_input validacion' id='Nombre1' value='<?php echo $_SESSION['nombre'] ?>' pattern="^([a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}|[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40}\s[a-zA-ZÀ-ÿ]{1,40})$" >
-		      <p class="mensajerr">El nombre debe tener entre 1 y 40 letras y no puede contener numeros ni simbolos extraños.<br>
+		      <p class="mensajerr" style="width:30%;">El nombre debe tener entre 1 y 40 letras y no puede contener numeros ni simbolos extraños.<br>
                                                            Tampoco debe comenzar ni terminar con un espacio en blanco.</p>
 		      <input required type='text' name='ApellidoP1' class='formulario_input' id='ApellidoP1' value='<?php echo $_SESSION['apellidop'] ?>'>
 		      <input required type='text' name='ApellidoM1' class='formulario_input' id='ApellidoM1' value='<?php echo $_SESSION['apellidom'] ?>'>
-		      <label style='size:15px; margin-left:60px;color:#2C3E50 ;'>Numero de Tarjeta</label><br>
-		      <input required type='text' name='tipo1'class='formulario_input' id='tipo1' placeholder='Debito/Credito'>
+		      <label style='size:20px; margin-left:60px;color:#007589 ;'>Datos de Tarjeta</label><br>
+		      <label style='size:15px; margin-left:80px;color:#2C3E50 ; width: 30%;'>Tipo</label>
+		      <label style='size:15px; margin-left:30px;color:#2C3E50 ; width: 30%;'>Numero de Tarjeta</label>
+		      <select class="formulario_input">
+		      	<option value="Debito">Debito</option>
+		      	<option value="Credito">Credito</option>
+		      </select>
 		      <input required type='text' name='num_tarjeta1'class='formulario_input' id='num_tarjeta1' placeholder='XXXX-XXXX-XXXX-XXXX'>
+		      <br>
+		      <label style='size:15px; margin-left:80px;color:#2C3E50 ; width: 30%;'>CVC</label>
+		      <label style='size:15px; margin-left:30px;color:#2C3E50 ; width: 30%;'>Fecha de expiracion</label>
 		      <input required type='text' name='fecha_exp1'class='formulario_input' id='fecha_exp1' placeholder='MM/AA'>
 		      <input required type='text' name='cvc1' class='formulario_input' id='cvc1' placeholder='XXX'>
-		      <input required type='text' name='correo1'class='formulario_input' id='correo1' placeholder='correo@dominio.com'><br>
 		      
 					<div id="caja1"></div>
 					<div>

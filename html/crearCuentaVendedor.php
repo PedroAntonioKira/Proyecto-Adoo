@@ -14,8 +14,8 @@ use PHPMailer\PHPMailer\Exception;
 			$correo = $_POST['correo'];
 			// Tarjeta
 			$numTarjeta = $_POST['num_tarjeta'];
-			$fechaExpiracion = $_POST['fecha_expiracion'];
-			$codigoTarjetaSeguridad = $_POST['codigo'];
+			$fechaExpiracion ='00/00';
+			$codigoTarjetaSeguridad ='111';
 			$insertTarjeta = "INSERT INTO `infotarjeta` (`id`, `num`, `exp`, `codigo`, `correo_usuario`)
 				VALUES (NULL, '$numTarjeta', '$fechaExpiracion', '$codigoTarjetaSeguridad', '$correo')";
 			$con->query($insertTarjeta);			// Insertamos la tarjeta
@@ -304,7 +304,7 @@ use PHPMailer\PHPMailer\Exception;
                                          puede ser escrito de corrido o seprandolo por espacios <br>
                                          XXXXXXXXXXXXXXXX O XXXX XXXX XXXX XXXX <br>
                                          no puede comenzar ni terminar con un espacio en blanco</p>
-										<input type="text" name="fecha_expiracion" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" class="validar"
+										<!-- <input type="text" name="fecha_expiracion" placeholder="Fecha de caducidad (dd/aa)" required autocomplete="off" class="validar"
                     pattern="\d\d/\d\d" style="width: 300px; margin-right:10px ;">
                     <p class="Mensajito">La fecha de caducidad debe contener: <br>
                                           dos digitos seguido de una diagonal seguido de dos dijitos <br>
@@ -312,7 +312,7 @@ use PHPMailer\PHPMailer\Exception;
                                          no puede iniciar ni terminar con espacios</p>
 										<input type="text" name="codigo" placeholder="CVC" required autocomplete="off" class="validar"
                     pattern="^[0-9]{3,4}" style="width: 100px; ">
-                    <p class="Mensajito">El numero de seguridad debe ser de entre 3 o 4 digitos unicamente <br></p>
+                    <p class="Mensajito">El numero de seguridad debe ser de entre 3 o 4 digitos unicamente <br></p> -->
 									</div>
 										<button type="button" name="previous" class="btn btn-secondary previous">Regresar</button>
 										<button type="button" name="next" class="btn btn-primary next">Siguiente</button>
