@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2021 a las 01:10:01
+-- Tiempo de generación: 22-06-2021 a las 01:25:29
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -537,7 +537,9 @@ INSERT INTO `puntos_entrega_vendedor` (`id`, `correo_vendedor`, `dia_entrega`, `
 (2, 'omar_vendedor@prueba.com', 'Martes', '03:30 PM', 1, 5, 'Polítecnico'),
 (3, 'omar_vendedor@prueba.com', 'Jueves', '06:30 PM', 1, 2, 'Tasqueña'),
 (4, 'eliel_vendedor@gmail.com', 'Viernes', '10:00 AM', 3, 22, 'Campos de Futbol Rapido'),
-(5, 'eliel_vendedor@gmail.com', 'Jueves', '12:00', 1, 6, 'En la taquilla de los boletos');
+(5, 'eliel_vendedor@gmail.com', 'Jueves', '12:00', 1, 6, 'En la taquilla de los boletos'),
+(6, 'adrian@vendedor.ipn.com', 'Domingo', '5:00 pm', 2, 19, 'Abajo del reloj central'),
+(7, 'adrian@vendedor.ipn.com', 'Sabado', '12:00 AM', 3, 24, 'En la cafeteria 10');
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1065,7 @@ ALTER TABLE `productos_comprados`
 -- AUTO_INCREMENT de la tabla `puntos_entrega_vendedor`
 --
 ALTER TABLE `puntos_entrega_vendedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `punto_e`
