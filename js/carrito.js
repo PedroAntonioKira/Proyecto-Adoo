@@ -10,21 +10,16 @@ console.log("Soy carrito");
          __/ |                               __/ |        
         |___/                               |___/         
     
-____________________________________
-/ Si necesitas ayuda, contáctame en \
-\ https://parzibyte.me               /
- ------------------------------------
+______________________________________________
+/ Ya pasenos profa, solo quiero porder dormir.\
+\  *Un burrito blanco en final del parcial*   /
+ ---------------------------------------------
         \   ^__^
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
                 ||     ||
-Creado por Parzibyte (https://parzibyte.me).
-------------------------------------------------------------------------------------------------
-Si el código es útil para ti, puedes agradecerme siguiéndome: https://parzibyte.me/blog/sigueme/
-Y compartiendo mi blog con tus amigos
-También tengo canal de YouTube: https://www.youtube.com/channel/UCroP4BTWjfM0CkGB6AFUoBg?sub_confirmation=1
-------------------------------------------------------------------------------------------------
+
 */
 class Carrito {
     constructor(correo) {
@@ -119,6 +114,15 @@ class Carrito {
             // this.guardar();
             console.log(Object.values(this.vendedores));
         }
+    }
+
+    quitarVendedor(id_vendedor){
+        const indiceVendedor = this.vendedores.findIndex(vendedor => vendedor.id === id_vendedor);
+        if (indiceVendedor != -1) {
+            this.vendedores.splice(indiceVendedor, 1);
+        }
+        this.guardar();
+        window.location.reload(); 
     }
 
     quitarProductoDesdeCarrito(id_prod, nombreProd, id_vend) {

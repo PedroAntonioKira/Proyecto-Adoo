@@ -22,12 +22,31 @@
     /* position: absolute; */
     display: block;
 }
-button i{
+
+/* button i{
     font-size: 25pt !important;
-}
-.card a:nth-child(1){
+} */
+.row > .card a:nth-child(1){
     margin-right: 30px;
 }
 .card a:nth-child(2){
     margin-left: 30px;
+}
+
+.cart-error-product{
+    background: rgba(187, 55, 55, 0.5);
+}
+
+.row{
+    padding-top: 10px !important;
+}
+.alert.alert-warning.alert-dismissible.fade.show{
+    margin-top: 10px !important;
+}
+
+.notify-diplay-true{
+    display: initial !important;
+}
+#notify-1, #notify-2{
+    display: none;
 }
