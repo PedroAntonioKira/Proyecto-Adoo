@@ -250,7 +250,7 @@ use PHPMailer\PHPMailer\Exception;
                                                            al menos un dígito, al menos una minúscula, al menos una mayúscula.<br>
                                                            y al menos un caracter especial (#?!@$%^&*-.)</p>
                                   </div>
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    <input type="button" name="Previous" class="previous action-button-previous" value="Anterior" />
                     <input type="submit" name="Aceptar" class="btn action-button" value="Aceptar" />
                               </fieldset>
                           </form>
