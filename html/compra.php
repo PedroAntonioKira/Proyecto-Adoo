@@ -7,7 +7,16 @@
 	}
 
 	$nombre=$_SESSION['nombre'];
-	print_r($_SESSION);
+	
+	$cantidad=$_COOKIE['cantidad'];
+	$carrito=$_COOKIE['carrito'];
+	$id=$_COOKIE['vendedor'];
+	
+
+	 $jsoncar=json_decode($carrito);
+	 $jsoncan=json_decode($cantidad);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,16 +64,56 @@
 	         
 	    <div style="float:right;"; class="formregister">
 	     	<h4>Resumen del pedido</h4> 
-	     	<img src="../img/<<?php echo $img ?>" width="200" height="150">
-	      <h5>Nombre del producto</h5>
-	      <?php echo $nombre_producto ?>
-	      <h5>Cantidad</h5>
-	      <?php echo $nombre_producto ?>
-	      <h5>Precio</h5>
-	      <?php echo $precio ?>
-	      <h4>Total</h4>
-	      <?php echo $Total?>
-	      <button class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" role="link" onclick="window.location='pagartotal.php'" >Pagar</button>
+
+	     	<?php 
+				require '../assets/connections/database.php';
+				// CONSULTA ANTERIOR 
+				// SELECT producto.id, producto.nombre, descripcion.precio, descripcion.imagen1 
+				// FROM `producto`, descripcion WHERE producto.descripcion_id = descripcion.id ORDER BY producto.id DESC LIMIT 0, 12;
+					
+				for ($i=0; $i < count($jsoncan) ; $i++){
+
+					$idprod=$jsoncan[$i]->id;
+
+
+
+				$comprobar = "SELECT imagen1,descripcion.precio,vendedor_id FROM catalogodeproductos inner join producto on producto.id=catalogodeproductos.producto_id inner JOIN descripcion on descripcion.id=producto.descripcion_id WHERE vendedor_id=$id AND producto_id = $idprod";
+				$ejecutar = $con->query($comprobar);
+			
+				if($datos = $ejecutar->fetch_assoc())
+				{ 
+					
+					//echo "fetch ".$idprod."<br>dato  ".$datos['vendedor_id'];
+
+					for ($j=0; $j < count($jsoncar) ; $j++) { 
+						// code...
+					
+					
+						if($idprod==$jsoncar[$j]->id)
+						{
+							//echo "entre".$idprod;
+
+							$jsoncar[$j]->cantidad=$jsoncan[$i]->cantidad;
+
+							 $carro=json_encode($jsoncar);
+							
+							
+
+	
+				 ?>
+
+	     	<img src="../img/imagenesProductos/<?php echo $datos['imagen1'] ?>" width="100" height="100"><br>
+	      <FONT SIZE=3>Nombre del producto:&nbsp</FONT>
+	      <FONT SIZE=1><?php echo $jsoncar[$j]->nombre; ?></FONT><br>
+	      <FONT SIZE=3>Cantidad: &nbsp</FONT>
+	      <FONT SIZE=1><?php echo $jsoncar[$j]->cantidad; ?></FONT><br>
+	      <FONT SIZE=3>Precio: &nbsp</FONT>
+	      <FONT SIZE=1><?php echo $datos['precio']; ?></FONT><br>
+	      <FONT SIZE=3>Total: &nbsp </FONT>
+	      <FONT SIZE=1><?php echo $datos['precio']*$jsoncan[$i]->cantidad; ?> </FONT><br> <?php 	} } } } ?>
+	      <form action="ticket.php" method="post">
+	      	<input type="hidden" name="carrito" value='<?php echo $carro ?>'>
+	      	      <button type="submit" class="controls" style="background:#007580; width:50%; margin-left: 80px; margin-top: 10px; background:#2E86C1:hover;" >Pagar</button></form>
   	</div>
 	</main>
 	

@@ -1,6 +1,10 @@
 function renderProduct(producto, id_vendedor){
     console.log("Producto: " + producto.stock);
 
+          var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "compra.php");
+
     var fila = document.createElement("tr");
 
     // Boton eliminar
@@ -33,13 +37,14 @@ function renderProduct(producto, id_vendedor){
     // Cantidad
     var cantidad = document.createElement("td");
     inputCantidad = document.createElement("input");
-    inputCantidad.setAttribute("id", "cantidad-" + producto.id);
+    inputCantidad.setAttribute("id", producto.id);
     inputCantidad.setAttribute("type", "number");
     inputCantidad.setAttribute("min", "1");
     inputCantidad.setAttribute("max", producto.stock);
     inputCantidad.setAttribute("pattern", "^[0-9]+");
     inputCantidad.setAttribute("class", "form-control");
     inputCantidad.setAttribute("value", "1");
+    inputCantidad.setAttribute("name","array[]");
     inputCantidad.setAttribute("onChange", "cantidadCambiada(" + producto.id + ", " + producto.precio + ", " + producto.stock + ")");
     cantidad.appendChild(inputCantidad);
     fila.appendChild(cantidad);
@@ -49,9 +54,12 @@ function renderProduct(producto, id_vendedor){
     subtotal.innerHTML = "$" + producto.precio + " MXN";
     fila.appendChild(subtotal);
 
+
+
     console.log('tbody-' + id_vendedor);
     tabla = document.getElementById('tbody-' + id_vendedor);
     tabla.appendChild(fila);
+
 }
 
 function cantidadCambiada(id, costo, stock){
@@ -80,7 +88,8 @@ function cantidadCambiada(id, costo, stock){
 
 function renderVendor(nombre, id){
     carrojson=cart.jsonProductos(id);
-    console.log("carre"+carrojson);
+
+
 
     tablaMadre = document.getElementById("tablaCarrito");
     tabla = document.createElement('tbody');
@@ -99,10 +108,12 @@ function renderVendor(nombre, id){
 //  = = = = BOTON EJEMPLO = = =  =
   
     buttonComprar = document.createElement("button");
+    buttonComprar.setAttribute("id",id);
     buttonComprar.setAttribute("value", carrojson);
     buttonComprar.setAttribute("class", "btn");
+    buttonComprar.setAttribute("name","enviar");
     buttonComprar.innerHTML = "Comprar todo";
-    buttonComprar.setAttribute("onClick","cart.jsonProductos("+id+")");
+    buttonComprar.setAttribute("onClick"," Mandardatos(this.value,this.id)");
     
 //  = = = = BOTON EJEMPLO = = =  =
     campo4 = document.createElement("td");
@@ -115,7 +126,50 @@ function renderVendor(nombre, id){
     // texto = document.createElement("h4");
     // fila.innerHTML = "Vendidos por: " + nombre;  
     // fila.appendChild(texto);
-
     tabla.appendChild(fila);
     tablaMadre.appendChild(tabla);
+}
+
+
+function Mandardatos(value,ide){
+
+ var aux = [];
+
+ var elements = {};
+ 
+ var cantidad = document.getElementsByName('array[]');
+
+  for (var i = 0; i < cantidad.length ; i++) {
+
+      elements['id'] = cantidad[i].id;
+      elements['cantidad']= cantidad[i].value;
+      aux.push(elements);
+      elements={};
+  
+  }
+
+
+createCookie('carrito', value);
+
+createCookie('cantidad', JSON.stringify(aux));
+
+createCookie('vendedor', ide);
+  
+
+
+ window.location.href = "compra.php";
+
+}
+
+var createCookie = function(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
 }
