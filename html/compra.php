@@ -208,7 +208,7 @@
 
 					<input type="hidden" name="carrito" value='<?php echo $carro ?>'>
 					<input type="hidden" name="idv" value='<?php echo $id ?>'>
-					<button type="submit" class="controls btn btn-success">Pagar</button>
+					<button type="submit" class="controls btn btn-success" onclick="cart.quitarVendedor(<?php echo($id) ?>)">Pagar</button>
 				</form>
 
   		</div>
