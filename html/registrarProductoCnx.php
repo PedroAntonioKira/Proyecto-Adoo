@@ -2,6 +2,13 @@
     session_start();
 	require '../assets/connections/database.php';
     if(isset($_POST['publicar'])){
+        if(!empty($_POST['marca'])              &&!empty($_POST['altoprod'])        &&!empty($_POST['anchoprod']) 
+         &&!empty($_POST['tamañoram'])          &&!empty($_POST['tamañodiscoduro']) &&!empty($_POST['sistemaoperativo']) 
+         &&!empty($_POST['procesador'])         &&!empty($_POST['tamañopantalla'])  &&!empty($_POST['resolucion']) 
+         &&!empty($_POST['numeroprocesadores']) &&!empty($_POST['tipodiscoduro'])   &&!empty($_POST['imagen1']) 
+         &&!empty($_POST['imagen2'])            &&!empty($_POST['imagen3'])         &&!empty($_POST['color'])            
+         &&!empty($_POST['precio'])){
+
         $proceso = 0;
         // DATOS PARA DESCRIPCION
         $marca = trim($_POST['marca']); //
@@ -23,12 +30,14 @@
         $color = trim($_POST['color']);
         $precio = trim($_POST['precio']);
 
-        $insert_descripcion = "INSERT INTO `descripcion`(`marca`, `fabricante`, `altoprod`, `anchoprod`, `bateriasinclu`, `tamañoram`, `tamañodiscoduro`, `sistemaoperativo`, 
-        `procesador`, `tamañopantalla`, `resolucion`, `numeroprocesadores`, `tipodiscoduro`, `imagen1`, `imagen2`, `imagen3`, `color`, `precio`) 
+        $insert_descripcion = "INSERT INTO `descripcion`(`marca`, `fabricante`, `altoprod`, `anchoprod`, `bateriasinclu`, `tamaram`, `tamadiscoduro`, `sistemaoperativo`, `procesador`, `tamapantalla`, `resolucion`, `numeroprocesadores`, `tipodiscoduro`, `imagen1`, `imagen2`, `imagen3`, `color`, `precio`) 
         VALUES ('$marca','$fabricante','$altoprod','$anchoprod','$bateriasinclu','$tamañoram','$tamañodiscoduro','$sistemaoperativo','$procesador','$tamañopantalla',
         '$resolucion','$numeroprocesadores','$tipodiscoduro','$imagen1','$imagen2','$imagen3','$color','$precio')";     
 
-        $result_insert_description = mysqli_query($con, $insert_descripcion);
+        print_r($insert_descripcion);
+        $result_insert_description = $con->query($insert_descripcion);
+        //print_r($result_insert_description);
+
         if($result_insert_description){
              ?> <h3>Se publico descripción del producto</h3><?php
              $proceso += 1;
@@ -60,7 +69,8 @@
             ?><h3>Error al publicar el producto </h3><?php  
         }
         $producto_id = mysqli_insert_id($con); // Ultimo id insertado (producto)
-        $vendedor_id = $_SESSION['id_vendedor'];
+        $vendedor_id = $_SESSION['id_comprador'];
+        print_r($_SESSION);
         $insert_catalogo = "INSERT INTO `catalogodeproductos`(`vendedor_id`, `producto_id`, `avgcalificacion`) 
         VALUES ('$vendedor_id','$producto_id','10')";
         $resultado_catalogo = mysqli_query($con, $insert_catalogo);
@@ -76,6 +86,8 @@
             <h3>Error al registrar el producto en el catalogo</h3> 
             <?php  
         }
+        }
+        
     }
 
 ?>
